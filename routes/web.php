@@ -25,8 +25,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
 	Route::get('/kelolaadmin', 'AdminController@view_admin')->name('adminview');
 
-	Route::post('/kelolaadmin', 'AdminController@storeadmin');
-
 	Route::get('/profil', 'AdminController@editprofil')->name('editprofil');
 
 	Route::get('/profil/{username}', 'AdminController@editprofil');
@@ -34,6 +32,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::post('/profil', 'AdminController@editprofil');
 
 	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
+
+	Route::post('/storeadmin', 'AdminController@storeadmin');
 
 	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
 

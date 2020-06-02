@@ -38,13 +38,13 @@ class AdminController extends Controller
 
     public function storeadmin(Request $request)
     {
-        // insert data ke table pegawai
+        // insert data ke table users
         DB::table('users')->insert([
-            'username' => $request->username,
-            'nama' => "",
+            'name' => $request->name,
             'role' => "admin",
             'instansi' => "",
-            'password' => $request->pwd
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
         ]);
         // alihkan halaman ke halaman pegawai
         return redirect('/admin/home');
