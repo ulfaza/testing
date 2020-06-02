@@ -19,20 +19,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/home', 'AdminController@index')->name('adminhome');
+Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
+// halaman admin disini
+	Route::get('/home', 'AdminController@index')->name('adminhome');
 
+	Route::get('/kelolaadmin', 'AdminController@view_admin')->name('adminview');
 
-Route::get('/admin/kelolaadmin', 'AdminController@view_admin')->name('adminview');
+	Route::post('/kelolaadmin', 'AdminController@storeadmin');
 
-Route::post('/admin/kelolaadmin', 'AdminController@storeadmin');
+	Route::get('/profil', 'AdminController@editprofil')->name('editprofil');
 
-Route::get('/admin/profil', 'AdminController@editprofil')->name('editprofil');
+	Route::get('/profil/{username}', 'AdminController@editprofil');
 
-Route::get('/admin/profil/{username}', 'AdminController@editprofil');
+	Route::post('/profil', 'AdminController@editprofil');
 
-Route::post('/admin/profil', 'AdminController@editprofil');
+	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
 
-Route::get('/admin/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
+	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
 
-Route::get('/admin/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
+});
 

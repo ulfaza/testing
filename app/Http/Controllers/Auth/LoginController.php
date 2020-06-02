@@ -25,7 +25,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
+    public function authenticated(){
+        $user = \Auth::user();
+        if(\Auth::check()){
+            if ($user->isAdmin()) {
+                return redirect('/admin/home');
+            }
+            else if ($user->isUser()) {
+                return redirect('/home');
+            }
+            else{
+                return redirect()->route('login');                
+            }
+        }
+    }
 
     /**
      * Create a new controller instance.

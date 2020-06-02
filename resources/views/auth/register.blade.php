@@ -39,6 +39,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('instansi') ? ' has-error' : '' }}">
+                            <label for="instansi" class="col-md-4 control-label">Instansi</label>
+
+                            <div class="col-md-6">
+                                <input id="instansi" type="text" class="form-control" name="instansi" value="{{ old('instansi') }}" required>
+
+                                @if ($errors->has('instansi'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('instansi') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
