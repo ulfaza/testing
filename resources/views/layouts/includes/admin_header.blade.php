@@ -39,8 +39,10 @@
                  <b>Testing Application</b>
               </a>               
               <ul class="nav navbar-nav navbar-right user-nav">
-                <li class="user-name"><span>Nama Admin</span></li>
-                  <li class="dropdown avatar-dropdown">
+                  <li><a href="/admin/profil/{{ Auth::user()->id }}"><span>{{ Auth::user()->name }}</span></a></li>
+                
+           <!--      <li class="user-name"><span>{{ Auth::user()->name }}</span></li>
+            -->       <li class="dropdown avatar-dropdown">
                    <img src="{{asset('assets/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                   </li>
               </ul>

@@ -27,9 +27,11 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
 	Route::get('/profil', 'AdminController@editprofil')->name('editprofil');
 
-	Route::get('/profil/{username}', 'AdminController@editprofil');
-
 	Route::post('/profil', 'AdminController@editprofil');
+
+	Route::get('/profil/{id}', 'AdminController@edit');
+
+	Route::post('/update','AdminController@update');
 
 	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
 

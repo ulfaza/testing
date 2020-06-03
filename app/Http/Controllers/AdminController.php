@@ -20,10 +20,16 @@ class AdminController extends Controller
 
     public function editprofil()
 	{
-  //       $users = DB::table('users')->where('username',$username)->get();
-
-		 return view('/admin/edit_profil');
+    	return view('/admin/edit_profil');
 	}
+
+    public function edit($id)
+    {
+        // mengambil data users berdasarkan id yang dipilih
+        $users = DB::table('users')->where('id',$id)->get();
+        // passing data pegawai yang didapat ke view edit_profil.blade.php
+        return view('/admin/edit_profil',['users' => $users]);
+    }
 
 	public function tambahadmin()
 	{
@@ -34,6 +40,15 @@ class AdminController extends Controller
     public function tambahbobot()
     {
         return view('/admin/tambahbobot');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'instansi' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
     }
 
     public function storeadmin(Request $request)
@@ -48,6 +63,19 @@ class AdminController extends Controller
         ]);
         // alihkan halaman ke halaman pegawai
         return redirect('/admin/home');
+    }
+
+    public function update(Request $request)
+    {
+        // update data users
+        DB::table('users')->where('id',$request->id)->update([
+            'name' => $request->name,
+            'instansi' => $request->instansi,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+        // alihkan halaman ke halaman home admin
+        return view('/admin/view_admin');
     }
 
 }
