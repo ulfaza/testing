@@ -20,7 +20,7 @@
               </a>
             </li>
             <li class="ripple">
-              <a class="tree-toggle nav-header" href="">
+              <a class="tree-toggle nav-header" href="/uji">
                 <span class="fa-pencil fa"></span> Uji Software
                </a>
             </li>

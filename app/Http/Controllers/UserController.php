@@ -32,4 +32,9 @@ class UserController extends Controller
         return view('/home');
     }
 
+    public function uji()
+    {
+        return view('/uji');
+    }
+
 }

@@ -23,6 +23,8 @@ Route::get('/profil/{id}', 'UserController@edit');
 
 Route::post('/update','UserController@update');
 
+Route::get('/uji', 'UserController@uji');
+
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
 	Route::get('/home', 'AdminController@index')->name('adminhome');
