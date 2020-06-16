@@ -17,7 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'UserController@index')->name('home');
+
+Route::get('/profil/{id}', 'UserController@edit');
+
+Route::post('/update','UserController@update');
 
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
