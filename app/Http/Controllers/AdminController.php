@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -15,7 +18,8 @@ class AdminController extends Controller
 
     public function view_admin()
     {
-        return view('/admin/view_admin');
+        $data['users'] = User::all();
+        return view('/admin/view_admin',$data);
     }
 
     public function editprofil()
@@ -67,6 +71,7 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
+        $data['users'] = User::all();
         // update data users
         DB::table('users')->where('id',$request->id)->update([
             'name' => $request->name,
@@ -75,7 +80,12 @@ class AdminController extends Controller
             'password' => bcrypt($request->password)
         ]);
         // alihkan halaman ke halaman home admin
-        return view('/admin/view_admin');
+        return view('/admin/view_admin',$data);
+    }
+    public function delete($id){
+        $data['users'] = User::all();
+        $user = User::findOrFail($id)->delete();
+        return redirect()->route('adminview');
     }
 
 }

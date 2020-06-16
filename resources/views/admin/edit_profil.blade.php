@@ -8,7 +8,7 @@
 
 	@foreach($users as $u)
 
-	<form form action="/admin/update" method="post" class="form-horizontal">
+	<form form action="{{asset('/admin/update')}}" method="post" class="form-horizontal">
 		{{ csrf_field() }}
 		<input type="hidden" name="id" value="{{ $u->id }}"> <br/>
 

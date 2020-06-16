@@ -39,5 +39,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
 	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
 
+	Route::get('/delete/user{id}','AdminController@delete')->name('delete.user');
 });
 
