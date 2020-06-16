@@ -14,6 +14,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $primarykey = 'id';
+    
     protected $fillable = [
         'name', 'role', 'instansi', 'email', 'password',
     ];
@@ -36,6 +39,11 @@ class User extends Authenticatable
 
     public function isUser() {
         return $this->role === self::USERS_TYPE;
+    }
+
+    public function aplikasi()
+    {
+        return $this->hasMany(\App\Aplikasi::class);
     }
 
 }

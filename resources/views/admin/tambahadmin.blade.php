@@ -4,27 +4,60 @@
 <div class="col-md-2">
 </div>
 <div class="col-md-9" style="padding:100px; padding-top:5%">
-	<h2 style="color: #6699cc">Tambah Admin</h2>
-	<form action="/admin/storeadmin" method="post" class="form-horizontal">
+	<h2 style="color: #6699cc" align="center">Tambah Admin</h2>
+
+	<form form action="/admin/storeadmin" method="post" class="form-horizontal">
 		{{ csrf_field() }}
-		<div class="form-group">
-			<label class="control-label col-sm-2" style="text-align:left" for="name" required="required">Nama</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" name="name">
-			</div>
-		</div>		
-		<div class="form-group">
-			<label class="control-label col-sm-2" style="text-align:left" for="email" required="required">Email</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" name="email">
-			</div>
-		</div>		
-		<div class="form-group">
-			<label class="control-label col-sm-2" style="text-align:left" for="password" required="required">Password</label>
-			<div class="col-sm-3">
-				<input type="password" class="form-control" name="password">
-			</div>
-		</div>
-		<button type="submit" class="btn btn-success">Tambah</button>
+
+		<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+	        <label for="name" class="col-md-4 control-label">Nama</label>
+
+	        <div class="col-md-6">
+	            <input id="name" type="text" class="form-control" name="name" required autofocus>
+
+	            @if ($errors->has('name'))
+	                <span class="help-block">
+	                    <strong>{{ $errors->first('name') }}</strong>
+	                </span>
+	            @endif
+	        </div>
+	    </div>		
+
+		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+	        <label for="email" class="col-md-4 control-label">Email</label>
+
+	        <div class="col-md-6">
+	            <input id="email" type="text" class="form-control" name="email" required autofocus>
+
+	            @if ($errors->has('email'))
+	                <span class="help-block">
+	                    <strong>{{ $errors->first('email') }}</strong>
+	                </span>
+	            @endif
+	        </div>
+	    </div>	
+
+		<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+	        <label for="password" class="col-md-4 control-label">Password</label>
+
+	        <div class="col-md-6">
+	            <input id="password" type="password" class="form-control" name="password" required autofocus>
+
+	            @if ($errors->has('password'))
+	                <span class="help-block">
+	                    <strong>{{ $errors->first('password') }}</strong>
+	                </span>
+	            @endif
+	        </div>
+	    </div>
+
+        <div class="form-group">
+            <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-success">
+                    Tambah
+                </button>
+            </div>
+        </div>
+
 	</form>		
 </div>
