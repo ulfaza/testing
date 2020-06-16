@@ -31,7 +31,7 @@ class AdminController extends Controller
     {
         // mengambil data users berdasarkan id yang dipilih
         $users = DB::table('users')->where('id',$id)->get();
-        // passing data pegawai yang didapat ke view edit_profil.blade.php
+        // passing data admin yang didapat ke view edit_profil.blade.php
         return view('/admin/edit_profil',['users' => $users]);
     }
 
@@ -65,7 +65,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-        // alihkan halaman ke halaman pegawai
+        // alihkan halaman ke halaman home admin
         return redirect('/admin/home');
     }
 

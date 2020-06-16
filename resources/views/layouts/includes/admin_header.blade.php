@@ -60,6 +60,7 @@
     <body id="mimin" class="dashboard">
 
       <!-- start: Header -->
+
         <nav class="navbar navbar-default header navbar-fixed-top">
           <div class="col-md-12 nav-wrapper">
             <div class="navbar-header" style="width:100%;">
@@ -67,15 +68,29 @@
                  <b>Testing Application</b>
               </a>               
               <ul class="nav navbar-nav navbar-right user-nav">
-                  <li><a href="/admin/profil/{{ Auth::user()->id }}"><span>{{ Auth::user()->name }}</span></a></li>
-                
-           <!--      <li class="user-name"><span>{{ Auth::user()->name }}</span></li>
-            -->       <li class="dropdown avatar-dropdown">
+                <li class="user-name"><span>{{ Auth::user()->name }}</span></li>
+                  <li class="dropdown avatar-dropdown">
                    <img src="{{asset('assets/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-                  </li>
+                   <ul class="dropdown-menu user-dropdown">
+                     <li><a href="/admin/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
+                     <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                      </li>
+
+<!--                         <li><a href="{{ route('logout') }}"><span class="fa fa-power-off "></span></a></li> -->
+
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
       <!-- end: Header -->
-

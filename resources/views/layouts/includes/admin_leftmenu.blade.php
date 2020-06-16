@@ -15,6 +15,11 @@
               </p>
             </center>
             </li>
+            <li class="active ripple">
+              <a class="tree-toggle nav-header" href="/admin/home">
+                <span class="fa-home fa"></span> Home 
+              </a>
+            </li>
 
             <li class="ripple">
               <a class="tree-toggle nav-header" href="/admin/tambahbobot">
