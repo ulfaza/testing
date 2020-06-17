@@ -45,227 +45,49 @@
                     </div>
                   </div>
                 </div>
-
-                <div class="form-element">
-                  <div class="col-md-12 padding-0">
-                    <div class="col-md-12">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>1. Functional Suitability</h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">1.1 Functional Completeness</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">1.2 Functional Correctness</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">1.3 Functional Approproateness</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
+      
+        <div class="col-md-12 top-20 padding-0">
+          <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-heading"><h3>Daftar SubKarakteristik</h3></div>
+                <div class="panel-body">
+                  <a href="{{asset('/admin/karakteristik')}}" class="btn btn-info btn-md">Karakteristik</a><br><br>
+                  <div class="responsive-table">
+                    <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                      <thead>
+                        <th>ID</th>
+                        {{-- <th>Karakteristik</th> --}}
+                        <th>Nama SubKarakteristik</th>
+                        <th>Bobot Relatif</th>
+                        <th>Aksi</th>
+                      </thead>
+                      <tbody>
+                      @foreach($subkarakteristiks as $subkarakteristik)
+                      <tr>
+                        <td>{{ $subkarakteristik->sk_id }}</td>
+                        {{-- <td>{{ $subkarakteristik->karakteristik->k_id }}</td> --}}
+                        <td>{{ $subkarakteristik->sk_nama }}</td>
+                        <td>{{ $subkarakteristik->bobot_relatif }}</td>
+      
+                        <td>
+                          <a href="{{route('edit.sub',$subkarakteristik->sk_id)}}" class="btn btn-info btn-sm">
+                            <span class="fa fa-pencil"></span>
+                          </a>
+                          <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="#" class="btn btn-danger btn-sm">
+                            <span class="fa fa-trash"></span>
+                          </a>
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
                 </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>2. Performance Efficiency</h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">2.1 Time Behaviour</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">2.2 Resource Utilization</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">2.3 Capacity</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>3. Compatibility</h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">3.1 Co-Existence</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">3.2 Interoperability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                       </div>
-                   </div>
-                </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>4. Usability</h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">4.1 Appropriateness Recognizability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">4.2 Learnability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">4.3 Operability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">4.4 User Error Protection</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">4.5 User Interface Aesthetics</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">4.6 Accessibility</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>5. Reliability</h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">5.1 Maturity </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">5.2 Availability </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">5.3 Fault-Tolerance</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">5.4 Recoverability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>6. Security</h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">6.1 Confidentiality</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">6.2 Integrity</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">6.3 Non-repudiation</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">6.4 Authenticity</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">6.5 Accountability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>7. Maintainability </h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">7.1 Modularity </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">7.2 Reusability </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">7.3 Analysability </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">7.4 Modifiability </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                           <div class="form-group"><label class="col-sm-2 control-label text-right">7.5 Testability </label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-
-
-                <div class="form-element">
-                  <div class="col-md-13 padding-0">
-                    <div class="col-md-13">
-                      <div class="panel form-element-padding">
-                        <div class="panel-heading">
-
-                        <h4>8. Portability </h4>
-                        </div>
-                         <div class="panel-body" style="padding-bottom:30px;">
-                          <div class="col-md-12">
-
-                          	<div class="form-group"><label class="col-sm-2 control-label text-right">8.1 Adaptability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">8.2 Installability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                            </div>
-                            <div class="form-group"><label class="col-sm-2 control-label text-right">8.3 Replaceability</label>
-                              <div class="col-sm-10"><input type="text" class="form-control"></div>
-                           </div>
-                       </div>
-                   </div>
-                </div>
-
+                <a href="#" class="btn btn-info btn-md">Tambah Subkarakteristik</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
 
                 
 

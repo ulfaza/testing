@@ -26,6 +26,7 @@
                 <span class="fa-balance-scale fa" ></span> Bobot Relatif
               </a>
             </li>
+
             <li class="ripple">
               <a class="tree-toggle nav-header" href="/admin/kelolaadmin">
                 <span class="fa-book fa"></span> Kelola Admin

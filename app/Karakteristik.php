@@ -2,21 +2,16 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Karakteristik extends Model
 {
-    //
     use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
     protected $primarykey = 'k_id';
-    
+    public $incrementing = true;    
+    public $timestamps = false;
+    protected $table = 'karakteristik';
     protected $fillable = [
         'k_nama', 'k_bobot',
     ];

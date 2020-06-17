@@ -2,19 +2,15 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class SubKarakteristik extends Model
 {
     //
     use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-
+    public $timestamps = false;
+    protected $table = 'subkarakteristik';
     protected $primarykey = 'sk_id';
     
     protected $fillable = [

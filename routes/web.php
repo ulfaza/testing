@@ -46,5 +46,18 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
 
 	Route::get('/delete/user{id}','AdminController@delete')->name('delete.user');
+
+	// karakteristik -------
+	Route::get('/karakteristik', 'KarakteristikController@index')->name('index.karakteristik');
+	Route::get('/tambah_karakteristik', 'KarakteristikController@insert')->name('insert.karakteristik');
+	Route::post('/store/karakteristik', 'KarakteristikController@store')->name('store.karakteristik');
+	Route::get('/delete/karakteristik{id}','KarakteristikController@delete')->name('delete.karakteristik');
+	
+	// sub-Karakteristik
+	Route::get('/edit_sub/subkarakteristik{id}', 'SubkarakteristikController@edit')->name('edit.sub');
+	Route::post('/update/sub{id}','SubkarakteristikController@update')->name('update.sub');
+
+
+
 });
 

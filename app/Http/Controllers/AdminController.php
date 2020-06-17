@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Subkarakteristik;
 
 class AdminController extends Controller
 {
@@ -43,7 +44,8 @@ class AdminController extends Controller
 
     public function tambahbobot()
     {
-        return view('/admin/tambahbobot');
+        $data['subkarakteristiks'] = Subkarakteristik::all();
+        return view('/admin/tambahbobot',$data);
     }
 
     protected function validator(array $data)
