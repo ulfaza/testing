@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Karakteristik extends Model
 {
     use Notifiable;
-    protected $primarykey = 'k_id';
+    protected $table = 'karakteristik';
+    protected $primaryKey = 'k_id';
+
+
     public $incrementing = true;    
     public $timestamps = false;
-    protected $table = 'karakteristik';
+
     protected $fillable = [
         'k_nama', 'k_bobot',
     ];

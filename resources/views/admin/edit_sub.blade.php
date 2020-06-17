@@ -49,8 +49,8 @@
           <div class="panel-body">
             
             <form action="{{route('update.sub', $subkarakteristik->sk_id)}}" method="post">
-                @csrf
-                    @method('put')
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
                     <div class="form-group">
                         <label>Bobot Relatif Baru :</label>
                         <div>

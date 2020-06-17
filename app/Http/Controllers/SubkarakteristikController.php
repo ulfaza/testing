@@ -13,7 +13,7 @@ class SubkarakteristikController extends Controller
     public function edit($sk_id)
     {
         $subkarakteristik = Subkarakteristik::findOrFail($sk_id);
-        return view('/admin/edit_sub',$data)->with('subkarakteristik', $subkarakteristik);
+        return view('/admin/edit_sub')->with('subkarakteristik', $subkarakteristik);
     }
    
     public function update(Request $request, $id){

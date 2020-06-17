@@ -56,7 +56,7 @@
                     <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                       <thead>
                         <th>ID</th>
-                        {{-- <th>Karakteristik</th> --}}
+                        <th>Karakteristik</th>
                         <th>Nama SubKarakteristik</th>
                         <th>Bobot Relatif</th>
                         <th>Aksi</th>
@@ -65,7 +65,7 @@
                       @foreach($subkarakteristiks as $subkarakteristik)
                       <tr>
                         <td>{{ $subkarakteristik->sk_id }}</td>
-                        {{-- <td>{{ $subkarakteristik->karakteristik->k_id }}</td> --}}
+                        <td>{{ $subkarakteristik->karakteristik->k_nama }}</td>
                         <td>{{ $subkarakteristik->sk_nama }}</td>
                         <td>{{ $subkarakteristik->bobot_relatif }}</td>
       

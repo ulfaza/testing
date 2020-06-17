@@ -55,7 +55,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	
 	// sub-Karakteristik
 	Route::get('/edit_sub/subkarakteristik{id}', 'SubkarakteristikController@edit')->name('edit.sub');
-	Route::post('/update/sub{id}','SubkarakteristikController@update')->name('update.sub');
+	Route::post('/update/subkarakteristik{id}','SubkarakteristikController@update')->name('update.sub');
 
 
 

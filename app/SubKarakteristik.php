@@ -9,9 +9,10 @@ class SubKarakteristik extends Model
 {
     //
     use Notifiable;
-    public $timestamps = false;
     protected $table = 'subkarakteristik';
-    protected $primarykey = 'sk_id';
+    protected $primaryKey = 'sk_id';
+
+    public $timestamps = false;
     
     protected $fillable = [
         'sk_nama', 'bobot_relatif',
