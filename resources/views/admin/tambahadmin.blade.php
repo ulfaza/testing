@@ -21,7 +21,21 @@
 	                </span>
 	            @endif
 	        </div>
-	    </div>		
+		</div>	
+		
+		<div class="form-group{{ $errors->has('instansi') ? ' has-error' : '' }}">
+	        <label for="instansi" class="col-md-4 control-label">Instansi</label>
+
+	        <div class="col-md-6">
+	            <input id="instansi" type="text" class="form-control" name="instansi" required autofocus>
+
+	            @if ($errors->has('instansi'))
+	                <span class="help-block">
+	                    <strong>{{ $errors->first('instansi') }}</strong>
+	                </span>
+	            @endif
+	        </div>
+	    </div>	
 
 		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	        <label for="email" class="col-md-4 control-label">Email</label>

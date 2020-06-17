@@ -61,7 +61,7 @@ class AdminController extends Controller
         DB::table('users')->insert([
             'name' => $request->name,
             'role' => "admin",
-            'instansi' => "",
+            'instansi' => $request->instansi,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
