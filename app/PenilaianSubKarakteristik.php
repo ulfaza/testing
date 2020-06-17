@@ -16,4 +16,9 @@ class PenilaianSubKarakteristik extends Model
     {
         return $this->belongsTo(\App\PenilaianKarakteristik::class,'pk_id');
     }
+
+    public function hasilkuesioner()
+    {
+        return $this->hasMany(\App\HasilKuesioner::class);
+    }
 }
