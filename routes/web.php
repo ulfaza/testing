@@ -24,9 +24,10 @@ Route::get('/profil/{id}', 'UserController@edit');
 Route::post('/update','UserController@update');
 
 //Route Aplikasi
+Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
 Route::get('/insert/aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
 Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
-
+Route::get('/delete/aplikasi', 'AplikasiController@delete')->name('delete.aplikasi');
 
 
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
