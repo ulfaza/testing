@@ -14,12 +14,12 @@ class AplikasiController extends Controller
     public function index()
     {
         $data['aplikasis'] = Aplikasi::all();
-        return view('/aplikasi',$data);
+        return view('/admin/aplikasi',$data);
     }
 
     public function insert()
     {
-        return view('/tambah_aplikasi');
+        return view('/admin/tambah_aplikasi');
     }
 
     public function store(Request $request)
@@ -31,10 +31,10 @@ class AplikasiController extends Controller
       $aplikasi->a_total   = 0;
 
       if ($aplikasi->save()){
-        return redirect('/home');
+        return redirect('/admin/aplikasi');
       }
       else{
-        return redirect('/aplikasi');
+        return redirect('/admin/tambah_aplikasi');
       }
     }
 

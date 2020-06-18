@@ -1,5 +1,5 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
+@include('layouts.includes.admin_header')
+@include('layouts.includes.admin_leftmenu')
 
 @section('content')
 
@@ -26,6 +26,7 @@
                   <th>ID User</th>
                   <th>Nama Aplikasi</th>
 
+                  <th>Set Bobot</th>
                   <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -34,6 +35,12 @@
                   <td>{{ $aplikasi->a_id }}</td>
                   <td>{{ $aplikasi->id }}</td>
                   <td>{{ $aplikasi->a_nama }}</td>
+
+                  <td>
+                    <a href="#" class="btn btn-info btn-sm">
+                      <span class="fa fa-pencil"></span>
+                    </a>
+                  </td>
 
                   <td>
                     <a href="#" class="btn btn-info btn-sm">
@@ -48,7 +55,7 @@
               </tbody>
             </table>
           </div>
-          <a href="{{asset('/insert/aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
+          <a href="{{asset('/admin/insert/aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
         </div>
       </div>
     </div>

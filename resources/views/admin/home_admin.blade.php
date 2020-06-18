@@ -6,7 +6,7 @@
                     <div class="col-md-4">
                         <div class="panel box-v1">
                             <div class="panel-body text-center"> 
-                                <a href="/admin/profil"><h1>Profil</h1></a>
+                                <a href="/admin/aplikasi"><h1>Aplikasi</h1></a>
                                 <hr/>
                             </div>
                         </div>
