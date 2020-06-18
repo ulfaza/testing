@@ -23,7 +23,11 @@ Route::get('/profil/{id}', 'UserController@edit');
 
 Route::post('/update','UserController@update');
 
-Route::get('/uji', 'UserController@uji');
+//Route Aplikasi
+Route::get('/insert/aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
+Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
+
+
 
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
