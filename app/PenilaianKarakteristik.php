@@ -27,7 +27,7 @@ class PenilaianKarakteristik extends Model
      */
 	public function aplikasi()
     {
-        return $this->belongsTo(\App\Karakteristik::class,'a_id');
+        return $this->belongsTo(\App\Aplikasi::class,'a_id');
     }
 
 	public function karakteristik()

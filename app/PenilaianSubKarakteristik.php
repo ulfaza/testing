@@ -12,13 +12,14 @@ class PenilaianSubKarakteristik extends Model
         'ps_bobot_relatif', 'ps_nilai',
     ];
 
+    public function subkarakteristik()
+    {
+        return $this->belongsTo(\App\SubKarakteristik::class,'sk_id');
+    }
+
 	public function penilaiankarakteristik()
     {
         return $this->belongsTo(\App\PenilaianKarakteristik::class,'pk_id');
     }
 
-    public function hasilkuesioner()
-    {
-        return $this->hasMany(\App\HasilKuesioner::class);
-    }
 }
