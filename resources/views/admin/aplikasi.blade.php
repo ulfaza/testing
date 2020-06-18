@@ -43,7 +43,7 @@
                   </td>
 
                   <td>
-                    <a href="#" class="btn btn-info btn-sm">
+                    <a href="{{route('edit.aplikasi',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                       <span class="fa fa-pencil"></span>
                     </a>
                     <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.aplikasi',$aplikasi->a_id)}}" class="btn btn-danger btn-sm">

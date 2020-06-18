@@ -22,6 +22,24 @@ class AplikasiController extends Controller
         return view('/admin/tambah_aplikasi');
     }
 
+    public function edit($a_id)
+    {
+        $aplikasi = Aplikasi::findOrFail($a_id);
+        return view('/admin/edit_aplikasi')->with('aplikasi', $aplikasi);
+    }
+
+    public function update(Request $request, $a_id){
+        $aplikasi = Aplikasi::findorFail($a_id);
+        $this->validate($request,[
+            'a_nama'      =>['required'],
+        ]);
+        $aplikasi->a_nama       = $request->a_nama;
+            
+  
+        if ($aplikasi->save())
+          return redirect()->route('index.aplikasi');
+    }
+
     public function store(Request $request)
     {
       $aplikasi = new aplikasi;
@@ -39,7 +57,7 @@ class AplikasiController extends Controller
     }
 
     public function delete($a_id){
-        $karakteristik = Karakteristik::findOrFail($a_id)->delete();
+        $aplikasi = Aplikasi::findOrFail($a_id)->delete();
         return redirect()->route('index.aplikasi');
     }
 }

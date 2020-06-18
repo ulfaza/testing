@@ -10,7 +10,7 @@ class Aplikasi extends Model
     //
     use Notifiable;
     protected $table = 'aplikasi';
-    protected $primarykey = 'a_id';
+    protected $primaryKey = 'a_id';
     
     protected $fillable = [
         'a_nama', 'a_total',
