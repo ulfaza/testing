@@ -26,7 +26,7 @@
               </a>
             </li>
             <li class="ripple">
-              <a class="tree-toggle nav-header" href="/uji">
+              <a class="tree-toggle nav-header" href="{{route('insert.aplikasi')}}">
                 <span class="fa-pencil fa"></span> Uji Software
                </a>
             </li>
