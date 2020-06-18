@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jun 2020 pada 17.31
+-- Waktu pembuatan: 18 Jun 2020 pada 14.01
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.4
 
@@ -34,6 +34,26 @@ CREATE TABLE `aplikasi` (
   `a_total` double(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `aplikasi`
+--
+
+INSERT INTO `aplikasi` (`a_id`, `id`, `a_nama`, `a_total`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Integra', 0.00, '2020-06-17 19:51:07', '2020-06-17 19:51:07'),
+(2, 7, 'MyITS', 0.00, '2020-06-17 20:37:56', '2020-06-17 20:37:56');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hasilkuesioner`
+--
+
+CREATE TABLE `hasilkuesioner` (
+  `ps_id` int(10) UNSIGNED NOT NULL,
+  `r_id` int(10) UNSIGNED NOT NULL,
+  `hk_nilai` double(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -86,7 +106,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2020_06_15_155458_create_karakteristik_table', 3),
 (13, '2020_06_15_160759_create_subkarakteristik_table', 3),
 (14, '2020_06_16_063408_create_penilaiankarakteristik_table', 4),
-(15, '2020_06_16_064444_create_penilaiansubkarakteristik_table', 5);
+(15, '2020_06_16_064444_create_penilaiansubkarakteristik_table', 5),
+(17, '2020_06_17_071219_create_responden_table', 6),
+(19, '2020_06_17_071750_create_hasilkuesioner_table', 7);
 
 -- --------------------------------------------------------
 
@@ -131,6 +153,17 @@ CREATE TABLE `penilaiansubkarakteristik` (
   `pk_id` int(10) UNSIGNED NOT NULL,
   `ps_bobot_relatif` double(8,2) NOT NULL,
   `ps_nilai` double(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `responden`
+--
+
+CREATE TABLE `responden` (
+  `r_id` int(10) UNSIGNED NOT NULL,
+  `r_nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -206,12 +239,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `role`, `instansi`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'admin3', 'admin', '', 'admin3@gmail.com', '$2y$10$EDS4AUZbRjwtzsruE38QZ.XfsLVOkos2pHawiNt//m0qca18VgHFi', 'QUlspkSLsEgCNeMbhaa8jDb82HGZMEyYxKY33UdGKjFBs3VOWgysmRE6vEbb', '2020-06-01 21:41:23', '2020-06-01 21:41:23'),
+(3, 'admin3', 'admin', '', 'admin3@gmail.com', '$2y$10$EDS4AUZbRjwtzsruE38QZ.XfsLVOkos2pHawiNt//m0qca18VgHFi', 'noQTnNT0GvCYOr8cUYHUixDxClg13E55BPH8hYyS1MTzMpazd7ynY8mRZvYn', '2020-06-01 21:41:23', '2020-06-01 21:41:23'),
 (4, 'admin4', 'admin', '', 'admin4@gmail.com', '$2y$10$.oZENjbmN0BnmhSQ1n75OuNizaHnPkqg5CQyWHJ96jD1VFshXuEwa', 'OtBBzwFdkNoFplVKEWcqHC5lNIl24DFxn4TUOpx3w7UZ7tgfRIS50SRDNtkk', '2020-06-01 21:47:39', '2020-06-01 21:47:39'),
 (5, 'admin5', 'admin', '', 'admin5@gmail.com', '$2y$10$sljzYraduOYxS/vNq4BKHOHVsUiUKTimYstLycmEN1YNwm.xcOTXW', 'IShidUGXGbw95zMcY8jllRNqmiD95zkrraoFNoNE7oLJJbdaVd5eOUiH4gRo', '2020-06-01 21:50:05', '2020-06-01 21:50:05'),
-(7, 'Ulfatuz Z', 'softwaretester', 'ITS', 'zzz@gmail.com', '$2y$10$MMh1qmoY3ByQtt6SFexYOelawB68DD5oI2Ky.luGFitLLZRsvBF8W', 'bnh1S4htbLVSXE4lykeJPOSA24V98G1NN0PJhhXxTP9iPoIk5i05gSa1vgf8', '2020-06-01 22:40:45', '2020-06-01 22:40:45'),
+(7, 'Ulfatuz Z', 'softwaretester', 'ITS', 'zzz@gmail.com', '$2y$10$MMh1qmoY3ByQtt6SFexYOelawB68DD5oI2Ky.luGFitLLZRsvBF8W', 'y3r4ilUWuSt4aBhBXzc8l5vNcICooR4o2mlBYNRIjFwINXNWm6shhVn9kYku', '2020-06-01 22:40:45', '2020-06-01 22:40:45'),
 (11, 'admin8', 'admin', '', 'admin8@gmail.com', '$2y$10$./tQpq3nwgbjH8NeyIgUQOqxfjPbk5ZzRvH.LzbO5JB58PiDu0.Z.', 'stXFsTsrTHyq6uEw3dZPTqdAKMtgN1pKFZdh5Sm0pFd3fTtdbCmV314NQ00y', NULL, NULL),
-(12, 'admin9', 'admin', '', 'admin9@gmail.com', '$2y$10$QuCI1CkYDvUlf/8fjSoua..TzD6DDJ6LnmKsCfbPP9Eyn/BRurjF2', 'qBTD6WaNBBMjgyhP5gmCz52dFzpXHxd9SzUzcqiVVIn2HVPHez9REQVx2YZQ', NULL, NULL);
+(12, 'admin9', 'admin', '', 'admin9@gmail.com', '$2y$10$QuCI1CkYDvUlf/8fjSoua..TzD6DDJ6LnmKsCfbPP9Eyn/BRurjF2', 'Tv8wfVThFUH2yzlivPK7jLeX2ofaTTlby3kdNnldlZQjQqsGe8X7BCZEvGmg', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -224,6 +257,13 @@ ALTER TABLE `aplikasi`
   ADD PRIMARY KEY (`a_id`),
   ADD UNIQUE KEY `aplikasi_a_id_unique` (`a_id`),
   ADD KEY `aplikasi_id_foreign` (`id`);
+
+--
+-- Indeks untuk tabel `hasilkuesioner`
+--
+ALTER TABLE `hasilkuesioner`
+  ADD KEY `hasilkuesioner_ps_id_foreign` (`ps_id`),
+  ADD KEY `hasilkuesioner_r_id_foreign` (`r_id`);
 
 --
 -- Indeks untuk tabel `karakteristik`
@@ -262,6 +302,13 @@ ALTER TABLE `penilaiansubkarakteristik`
   ADD KEY `penilaiansubkarakteristik_pk_id_foreign` (`pk_id`);
 
 --
+-- Indeks untuk tabel `responden`
+--
+ALTER TABLE `responden`
+  ADD PRIMARY KEY (`r_id`),
+  ADD UNIQUE KEY `responden_r_id_unique` (`r_id`);
+
+--
 -- Indeks untuk tabel `subkarakteristik`
 --
 ALTER TABLE `subkarakteristik`
@@ -284,7 +331,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `aplikasi`
 --
 ALTER TABLE `aplikasi`
-  MODIFY `a_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `a_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `karakteristik`
@@ -296,7 +343,7 @@ ALTER TABLE `karakteristik`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaiankarakteristik`
@@ -309,6 +356,12 @@ ALTER TABLE `penilaiankarakteristik`
 --
 ALTER TABLE `penilaiansubkarakteristik`
   MODIFY `ps_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `responden`
+--
+ALTER TABLE `responden`
+  MODIFY `r_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `subkarakteristik`
@@ -331,6 +384,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `aplikasi`
   ADD CONSTRAINT `aplikasi_id_foreign` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `hasilkuesioner`
+--
+ALTER TABLE `hasilkuesioner`
+  ADD CONSTRAINT `hasilkuesioner_ps_id_foreign` FOREIGN KEY (`ps_id`) REFERENCES `penilaiansubkarakteristik` (`ps_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `hasilkuesioner_r_id_foreign` FOREIGN KEY (`r_id`) REFERENCES `responden` (`r_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `penilaiankarakteristik`
