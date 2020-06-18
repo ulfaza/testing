@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\User;
+use App\Aplikasi;
 
 class AplikasiController extends Controller
 {
@@ -17,17 +18,13 @@ class AplikasiController extends Controller
 
     public function store(Request $request)
     {
-      $this->validate($request,[
-        'a_id'      =>['required','unique:aplikasi'],
-        'a_nama'    =>['required', 'string'],   
-
-      ]);
-
       $aplikasi = new aplikasi;
       $aplikasi->a_id      = $request->a_id;
-      $aplikasi->a_nama    = $request->a_nama;     
+      $aplikasi->id        = Auth::user()->id;
+      $aplikasi->a_nama    = $request->a_nama;  
+      $aplikasi->a_total   = 0;
 
-      if ($karakteristik->save()){
+      if ($aplikasi->save()){
         return redirect('/home');
       }
       else{

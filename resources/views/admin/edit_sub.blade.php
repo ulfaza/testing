@@ -48,13 +48,13 @@
         <div class="panel-heading"><h3>Daftar Admin</h3></div>
           <div class="panel-body">
             
-            <form action="{{route('update.sub', $subkarakteristik->sk_id)}}" method="post">
+            <form action="{{route('update.sub', $subkarakteristik->sk_id)}}" method="POST">
                 {{ csrf_field() }}
-                {{ method_field('PUT') }}
+
                     <div class="form-group">
                         <label>Bobot Relatif Baru :</label>
                         <div>
-                          <input type="text" class="form-control" name="sk_bobot" value="{{ $subkarakteristik->sk_bobot}}"required>
+                          <input type="text" class="form-control" name="bobot_relatif" value="{{ $subkarakteristik->bobot_relatif}}"required>
                         </div>
                     </div>
                 

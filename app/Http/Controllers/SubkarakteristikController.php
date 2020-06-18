@@ -19,9 +19,9 @@ class SubkarakteristikController extends Controller
     public function update(Request $request, $id){
         $subkarakteristik = Subkarakteristik::findorFail($id);
         $this->validate($request,[
-            'sk_bobot'      =>['required'],
+            'bobot_relatif'      =>['required'],
         ]);
-        $subkarakteristik->sk_bobot       = $request->sk_bobot;
+        $subkarakteristik->bobot_relatif       = $request->bobot_relatif;
             
   
         if ($subkarakteristik->save())
