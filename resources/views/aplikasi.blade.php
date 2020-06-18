@@ -17,23 +17,41 @@
  <div class="col-md-12 top-20 padding-0">
     <div class="col-md-12">
       <div class="panel">
-        <div class="panel-heading"><h3>Spesifikasi Aplikasi</h3></div>
+        <div class="panel-heading"><h3>Daftar Aplikasi</h3></div>
           <div class="panel-body">
+            <div class="responsive-table">
+              <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                <thead>
+                  <th>ID</th>
+                  <th>ID User</th>
+                  <th>Nama Aplikasi</th>
 
-            <form action="{{route('store.aplikasi')}}" method="post">
-                {{ csrf_field() }} 
-                <div class="form-group">
-                  <label>Nama Aplikasi :</label>
-                  <div><input type="text" class="form-control"  name="a_nama" required></div>
-                </div>                
+                  <th>Aksi</th>
+                </thead>
+                <tbody>
+                @foreach($aplikasis as $aplikasi)
+                <tr>
+                  <td>{{ $aplikasi->a_id }}</td>
+                  <td>{{ $aplikasi->id }}</td>
+                  <td>{{ $aplikasi->a_nama }}</td>
 
-                <button type="submit" class="btn btn-primary ">Submit</button>
-                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
-            </form>
-            
-
+                  <td>
+                    <a href="#" class="btn btn-info btn-sm">
+                      <span class="fa fa-pencil"></span>
+                    </a>
+                    <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.aplikasi',$aplikasi->a_id)}}" class="btn btn-danger btn-sm">
+                      <span class="fa fa-trash"></span>
+                    </a>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <a href="{{asset('/insert/aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
         </div>
       </div>
     </div>
-
 </div>
+
+

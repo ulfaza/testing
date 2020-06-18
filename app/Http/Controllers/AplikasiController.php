@@ -11,9 +11,15 @@ use App\Aplikasi;
 
 class AplikasiController extends Controller
 {
+    public function index()
+    {
+        $data['aplikasis'] = Aplikasi::all();
+        return view('/aplikasi',$data);
+    }
+
     public function insert()
     {
-        return view('/aplikasi');
+        return view('/tambah_aplikasi');
     }
 
     public function store(Request $request)
@@ -30,5 +36,10 @@ class AplikasiController extends Controller
       else{
         return redirect('/aplikasi');
       }
+    }
+
+    public function delete($a_id){
+        $karakteristik = Karakteristik::findOrFail($a_id)->delete();
+        return redirect()->route('index.aplikasi');
     }
 }
