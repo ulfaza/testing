@@ -26,8 +26,8 @@ class Aplikasi extends Model
         return $this->belongsTo(\App\User::class,'id');
     }
 
-    public function karakteristik()
+    public function penilaiankarakteristik()
     {
-        return $this->hasMany(\App\karakteristik::class);
+        return $this->hasMany(\App\PenilaianKarakteristik::class);
     }
 }

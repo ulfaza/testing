@@ -17,6 +17,7 @@ class CreatePenilaiankarakteristikTable extends Migration
             $table->increments('pk_id')->unique();
             $table->integer('a_id')->unsigned();
             $table->integer('k_id')->unsigned();
+            $table->float('pk_bobot');
             $table->float('pk_nilai');
         });
         Schema::table('penilaiankarakteristik', function($table){
