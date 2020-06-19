@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function view_admin()
     {
-        $data['users'] = User::all();
+        $data['users'] = User::where('role','admin')->get();
         return view('/admin/view_admin',$data);
     }
 
@@ -75,7 +75,7 @@ class AdminController extends Controller
         return redirect('/admin/home');
     }
 
-    public function update(Request $request)
+    public function update2(Request $request)
     {
         $data['users'] = User::all();
         // update data users
@@ -83,10 +83,23 @@ class AdminController extends Controller
             'name' => $request->name,
             'instansi' => $request->instansi,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
         ]);
         // alihkan halaman ke halaman home admin
-        return view('/admin/view_admin',$data);
+        return redirect()->route('adminview',$data);
+    }
+    public function update(Request $request, $id){
+        $user = User::findorFail($id);
+        
+            $user->name       = $request->name;
+            $user->instansi     = $request->instansi;
+            $user->email  = $request->email;
+           
+  
+        if ($user->save())
+          return redirect()->route('adminview');
+        else {
+            return redirect()->route('adminview');
+        }
     }
     public function delete($id){
         $data['users'] = User::all();

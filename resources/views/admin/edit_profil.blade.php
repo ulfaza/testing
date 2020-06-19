@@ -1,67 +1,77 @@
 @include('layouts.includes.admin_header')
 @include('layouts.includes.admin_leftmenu')
-@section('content')
-<div class="col-md-2">
-</div>
-<div class="col-md-9" style="padding:100px; padding-top:5%">
-	<h2 style="color: #6699cc" align="center">Edit Profil</h2>
+@section('tabeladmin')
 
-	@foreach($users as $u)
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 105px;
+}
 
-	<form form action="{{asset('/admin/update')}}" method="post" class="form-horizontal">
-		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $u->id }}"> <br/>
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-		<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	        <label for="name" class="col-md-4 control-label">Nama</label>
+#customers tr:nth-child(even){background-color: #f2f2f2;}
 
-	        <div class="col-md-6">
-	            <input id="name" type="text" class="form-control" name="name" value="{{ $u->name }}" required autofocus>
+#customers tr:hover {background-color: #ddd;}
 
-	            @if ($errors->has('name'))
-	                <span class="help-block">
-	                    <strong>{{ $errors->first('name') }}</strong>
-	                </span>
-	            @endif
-	        </div>
-	    </div>		
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5DADE2;
+  color: white;
+}
 
-		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label for="email" class="col-md-4 control-label">E-Mail</label>
+</style>
 
-            <div class="col-md-6">
-                <input id="email" type="email" class="form-control" name="email" value="{{ $u->email }}" required>
+<div id="content">
+  <div class="panel box-shadow-none content-header">
+     <div class="panel-body">
+       <div class="col-md-12">
+           <h3 class="animated fadeInLeft">Kelola Admin</h3>
+           <p class="animated fadeInDown">
+            Home <span class="fa-angle-right fa"></span> Admin <span class="fa-angle-right fa"></span> Kelola Admin
+        </p>
+      </div>
+    </div>
+  </div>
 
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
+ <div class="col-md-12 top-20 padding-0">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-heading"><h3>Tambah Admin</h3></div>
+          <div class="panel-body">
+            @foreach($users as $u)
+            <form action="{{route('update.user', $u->id)}}" method="post">
+                {{ csrf_field() }} 
+                <div class="form-group">
+                  <label>Nama :</label>
+                  <div><input id="name" type="text" class="form-control" name="name" value="{{ $u->name }}" required autofocus></div>
+                </div>
+                <div class="form-group">
+                  <label>Instansi :</label>
+                  <div><input id="instansi" type="text" class="form-control" name="instansi" value="{{ $u->instansi }}" required></div>
+				</div>
+				<div class="form-group">
+                  <label>Email :</label>
+                  <div><input id="email" type="email" class="form-control" name="email" value="{{ $u->email }}" required></div>
+				</div>
+
+                
+
+                <button type="submit" class="btn btn-primary ">Submit</button>
+                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>
+            </form>
+            @endforeach
+            
+
         </div>
-
-        <div class="form-group{{ $errors->has('instansi') ? ' has-error' : '' }}">
-            <label for="instansi" class="col-md-4 control-label">Instansi</label>
-
-            <div class="col-md-6">
-                <input id="instansi" type="text" class="form-control" name="instansi" value="{{ $u->instansi }}" required>
-
-                @if ($errors->has('instansi'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('instansi') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-danger">
-                    Simpan
-                </button>
-            </div>
-        </div>
-
-	</form>
-	@endforeach		
+      </div>
+    </div>
 </div>

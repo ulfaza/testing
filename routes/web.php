@@ -45,7 +45,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
 	Route::get('/profil/{id}', 'AdminController@edit');
 
-	Route::post('/update','AdminController@update');
+	Route::post('/update{id}','AdminController@update')->name('update.user');
 
 	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
 
