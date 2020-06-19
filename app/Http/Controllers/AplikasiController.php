@@ -15,12 +15,30 @@ class AplikasiController extends Controller
     public function index()
     {
         $data['aplikasis'] = Aplikasi::all();
-        return view('/admin/aplikasi',$data);
+        return view('/aplikasi',$data);
     }
 
     public function insert()
     {
-        return view('/admin/tambah_aplikasi');
+        return view('/tambah_aplikasi');
+    }
+
+    public function edit($a_id)
+    {
+        $aplikasi = Aplikasi::findOrFail($a_id);
+        return view('/edit_aplikasi')->with('aplikasi', $aplikasi);
+    }
+
+    public function update(Request $request, $a_id){
+        $aplikasi = Aplikasi::findorFail($a_id);
+        $this->validate($request,[
+            'a_nama'      =>['required'],
+        ]);
+        $aplikasi->a_nama       = $request->a_nama;
+            
+  
+        if ($aplikasi->save())
+          return redirect()->route('index.aplikasi');
     }
 
     public function store(Request $request)
@@ -32,15 +50,15 @@ class AplikasiController extends Controller
       $aplikasi->a_total   = 0;
 
       if ($aplikasi->save()){
-        return redirect('/admin/aplikasi');
+        return redirect('/aplikasi');
       }
       else{
-        return redirect('/admin/tambah_aplikasi');
+        return redirect('/tambah_aplikasi');
       }
     }
 
     public function delete($a_id){
-        $karakteristik = Karakteristik::findOrFail($a_id)->delete();
+        $aplikasi = Aplikasi::findOrFail($a_id)->delete();
         return redirect()->route('index.aplikasi');
     }
 }

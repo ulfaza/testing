@@ -21,6 +21,11 @@
               </a>
             </li>
             <li class="ripple">
+              <a class="tree-toggle nav-header" href="/aplikasi">
+                <span class="fa-globe fa" ></span> Aplikasi
+              </a>
+            </li>
+            <li class="ripple">
               <a class="tree-toggle nav-header" href="">
                 <span class="fa-balance-scale fa" ></span> Bobot
               </a>
