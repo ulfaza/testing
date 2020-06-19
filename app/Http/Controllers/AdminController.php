@@ -75,18 +75,6 @@ class AdminController extends Controller
         return redirect('/admin/home');
     }
 
-    public function update2(Request $request)
-    {
-        $data['users'] = User::all();
-        // update data users
-        DB::table('users')->where('id',$request->id)->update([
-            'name' => $request->name,
-            'instansi' => $request->instansi,
-            'email' => $request->email,
-        ]);
-        // alihkan halaman ke halaman home admin
-        return redirect()->route('adminview',$data);
-    }
     public function update(Request $request, $id){
         $user = User::findorFail($id);
         
