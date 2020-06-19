@@ -1,5 +1,5 @@
-@include('layouts.includes.admin_header')
-@include('layouts.includes.admin_leftmenu')
+@include('layouts.includes.header')
+@include('layouts.includes.leftmenu')
 @section('editaplikasi')
 
 <div id="content">
@@ -32,7 +32,7 @@
                 
 
                     <button type="submit" class="btn btn-primary ">Update</button>
-                    <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/admin/aplikasi')}}" class="btn btn-secondary"> Cancel</a>
+                    <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/aplikasi')}}" class="btn btn-secondary"> Cancel</a>
             </form>
 
         </div>

@@ -14,18 +14,18 @@ class AplikasiController extends Controller
     public function index()
     {
         $data['aplikasis'] = Aplikasi::all();
-        return view('/admin/aplikasi',$data);
+        return view('/aplikasi',$data);
     }
 
     public function insert()
     {
-        return view('/admin/tambah_aplikasi');
+        return view('/tambah_aplikasi');
     }
 
     public function edit($a_id)
     {
         $aplikasi = Aplikasi::findOrFail($a_id);
-        return view('/admin/edit_aplikasi')->with('aplikasi', $aplikasi);
+        return view('/edit_aplikasi')->with('aplikasi', $aplikasi);
     }
 
     public function update(Request $request, $a_id){
@@ -49,10 +49,10 @@ class AplikasiController extends Controller
       $aplikasi->a_total   = 0;
 
       if ($aplikasi->save()){
-        return redirect('/admin/aplikasi');
+        return redirect('/aplikasi');
       }
       else{
-        return redirect('/admin/tambah_aplikasi');
+        return redirect('/tambah_aplikasi');
       }
     }
 

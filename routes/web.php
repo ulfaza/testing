@@ -25,6 +25,14 @@ Route::post('/update','UserController@update');
 
 Route::get('/kuisioner', 'KuisionerController@kuis')->name('kuisioner');
 
+//Route Aplikasi
+Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
+Route::get('/insert/aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
+Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
+Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
+Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
+Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
+
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
 	Route::get('/home', 'AdminController@index')->name('adminhome');
@@ -46,14 +54,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
 
 	Route::get('/delete/user{id}','AdminController@delete')->name('delete.user');
-
-	//Route Aplikasi
-	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
-	Route::get('/insert/aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
-	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
-	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
-	Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
-	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
 	// karakteristik -------
 	Route::get('/karakteristik', 'KarakteristikController@index')->name('index.karakteristik');

@@ -1,5 +1,5 @@
-@include('layouts.includes.admin_header')
-@include('layouts.includes.admin_leftmenu')
+@include('layouts.includes.header')
+@include('layouts.includes.leftmenu')
 
 @section('content')
 
@@ -23,7 +23,7 @@
               <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <th>ID</th>
-                  <th>ID User</th>
+                  <th>Nama User</th>
                   <th>Nama Aplikasi</th>
 
                   <th>Set Bobot</th>
@@ -33,7 +33,7 @@
                 @foreach($aplikasis as $aplikasi)
                 <tr>
                   <td>{{ $aplikasi->a_id }}</td>
-                  <td>{{ $aplikasi->id }}</td>
+                  <td>{{ $aplikasi->user->name }}</td>
                   <td>{{ $aplikasi->a_nama }}</td>
 
                   <td>
@@ -55,7 +55,7 @@
               </tbody>
             </table>
           </div>
-          <a href="{{asset('/admin/insert/aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
+          <a href="{{asset('/insert/aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
         </div>
       </div>
     </div>
