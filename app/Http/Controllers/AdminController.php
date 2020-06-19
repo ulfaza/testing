@@ -8,13 +8,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Subkarakteristik;
+use App\Karakteristik;
 
 class AdminController extends Controller
 {
     //
     public function index()
     {
-        return view('/admin/home_admin');
+        $data['karakteristik'] = Karakteristik::count();
+        $data['subkarakteristik'] = Subkarakteristik::count();
+        $data['admin'] = User::where('role','admin')->count();
+        return view('/admin/home_admin',$data);
     }
 
     public function view_admin()
