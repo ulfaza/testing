@@ -33,6 +33,10 @@ Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.ap
 Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
 Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
+//Route Uji Aplikasi (Penilaian Karakteristik)
+Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
+Route::post('/store/pk', 'PKController@store')->name('store.pk');
+
 Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
 	Route::get('/home', 'AdminController@index')->name('adminhome');
