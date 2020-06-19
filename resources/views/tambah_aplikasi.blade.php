@@ -1,5 +1,5 @@
-@include('layouts.includes.admin_header')
-@include('layouts.includes.admin_leftmenu')
+@include('layouts.includes.header')
+@include('layouts.includes.leftmenu')
 @section('content')
 
 <div id="content">
@@ -27,7 +27,7 @@
                 </div>                
 
                 <button type="submit" class="btn btn-primary ">Submit</button>
-                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/admin/home')}}" class="btn btn-secondary"> Cancel</a>
+                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
             </form>
             
 
