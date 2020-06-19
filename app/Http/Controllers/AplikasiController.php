@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Aplikasi;
+use App\Karakteristik;
 
 class AplikasiController extends Controller
 {

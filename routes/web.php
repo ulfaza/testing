@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -51,7 +51,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
 	Route::get('/insert/aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
-	Route::get('/delete/aplikasi', 'AplikasiController@delete')->name('delete.aplikasi');
+	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
 
 	// karakteristik -------
 	Route::get('/karakteristik', 'KarakteristikController@index')->name('index.karakteristik');
