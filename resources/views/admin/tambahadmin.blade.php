@@ -1,77 +1,82 @@
 @include('layouts.includes.admin_header')
 @include('layouts.includes.admin_leftmenu')
-@section('content')
-<div class="col-md-2">
-</div>
-<div class="col-md-9" style="padding:100px; padding-top:5%">
-	<h2 style="color: #6699cc" align="center">Tambah Admin</h2>
+@section('tabeladmin')
 
-	<form form action="/admin/storeadmin" method="post" class="form-horizontal">
-		{{ csrf_field() }}
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 105px;
+}
 
-		<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	        <label for="name" class="col-md-4 control-label">Nama</label>
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-	        <div class="col-md-6">
-	            <input id="name" type="text" class="form-control" name="name" required autofocus>
+#customers tr:nth-child(even){background-color: #f2f2f2;}
 
-	            @if ($errors->has('name'))
-	                <span class="help-block">
-	                    <strong>{{ $errors->first('name') }}</strong>
-	                </span>
-	            @endif
-	        </div>
-		</div>	
-		
-		<div class="form-group{{ $errors->has('instansi') ? ' has-error' : '' }}">
-	        <label for="instansi" class="col-md-4 control-label">Instansi</label>
+#customers tr:hover {background-color: #ddd;}
 
-	        <div class="col-md-6">
-	            <input id="instansi" type="text" class="form-control" name="instansi" required autofocus>
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5DADE2;
+  color: white;
+}
 
-	            @if ($errors->has('instansi'))
-	                <span class="help-block">
-	                    <strong>{{ $errors->first('instansi') }}</strong>
-	                </span>
-	            @endif
-	        </div>
-	    </div>	
+</style>
 
-		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-	        <label for="email" class="col-md-4 control-label">Email</label>
+<div id="content">
+  <div class="panel box-shadow-none content-header">
+     <div class="panel-body">
+       <div class="col-md-12">
+           <h3 class="animated fadeInLeft">Kelola Admin</h3>
+           <p class="animated fadeInDown">
+            Home <span class="fa-angle-right fa"></span> Admin <span class="fa-angle-right fa"></span> Kelola Admin
+        </p>
+      </div>
+    </div>
+  </div>
 
-	        <div class="col-md-6">
-	            <input id="email" type="text" class="form-control" name="email" required autofocus>
+ <div class="col-md-12 top-20 padding-0">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-heading"><h3>Tambah Admin</h3></div>
+          <div class="panel-body">
 
-	            @if ($errors->has('email'))
-	                <span class="help-block">
-	                    <strong>{{ $errors->first('email') }}</strong>
-	                </span>
-	            @endif
-	        </div>
-	    </div>	
+            <form action="/admin/storeadmin" method="post">
+                {{ csrf_field() }} 
+                <div class="form-group">
+                  <label>Nama :</label>
+                  <div><input type="text" class="form-control"  name="name" required></div>
+                </div>
+                <div class="form-group">
+                  <label>Instansi :</label>
+                  <div><input type="text" class="form-control"  name="instansi" required></div>
+				</div>
+				<div class="form-group">
+                  <label>Email :</label>
+                  <div><input type="text" class="form-control"  name="email" required></div>
+				</div>
+				<div class="form-group">
+                  <label>Password :</label>
+                  <div><input type="password" class="form-control"  name="password" required></div>
+				</div>
+                
 
-		<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-	        <label for="password" class="col-md-4 control-label">Password</label>
+                <button type="submit" class="btn btn-primary ">Submit</button>
+                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>
+            </form>
+            
 
-	        <div class="col-md-6">
-	            <input id="password" type="password" class="form-control" name="password" required autofocus>
-
-	            @if ($errors->has('password'))
-	                <span class="help-block">
-	                    <strong>{{ $errors->first('password') }}</strong>
-	                </span>
-	            @endif
-	        </div>
-	    </div>
-
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">
-                    Tambah
-                </button>
-            </div>
         </div>
-
-	</form>		
+      </div>
+    </div>
 </div>
+
+
+

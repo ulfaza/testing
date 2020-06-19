@@ -70,8 +70,9 @@
 
     <div class="col-md-12" style="padding:20px;">
         <div class="col-md-12 padding-0">
-
-                    <div class="col-md-4">
+                
+                <div class="col-md-4">
+                    <a href="{{asset('/admin/karakteristik')}}">
                         <div class="panel box-v1">
                           <div class="panel-heading bg-white border-none">
                             <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
@@ -89,8 +90,10 @@
                             <hr/>
                           </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{asset('/admin/tambahbobot')}}">
                         <div class="panel box-v1">
                           <div class="panel-heading bg-white border-none">
                             <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
@@ -108,8 +111,10 @@
                             <hr/>
                           </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{asset('/admin/kelolaadmin')}}">
                         <div class="panel box-v1">
                           <div class="panel-heading bg-white border-none">
                             <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
@@ -127,7 +132,8 @@
                             <hr/>
                           </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
 
         </div>
     </div>
