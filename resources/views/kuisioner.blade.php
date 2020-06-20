@@ -26,15 +26,6 @@
 
                 <div class="form-group">
                     <div class="form-group col-md-12">
-                      <label>Nama Aplikasi</label>
-                      <select class="form-control select2" name="a_id">
-                        <option value="" disabled selected hidden>Pilih Aplikasi</option>
-                        @foreach($aplikasis as $aplikasi)
-                          <option value="{{ $aplikasi->a_id }}">{{ $aplikasi->a_nama }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                    <div class="form-group col-md-12">
                         <label>Nama Karakteristik :</label>
                         <select class="form-control" name="k_id">
                         <option value="" disabled selected hidden>Pilih Karakteristik</option>
@@ -53,8 +44,12 @@
                         </select>
                     </div>
                     <div class="form-group col-md-12">
-                        <label class="font-weight-bold">Nilai Hasil Kuisioner</label>
-                        <input type="text" class="form-control" name="hk_nilai" required>
+                        <label class="font-weight-bold">Jumlah Responden</label>
+                        <input type="text" class="form-control" name="jml_res" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="font-weight-bold">Nilai Total Hasil Kuisioner Per Subkarkteristik</label>
+                        <input type="text" class="form-control" name="total_sub" required>
                     </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary ">Submit</button>

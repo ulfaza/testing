@@ -23,7 +23,9 @@ Route::get('/profil/{id}', 'UserController@edit');
 
 Route::post('/update','UserController@update');
 
-Route::get('/kuisioner', 'KuisionerController@kuis')->name('kuisioner');
+Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
+
+Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 
 //Route Aplikasi
 Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
