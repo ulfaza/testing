@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'UserController@index')->name('home');
+// Route::get('/home', 'UserController@index')->name('home');
 
 Route::get('/profil/{id}', 'UserController@edit');
 
@@ -43,25 +43,20 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
 	Route::get('/home', 'AdminController@index')->name('adminhome');
 
+	// user -----------
 	Route::get('/kelolaadmin', 'AdminController@view_admin')->name('adminview');
-
 	Route::get('/profil', 'AdminController@editprofil')->name('editprofil');
-
 	Route::post('/profil', 'AdminController@editprofil');
-
 	Route::get('/profil/{id}', 'AdminController@edit');
-
 	Route::post('/update{id}','AdminController@update')->name('update.user');
-
 	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
-
 	Route::post('/storeadmin', 'AdminController@storeadmin');
-
-	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
-
 	Route::get('/delete/user{id}','AdminController@delete')->name('delete.user');
 
+	// ini ikut mana ------
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
+	Route::get('/tambahbobot', 'AdminController@tambahbobot')->name('tambahbobot');
+
 	// karakteristik -------
 	Route::get('/karakteristik', 'KarakteristikController@index')->name('index.karakteristik');
 	Route::get('/tambah_karakteristik', 'KarakteristikController@insert')->name('insert.karakteristik');
@@ -72,7 +67,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::get('/edit_sub/subkarakteristik{id}', 'SubkarakteristikController@edit')->name('edit.sub');
 	Route::post('/update/subkarakteristik{id}','SubkarakteristikController@update')->name('update.sub');
 
-
-
 });
 
+Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], function(){
+	// halaman software tester disini --------
+	Route::get('/home', 'UserController@index')->name('home');
+
+});

@@ -33,7 +33,7 @@ class LoginController extends Controller
                 return redirect('/admin/home');
             }
             else if ($user->isUser()) {
-                return redirect('/home');
+                return redirect('/softwaretester/home');
             }
             else{
                 return redirect()->route('login');                
