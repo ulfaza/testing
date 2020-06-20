@@ -13,7 +13,7 @@ use App\Subkarakteristik;
 
 class KuisionerController extends Controller
 {
-    public function kuis()
+    public function kuis($a_id)
     {
         $data['aplikasis'] = Aplikasi::all();
         $data['karakteristiks'] = Karakteristik::all();

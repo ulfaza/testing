@@ -21,22 +21,22 @@
               </a>
             </li>
             <li class="ripple">
-              <a class="tree-toggle nav-header" href="/aplikasi">
+              <a class="tree-toggle nav-header" href="{{route('index.aplikasi')}}">
                 <span class="fa-globe fa" ></span> Aplikasi
               </a>
             </li>
             <li class="ripple">
-              <a class="tree-toggle nav-header" href="">
+              <a class="tree-toggle nav-header" href="/home">
                 <span class="fa-balance-scale fa" ></span> Bobot
               </a>
             </li>
             <li class="ripple">
-              <a class="tree-toggle nav-header" href="{{route('index.aplikasi')}}">
+              <a class="tree-toggle nav-header" href="/home">
                 <span class="fa-pencil fa"></span> Uji Software
                </a>
             </li>
             <li class="ripple">
-              <a class="tree-toggle nav-header" href="">
+              <a class="tree-toggle nav-header" href="/home">
                 <span class="fa-book fa"></span> Ekspor Hasil Uji
                </a>
             </li>

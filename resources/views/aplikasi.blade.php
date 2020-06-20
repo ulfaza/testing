@@ -26,7 +26,8 @@
                   <th>Nama User</th>
                   <th>Nama Aplikasi</th>
 
-                  <th>Set Bobot</th>
+                  <th>Uji Aplikasi</th>
+                  <th>Automatic Testing</th>
                   <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -37,7 +38,13 @@
                   <td>{{ $aplikasi->a_nama }}</td>
 
                   <td>
-                    <a href="#" class="btn btn-info btn-sm">
+                    <a href="{{route('kuisioner',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
+                      <span class="fa fa-pencil"></span>
+                    </a>
+                  </td>
+
+                  <td>
+                    <a href="{{route('automatic',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                       <span class="fa fa-pencil"></span>
                     </a>
                   </td>
