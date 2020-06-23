@@ -73,4 +73,5 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	// halaman software tester disini --------
 	Route::get('/home', 'UserController@index')->name('home');
 
+	Route::get('/capacity', 'PSController@loadtest')->name('loadtest');
 });
