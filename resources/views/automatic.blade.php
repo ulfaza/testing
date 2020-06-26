@@ -57,7 +57,7 @@
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{route('loadtest')}}">
+                    <a href="https://tools.pingdom.com/">
                         <div class="panel box-v1">
                           <div class="panel-heading bg-white border-none">
                             <div class="col-md-6 col-sm-6 col-xs-6 text-left padding-0">
