@@ -18,11 +18,19 @@
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/simple-line-icons.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/animate.min.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/fullcalendar.min.css')}}"/>
-     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+      <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
       <script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('assets/js/jquery.ui.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+      <script>  
+        $(document).ready(function() {
+          $(document).ready( function () {
+            $('#mydatatables').DataTable();
+          });
+        })
+      </script>
   <!-- end: Css -->
 
     <link rel="shortcut icon" href="{{asset('assets/img/logomi.png')}}">

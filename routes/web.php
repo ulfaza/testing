@@ -27,13 +27,7 @@ Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
 
 Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 
-//Route Aplikasi
-Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
-Route::get('/insert/aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
-Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
-Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
-Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
-Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
+
 
 //Route Uji Aplikasi (Penilaian Karakteristik)
 Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
@@ -74,4 +68,12 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/home', 'UserController@index')->name('home');
 
 	Route::get('/capacity', 'PSController@loadtest')->name('capacity');
+
+	//Route Aplikasi
+	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
+	Route::get('/insert_aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
+	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
+	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
+	Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
+	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 });

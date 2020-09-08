@@ -50,10 +50,10 @@ class AplikasiController extends Controller
       $aplikasi->a_total   = 0;
 
       if ($aplikasi->save()){
-        return redirect('/aplikasi');
+        return redirect('/softwaretester/aplikasi')->with('success', 'item berhasil ditambahkan');
       }
       else{
-        return redirect('/tambah_aplikasi');
+        return redirect('/softwaretester/tambah_aplikasi')->with('error', 'item berhasil ditambahkan');
       }
     }
 
