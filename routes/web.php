@@ -19,9 +19,7 @@ Auth::routes();
 
 // Route::get('/home', 'UserController@index')->name('home');
 
-Route::get('/profil/{id}', 'UserController@edit');
 
-Route::post('/update','UserController@update');
 
 Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
 
@@ -67,6 +65,10 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	// halaman software tester disini --------
 	Route::get('/home', 'UserController@index')->name('home');
 
+	//edit profil
+	Route::get('/profil/{id}', 'UserController@edit');
+	Route::post('/update','UserController@update');
+	
 	Route::get('/capacity', 'PSController@loadtest')->name('capacity');
 
 	//Route Aplikasi

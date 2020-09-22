@@ -52,7 +52,7 @@
                   <li class="dropdown avatar-dropdown">
                    <img src="{{asset('assets/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                    <ul class="dropdown-menu user-dropdown">
-                     <li><a href="/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
+                     <li><a href="/softwaretester/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
                      <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
