@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
 
-Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
+
 
 
 
@@ -68,7 +68,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	//edit profil
 	Route::get('/profil/{id}', 'UserController@edit');
 	Route::post('/update','UserController@update');
-	
+
 	Route::get('/capacity', 'PSController@loadtest')->name('capacity');
 
 	//Route Aplikasi
@@ -78,4 +78,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
 	Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
+
+	//automatic
+	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 });
