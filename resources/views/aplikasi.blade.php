@@ -24,7 +24,7 @@
             <div class="panel-body">
               @include('admin.shared.components.alert')
               <div class="responsive-table">
-                <table id="mydatatables" class="table table-striped table-bordered" >
+                <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
                     <th style="width: 25%">Nama User</th>

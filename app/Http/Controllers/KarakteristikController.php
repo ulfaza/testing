@@ -21,18 +21,11 @@ class KarakteristikController extends Controller
     }
     public function store(Request $request)
     {
-      $this->validate($request,[
-        'k_id'      =>['required','unique:karakteristik'],
-        'k_nama'    =>['required', 'string'],
-        'k_bobot'   =>['required'],
-        
-      ]);
 
       $karakteristik = new karakteristik;
       $karakteristik->k_id      = $request->k_id;
       $karakteristik->k_nama    = $request->k_nama;
       $karakteristik->k_bobot   = $request->k_bobot;
-     
 
       if ($karakteristik->save()){
         return redirect('/admin/karakteristik');
