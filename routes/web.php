@@ -21,7 +21,7 @@ Auth::routes();
 
 
 
-Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
+
 
 
 
@@ -70,9 +70,11 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/update','UserController@update');
 
 	Route::get('/capacity', 'PSController@loadtest')->name('capacity');
+	Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
 
 	//Route Aplikasi
 	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
+	Route::get('/aplikasi/{id}', 'AplikasiController@nilai')->name('nilai');
 	Route::get('/insert_aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
 	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Aplikasi;
 use App\Karakteristik;
+use App\Subkarakteristik;
 
 class AplikasiController extends Controller
 {
@@ -16,6 +17,14 @@ class AplikasiController extends Controller
     {
         $data['aplikasis'] = Aplikasi::all();
         return view('/aplikasi',$data);
+    }
+    public function nilai($a_id)
+    {
+        $data['no'] = 1;
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['karakteristiks'] = Karakteristik::all();
+        $data['subkarakteristiks'] = Subkarakteristik::all();
+        return view('/nilai_app',$data);
     }
 
     public function insert()

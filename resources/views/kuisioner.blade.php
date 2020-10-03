@@ -26,20 +26,11 @@
 
                 <div class="form-group">
                     <div class="form-group col-md-12">
-                        <label>Nama Karakteristik :</label>
-                        <select class="form-control" name="k_id">
-                        <option value="" disabled selected hidden>Pilih Karakteristik</option>
-                        @foreach($karakteristiks as $karakteristik)
-                            <option value="{{ $karakteristik->k_id }}">{{ $karakteristik->k_nama }}</option>
-                        @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-12">
                         <label>Nama SubKarakteristik :</label>
                         <select class="form-control" name="sk_id">
                         <option value="" disabled selected hidden>Pilih SubKarakteristik</option>
                         @foreach($subkarakteristiks as $subkarakteristik)
-                            <option value="{{ $subkarakteristik->sk_id }}">{{ $subkarakteristik->sk_nama }}</option>
+                            <option value="{{ $subkarakteristik->sk_id }}">{{ $subkarakteristik->karakteristik->k_nama }} - {{ $subkarakteristik->sk_nama }}</option>
                         @endforeach
                         </select>
                     </div>

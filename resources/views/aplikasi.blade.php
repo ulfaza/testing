@@ -41,7 +41,7 @@
                     <td>{{ $aplikasi->a_nama }}</td>
 
                     <td>
-                      <a href="{{route('kuisioner',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
+                      <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
                       </a>
                     </td>

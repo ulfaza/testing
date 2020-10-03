@@ -31,6 +31,7 @@ class PSController extends Controller
 			foreach ($checks as $check) {
 			    $results = $pingdom->getResults($check['id']);
 			}
+			return $results;
     		// $ch = curl_init(); 
 		    // curl_setopt($ch, CURLOPT_URL, $url);
 		    // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
