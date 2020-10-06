@@ -15,14 +15,40 @@
 
       <!-- plugins -->
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/font-awesome.min.css')}}"/>
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datatables.bootstrap.min.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/simple-line-icons.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/animate.min.css')}}"/>
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/fullcalendar.min.css')}}"/>
-     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+      <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+
       <script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('assets/js/jquery.ui.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-
+      <script src="{{asset('assets/js/plugins/jquery.datatables.min.js')}}"></script>
+      <script src="{{asset('assets/js/plugins/datatables.bootstrap.min.js')}}"></script>
+      <!-- custom -->
+      <script src="asset/js/main.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#datatables-example').DataTable();
+        });
+      </script>
+      <script type="text/javascript">
+        function showTime() {
+          var date = new Date(),
+              utc = new Date(Date.UTC(
+                date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds()
+              ));
+      
+          document.getElementById('time').innerHTML = utc.toLocaleTimeString();
+        }
+        setInterval(showTime, 1000);
+      </script>
   <!-- end: Css -->
 
     <link rel="shortcut icon" href="{{asset('assets/img/logomi.png')}}">
@@ -44,7 +70,7 @@
                   <li class="dropdown avatar-dropdown">
                    <img src="{{asset('assets/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                    <ul class="dropdown-menu user-dropdown">
-                     <li><a href="/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
+                     <li><a href="/softwaretester/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
                      <li><a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
