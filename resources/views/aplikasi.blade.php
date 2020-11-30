@@ -29,9 +29,8 @@
                     <th style="width: 5%">ID</th>
                     <th style="width: 25%">Nama User</th>
                     <th style="width: 30%">Nama Aplikasi</th>
-                    <th style="width: 10%">Uji Aplikasi</th>
-                    <th style="width: 15%">Automatic Testing</th>
-                    <th style="width: 15%">Aksi</th>
+                    <th style="width: 20%">Uji Aplikasi</th>
+                    <th style="width: 20%">Aksi</th>
                   </thead>
                   <tbody>
                   @foreach($aplikasis as $aplikasi)
@@ -42,12 +41,6 @@
 
                     <td>
                       <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
-                        <span class="fa fa-pencil"></span>
-                      </a>
-                    </td>
-
-                    <td>
-                      <a href="{{route('automatic',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
                       </a>
                     </td>
