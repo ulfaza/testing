@@ -3,13 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class PenilaianSubKarakteristik extends Model
 {
+    use Notifiable;
+    protected $table = 'penilaiansubkarakteristik';
     protected $primarykey = 'ps_id';
     
     protected $fillable = [
-        'jml_reponden', 'total_per_sub', 
+        'jml_responden', 'total_per_sub', 
         'bobot_absolut', 'nilai_subfaktor', 'nilai_absolut',
     ];
 

@@ -53,22 +53,26 @@
             </h3>
         </div>
           <div class="panel-body">
+            @include('admin.shared.components.alert')
             <div class="responsive-table">
               <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <th>ID</th>
                   <th>Nama Karakteristik</th>
+                  <th>Bobot Karakteristik</th>
                   <th>Nama Sub Karakteristik</th>
-                  <th>Total Nilai</th>
-                  <th>Jumlah Responden</th>
+                  <th>Bobot Relatif</th>
+                  <th>Bobot Absolut</th>
+                  <th>Nilai Sub Faktor</th>
+                  <th>Nilai Absolut</th>
                   <th>Aksi</th>
                 </thead>
                 <tbody>
-                @foreach($subkarakteristiks as $subkarakteristik)
+                @foreach($ps as $penilaiansub)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $subkarakteristik->karakteristik->k_nama }}</td>
-                    <td>{{ $subkarakteristik->sk_nama }}</td>
+                    <td>{{ $penilaiansub->penilaiankarakteristik->karakteristik->k_nama }}</td>
+                    <td>{{ $penilaiansub->subkarakteristik->sk_nama }}</td>
                     <td>0</td>
                     <td>0</td>
                     <td>

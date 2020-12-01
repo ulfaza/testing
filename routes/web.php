@@ -69,7 +69,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/profil/{id}', 'UserController@edit');
 	Route::post('/update','UserController@update');
 
-	Route::get('/capacity', 'PSController@loadtest')->name('capacity');
+	//route kuesioner
 	Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
 
 	//Route Aplikasi
@@ -82,5 +82,5 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
 	//automatic
-	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
+
 });

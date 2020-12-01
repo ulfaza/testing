@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class PenilaianKarakteristik extends Model
 {
@@ -13,7 +14,7 @@ class PenilaianKarakteristik extends Model
      *
      * @var array
      */
-
+    protected $table = 'penilaiankarakteristik';
     protected $primarykey = 'pk_id';
     
     protected $fillable = [
