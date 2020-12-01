@@ -17,10 +17,11 @@ class CreatePenilaiansubkarakteristikTable extends Migration
             $table->increments('ps_id')->unique();
             $table->integer('pk_id')->unsigned();
             $table->integer('sk_id')->unsigned();
-            $table->float('ps_bobot_relatif');
-            $table->float('ps_nilai');
             $table->integer('jml_responden')->unsigned();
             $table->integer('total_per_sub')->unsigned();
+            $table->float('bobot_absolut');
+            $table->float('nilai_subfaktor');
+            $table->float('nilai_absolut');
         });
         Schema::table('penilaiansubkarakteristik', function($table){
             $table->foreign('pk_id')

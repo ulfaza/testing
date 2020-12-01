@@ -9,7 +9,8 @@ class PenilaianSubKarakteristik extends Model
     protected $primarykey = 'ps_id';
     
     protected $fillable = [
-        'ps_bobot_relatif', 'ps_nilai',
+        'jml_reponden', 'total_per_sub', 
+        'bobot_absolut', 'nilai_subfaktor', 'nilai_absolut',
     ];
 
     public function subkarakteristik()
