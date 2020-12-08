@@ -16,7 +16,7 @@ class CreateKarakteristikTable extends Migration
         Schema::create('karakteristik', function (Blueprint $table) {
             $table->increments('k_id')->unique();
             $table->string('k_nama');
-            $table->float('k_bobot');
+            $table->decimal('k_bobot',8,2);
         });
     }
 

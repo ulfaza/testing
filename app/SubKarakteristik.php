@@ -28,8 +28,8 @@ class SubKarakteristik extends Model
         return $this->belongsTo(\App\Karakteristik::class,'k_id');
     }
 
-    public function penilaiansubkarakteristik()
+    public function subkarakteristikaplikasi()
     {
-        return $this->hasMany(\App\PenilaianSubKarakteristik::class);
+        return $this->hasMany(\App\SubKarakteristikAplikasi::class);
     }
 }

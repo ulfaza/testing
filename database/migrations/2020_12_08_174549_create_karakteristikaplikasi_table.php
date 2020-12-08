@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePenilaiankarakteristikTable extends Migration
+class CreateKarakteristikaplikasiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreatePenilaiankarakteristikTable extends Migration
      */
     public function up()
     {
-        Schema::create('penilaiankarakteristik', function (Blueprint $table) {
-            $table->increments('pk_id')->unique();
+        Schema::create('karakteristikaplikasi', function (Blueprint $table) {
+            $table->increments('ka_id')->unique();
             $table->integer('a_id')->unsigned();
             $table->integer('k_id')->unsigned();
-            $table->float('pk_nilai');
+            $table->string('ka_nama');
+            $table->decimal('ka_bobot',8,2);
+            $table->decimal('ka_nilai',8,2);
         });
-        Schema::table('penilaiankarakteristik', function($table){
+        Schema::table('karakteristikaplikasi', function($table){
             $table->foreign('a_id')
                 ->references('a_id')
                 ->on('aplikasi')
@@ -40,6 +42,6 @@ class CreatePenilaiankarakteristikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penilaiankarakteristik');
+        Schema::dropIfExists('karakteristikaplikasi');
     }
 }

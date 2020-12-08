@@ -17,7 +17,7 @@ class CreateSubkarakteristikTable extends Migration
             $table->increments('sk_id')->unique();
             $table->integer('k_id')->unsigned();
             $table->string('sk_nama');
-            $table->float('bobot_relatif');
+            $table->decimal('bobot_relatif',8,2);
         });
         Schema::table('subkarakteristik', function($table){
             $table->foreign('k_id')

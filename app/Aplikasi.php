@@ -13,7 +13,7 @@ class Aplikasi extends Model
     protected $primaryKey = 'a_id';
     
     protected $fillable = [
-        'a_nama', 'a_total', 'a_url',
+        'a_nama', 'a_url', 
     ];
 
     /**
@@ -26,8 +26,8 @@ class Aplikasi extends Model
         return $this->belongsTo(\App\User::class,'id');
     }
 
-    public function penilaiankarakteristik()
+    public function karakteristikaplikasi()
     {
-        return $this->hasMany(\App\PenilaianKarakteristik::class);
+        return $this->hasMany(\App\KarakteristikAplikasi::class);
     }
 }

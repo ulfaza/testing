@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class PenilaianKarakteristik extends Model
+class KarakteristikAplikasi extends Model
 {
     use Notifiable;
 
@@ -14,11 +14,11 @@ class PenilaianKarakteristik extends Model
      *
      * @var array
      */
-    protected $table = 'penilaiankarakteristik';
-    protected $primarykey = 'pk_id';
+    protected $table = 'karakteristikaplikasi';
+    protected $primarykey = 'ka_id';
     
     protected $fillable = [
-        'pk_nilai',
+        'ka_nama', 'ka_bobot', 
     ];
 
     /**
@@ -36,8 +36,8 @@ class PenilaianKarakteristik extends Model
         return $this->belongsTo(\App\Karakteristik::class,'k_id');
     }
 
-    public function penilaiansubkarakteristik()
+    public function subkarakteristikaplikasi()
     {
-        return $this->hasMany(\App\PenilaianSubKarakteristik::class);
+        return $this->hasMany(\App\SubKarakteristikAplikasi::class);
     }
 }

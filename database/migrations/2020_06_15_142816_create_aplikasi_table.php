@@ -19,7 +19,7 @@ class CreateAplikasiTable extends Migration
             $table->integer('id')->unsigned();
             $table->string('a_nama');
             $table->string('a_url');
-            $table->float('a_total');
+            $table->decimal('a_nilai',8,2);
             $table->timestamps();
         });
         Schema::table('aplikasi', function($table){

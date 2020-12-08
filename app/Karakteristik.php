@@ -24,8 +24,8 @@ class Karakteristik extends Model
         return $this->hasMany(\App\SubKarakteristik::class);
     }
 
-    public function penilaiankarakteristik()
+    public function karakteristikaplikasi()
     {
-        return $this->hasMany(\App\PenilaianKarakteristik::class);
+        return $this->hasMany(\App\KarakteristikAplikasi::class);
     }
 }

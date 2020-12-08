@@ -24,12 +24,9 @@ class AplikasiController extends Controller
     {
         $data['no'] = 1;
         $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
-        $data['ps'] = DB::table('penilaiansubkarakteristik')
-        ->join('penilaiankarakteristik', 'penilaiankarakteristik.pk_id', '=', 'penilaiansubkarakteristik.pk_id')
-        ->join('subkarakteristik','subkarakteristik.sk_id','=','penilaiansubkarakteristik.sk_id')
+        $data['pk'] = DB::table('penilaiankarakteristik')
         ->join('aplikasi','aplikasi.a_id','=','penilaiankarakteristik.a_id')
-        ->join('karakteristik','karakteristik.k_id','=','penilaiankarakteristik.k_id')
-        ->where('aplikasi.a_id',$a_id)->get();
+        ->where('aplikasi.a_id',$a_id)->get();       
         return view('/nilai_app',$data);
     }
 
