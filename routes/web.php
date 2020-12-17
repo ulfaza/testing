@@ -82,5 +82,11 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
 	//automatic
+<<<<<<< Updated upstream
 
+=======
+	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
+	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
+	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
+>>>>>>> Stashed changes
 });
