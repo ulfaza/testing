@@ -17,16 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', 'UserController@index')->name('home');
-
-
-
-
-
-
-
-
-
 //Route Uji Aplikasi (Penilaian Karakteristik)
 Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
 Route::post('/store/pk', 'PKController@store')->name('store.pk');
@@ -84,11 +74,9 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
 	//automatic
-<<<<<<< Updated upstream
 
-=======
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
->>>>>>> Stashed changes
+
 });
