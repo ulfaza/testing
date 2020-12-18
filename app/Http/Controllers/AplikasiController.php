@@ -17,17 +17,48 @@ class AplikasiController extends Controller
 {
     public function index()
     {
-        $data['aplikasis'] = Aplikasi::all();
+        $data['aplikasis'] = Aplikasi::where('id',Auth::user()->id)->get();
         return view('/aplikasi',$data);
     }
     public function nilai($a_id)
     {
         $data['no'] = 1;
         $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
-        $data['pk'] = DB::table('penilaiankarakteristik')
-        ->join('aplikasi','aplikasi.a_id','=','penilaiankarakteristik.a_id')
-        ->where('aplikasi.a_id',$a_id)->get();       
-        return view('/nilai_app',$data);
+        $data['subkarakteristiks'] = SubKarakteristik::all();
+        return view('/nilai_app', $data);
+    }
+
+    public function custombobot($a_id)
+    {
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['karakteristiks'] = Karakteristik::all();        
+        return view('/custom_bobot', $data);
+    }
+
+    public function action(Request $request, $a_id)
+    {
+        if($request->ajax())
+        {
+            if($request->action == 'edit')
+            {
+                $data = array(
+                    'k_nama'    =>  $request->k_nama,
+                    'k_bobot'     =>  $request->k_bobot
+                );
+                DB::table('karakteristik')
+                    ->where('k_id', $request->k_id)
+                    ->update($data)
+                    ->save();
+            }
+            if($request->action == 'delete')
+            {
+                DB::table('karakteristik')
+                    ->where('k_id', $request->k_id)
+                    ->delete()
+                    ->save();
+            }
+            return response()->json($request);
+        }
     }
 
     public function insert()
@@ -55,117 +86,13 @@ class AplikasiController extends Controller
 
     public function store(Request $request)
     {
-        $apps = Aplikasi::all()->count();
-        $pk = PenilaianKarakteristik::all()->count();
-        $pk+=1;
-
-        $ps = PenilaianSubkarakteristik::all()->count();
-        $ps+=1;
-
         $aplikasi = new aplikasi;
-        $aplikasi->a_id      = $apps+1;
+
         $aplikasi->id        = Auth::user()->id;
         $aplikasi->a_nama    = $request->a_nama;
         $aplikasi->a_url     = $request->a_url;
-        $aplikasi->a_total   = 0;
+        $aplikasi->a_nilai   = 0;
         $aplikasi->save();
-
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 1, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 2, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 3, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 4, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 5, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 6, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 7, 0]
-        );
-        DB::insert('insert into penilaiankarakteristik (pk_id, a_id, k_id, pk_nilai) values(?,?,?,?)',
-        [$pk++, $aplikasi->a_id, 8, 0]
-        );
-        
-        $no1 = $pk-8;
-        $no2 = $pk-7;
-        $no3 = $pk-6;
-        $no4 = $pk-5;
-        $no5 = $pk-4;
-        $no6 = $pk-3;
-        $no7 = $pk-2;
-        $no8 = $pk-1;
-
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no1, 1, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no1, 2, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no1, 3, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no2, 4, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no2, 5, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no2, 6, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no3, 7, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no3, 8, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no4, 9, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no4, 10, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no4, 11, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no4, 12, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no4, 13, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no4, 14, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no5, 15, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no5, 16, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no5, 17, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no5, 18, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no6, 19, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no6, 20, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no6, 21, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no6, 22, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no6, 23, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no7, 24, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no7, 25, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no7, 26, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no7, 27, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no7, 28, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no8, 29, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no8, 30, 0, 0, 0, 0, 0]);
-        DB::insert('insert into penilaiansubkarakteristik (ps_id, pk_id, sk_id, jml_responden, total_per_sub, bobot_absolut, nilai_subfaktor, nilai_absolut) values(?,?,?,?,?,?,?,?)',
-        [$ps++, $no8, 31, 0, 0, 0, 0, 0]);
 
         return redirect('/softwaretester/aplikasi')->with('success', 'item berhasil ditambahkan');
     }

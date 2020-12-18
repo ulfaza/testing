@@ -75,6 +75,8 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	//Route Aplikasi
 	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
 	Route::get('/aplikasi/{id}', 'AplikasiController@nilai')->name('nilai');
+	Route::get('/aplikasi/{id}/custombobot', 'AplikasiController@custombobot')->name('custom.bobot');
+	Route::get('/aplikasi/{id}/custombobot/action', 'AplikasiController@action')->name('custombobot.action');
 	Route::get('/insert_aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
 	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');

@@ -58,20 +58,20 @@
               <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <th>ID</th>
-                  <th>pk_id</th>
-                  <th>a_id</th>
-                  <th>k_id</th>
-                  <th>pk_nilai</th>
+                  <th>Karakteristik</th>
+                  <th>Bobot Karakteristik</th>
+                  <th>Sub Karakteristik</th>
+                  <th>Bobot Relatif</th>
                   <th>Aksi</th>
                 </thead>
                 <tbody>
-                @foreach($pk as $pk)
+                @foreach($subkarakteristiks as $s)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $pk->pk_id }}</td>
-                    <td>{{ $pk->a_id }}</td>
-                    <td>{{ $pk->k_id }}</td>
-                    <td>{{ $pk->pk_nilai }}</td>
+                    <td>{{ $s->karakteristik->k_nama }}</td>
+                    <td>{{ $s->karakteristik->k_bobot }}</td>
+                    <td>{{ $s->sk_nama }}</td>
+                    <td>{{ $s->bobot_relatif }}</td>
                     <td>
                         <a href="{{route('kuisioner',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
