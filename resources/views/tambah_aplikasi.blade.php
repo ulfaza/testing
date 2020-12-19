@@ -29,6 +29,10 @@
                   <label>Url :</label>
                   <div><input type="text" class="form-control"  name="a_url" required></div>
                 </div> 
+                <div class="form-group">
+                  <label>File :</label>
+                  <div><input type="file" class="form-control"  name="a_file" required></div>
+                </div> 
                 
                 <button type="submit" class="btn btn-primary ">Submit</button>
                 <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
