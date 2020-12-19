@@ -17,16 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', 'UserController@index')->name('home');
-
-
-
-
-
-
-
-
-
 //Route Uji Aplikasi (Penilaian Karakteristik)
 Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
 Route::post('/store/pk', 'PKController@store')->name('store.pk');
@@ -75,6 +65,8 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	//Route Aplikasi
 	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
 	Route::get('/aplikasi/{id}', 'AplikasiController@nilai')->name('nilai');
+	Route::get('/aplikasi/{id}/custombobot', 'AplikasiController@custombobot')->name('custom.bobot');
+	Route::get('/aplikasi/{id}/custombobot/action', 'AplikasiController@action')->name('custombobot.action');
 	Route::get('/insert_aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
 	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
@@ -82,6 +74,9 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
 	//automatic
+
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
+	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
+
 });
