@@ -14,13 +14,13 @@ class CreateHasilkuesionerTable extends Migration
     public function up()
     {
         Schema::create('hasilkuesioner', function (Blueprint $table) {
-            $table->integer('sa_id')->unsigned();
+            $table->integer('sk_id')->unsigned();
             $table->integer('hk_nilai');
         });
         Schema::table('hasilkuesioner', function($table){
-            $table->foreign('sa_id')
-                ->references('sa_id')
-                ->on('subkarakteristikaplikasi')
+            $table->foreign('sk_id')
+                ->references('sk_id')
+                ->on('subkarakteristik')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
