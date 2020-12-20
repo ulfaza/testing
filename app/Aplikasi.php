@@ -13,7 +13,7 @@ class Aplikasi extends Model
     protected $primaryKey = 'a_id';
     
     protected $fillable = [
-        'a_nama', 'a_url', 
+        'a_nama', 'a_url', 'a_file'
     ];
 
     /**
@@ -24,10 +24,5 @@ class Aplikasi extends Model
 	public function user()
     {
         return $this->belongsTo(\App\User::class,'id');
-    }
-
-    public function karakteristikaplikasi()
-    {
-        return $this->hasMany(\App\KarakteristikAplikasi::class);
     }
 }
