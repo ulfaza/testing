@@ -26,8 +26,8 @@ class Aplikasi extends Model
         return $this->belongsTo(\App\User::class,'id');
     }
 
-    public function karakteristikaplikasi()
+    public function iso()
     {
-        return $this->hasMany(\App\KarakteristikAplikasi::class);
+        return $this->BelongsTo(\App\Iso::class);
     }
 }

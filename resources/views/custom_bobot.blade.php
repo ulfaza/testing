@@ -56,10 +56,11 @@ $(document).ready(function(){
       identifier:[0, 'k_id'],
       editable:[[2, 'k_bobot']]
     },
+   
     restoreButton:false,
     onSuccess:function(data, textStatus, jqXHR)
     {
-      if(data.action == 'delete')
+      if(data.action == 'deelte')
       {
         $('#'+data.k_id).remove();
       }
