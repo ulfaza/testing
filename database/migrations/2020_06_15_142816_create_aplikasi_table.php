@@ -30,6 +30,7 @@ class CreateAplikasiTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
+        
     }
 
 

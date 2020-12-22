@@ -31,7 +31,7 @@
                 </div> 
                 <div class="form-group">
                   <label>File :</label>
-                  <div><input type="file" class="form-control"  name="a_file" required></div>
+                  <div><input type="file"  name="a_file" required></div>
                 </div> 
                 
                 <button type="submit" class="btn btn-primary ">Submit</button>
