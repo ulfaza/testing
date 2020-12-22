@@ -79,4 +79,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
 
+	//Route Bobot Karakteristik
+	Route::get('/bobot','KarakteristikController@bobot')->name('view.bobot');
+	Route::get('/bobot/sub{id}','SubkarakteristikController@bobotsub')->name('view.bobotsub');
 });

@@ -39,4 +39,10 @@ class KarakteristikController extends Controller
         return redirect()->route('index.karakteristik');
     }
 
+        public function bobot()
+    {
+        $data['karakteristiks'] = Karakteristik::all();
+        return view('/bobot',$data);
+    }
+
 }

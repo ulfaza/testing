@@ -1,51 +1,61 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Custom Bobot Karakteristik</title>
+@include('layouts.includes.header')
+@include('layouts.includes.leftmenu')
+
+@section('content')
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <br />
-      <h3 align="center">Custom Bobot Karakteristik</h3>
-      <br />
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>
-            @foreach($aplikasis as $a)
-              {{ $a->a_nama }}
-            @endforeach
-          </h3>
+
+  <div id="content">
+  <div class="row"> 
+    <div class="col-md-12">
+        <div class="panel block">
+            <div class="panel-body">
+                <h1>Custom Bobot</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
+                    <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
+                    <li>Custom Bobot</li>
+                </ol>
+            </div>
         </div>
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table id="editable" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nama Karakteristik</th>
-                  <th>Bobot Karakteristik</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($karakteristiks as $k)
-                <tr>
-                  <td>{{ $k->k_id }}</td>
-                  <td>{{ $k->k_nama }}</td>
-                  <td>{{ $k->k_bobot }}</td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
     </div>
-  </body>
-</html>
+  </div>
+
+  <div class="col-md-12 top-20 padding-0">
+      <div class="col-md-12">
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>
+                @foreach($aplikasis as $a)
+                  {{ $a->a_nama }}
+                @endforeach
+                </h3>
+              </div>
+                <div class="responsive-table">
+                  <table id="editable" class="table table-bordered table-striped" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Nama Karakteristik</th>
+                        <th>Bobot Karakteristik</th>
+                        <!-- <th>action</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($karakteristiks as $k)
+                      <tr>
+                        <td>{{ $k->k_id }}</td>
+                        <td>{{ $k->k_nama }}</td>
+                        <td>{{ $k->k_bobot }}</td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
 
 <script type="text/javascript">
 $(document).ready(function(){
