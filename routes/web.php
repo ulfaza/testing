@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 
 Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], function(){
 	// halaman software tester disini --------
-	Route::get('/home', 'UserController@index')->name('home');
+	Route::get('/home', 'UserController@index')->name('softwaretester.home');
 
 	//edit profil
 	Route::get('/profil/{id}', 'UserController@edit');
@@ -65,13 +65,14 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	//Route Aplikasi
 	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
 	Route::get('/aplikasi/{id}', 'AplikasiController@nilai')->name('nilai');
-	Route::get('/aplikasi/{id}/custombobot', 'AplikasiController@custombobot')->name('custom.bobot');
-	Route::get('/aplikasi/{id}/custombobot/action', 'AplikasiController@action')->name('custombobot.action');
 	Route::get('/insert_aplikasi', 'AplikasiController@insert')->name('insert.aplikasi');
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');
 	Route::get('/delete/aplikasi{id}', 'AplikasiController@delete')->name('delete.aplikasi');
 	Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
+
+	//route karakteristik
+	Route::get('/aplikasi/{id}/custombobot', 'KarakteristikController@custombobot')->name('custom.bobot');
 
 	//automatic
 

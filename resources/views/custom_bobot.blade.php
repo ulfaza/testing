@@ -24,58 +24,45 @@
 
   <div class="col-md-12 top-20 padding-0">
       <div class="col-md-12">
-            <div class="panel">
-              <div class="panel-heading">
-                <h3>
-                @foreach($aplikasis as $a)
-                  {{ $a->a_nama }}
-                @endforeach
-                </h3>
-              </div>
-                <div class="responsive-table">
-                  <table id="editable" class="table table-bordered table-striped" width="100%" cellspacing="0">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Nama Karakteristik</th>
-                        <th>Bobot Karakteristik</th>
-                        <!-- <th>action</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($karakteristiks as $k)
-                      <tr>
-                        <td>{{ $k->k_id }}</td>
-                        <td>{{ $k->k_nama }}</td>
-                        <td>{{ $k->k_bobot }}</td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+        <div class="panel">
+            <div class="panel-body">
+              @include('admin.shared.components.alert')
+              <div class="responsive-table">
+                <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <th style="width: 5%">ID</th>
+                    <th style="width: 25%">Nama Karakteristik</th>
+                    <th style="width: 20%">Bobot Karakteristik</th>
+                    <th style="width: 30%">Nama Subkarakteristik</th>
+                    <th style="width: 20%">Bobot Subkarakteristik</th>
+                  </thead>
+                  <tbody>
+                  @foreach($subkarakteristiks as $subs)
+                  <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $subs->k_nama }}</td>
+                    <td>{{ $subs->k_bobot }}</td>
+                    <td>{{ $subs->sk_nama }}</td>
+                    <td>{{ $subs->bobot_relatif }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
+
           </div>
-
-<script type="text/javascript">
-$(document).ready(function(){
-  $('#editable').Tabledit({
-    url:'{{ route("custombobot.action", $a->a_id) }}',
-    dataType:"json",
-    columns:{
-      identifier:[0, 'k_id'],
-      editable:[[2, 'k_bobot']]
-    },
-   
-    restoreButton:false,
-    onSuccess:function(data, textStatus, jqXHR)
-    {
-      if(data.action == 'deelte')
-      {
-        $('#'+data.k_id).remove();
-      }
-    }
+        </div>
+      </div>
+  </div>
+</div>
+@section('js')
+<script>  
+$(document).ready(function() {
+  $(document).ready( function () {
+    $('#mydatatables').DataTable();
   });
-
-});  
+})
 </script>
+@endsection
+
+

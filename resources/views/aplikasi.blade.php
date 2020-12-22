@@ -36,12 +36,12 @@
                   <tbody>
                   @foreach($aplikasis as $aplikasi)
                   <tr>
-                    <td>{{ $aplikasi->a_id }}</td>
+                    <td>{{ $no++ }}</td>
                     <td>{{ $aplikasi->user->name }}</td>
                     <td>{{ $aplikasi->a_nama }}</td>
 
                     <td>
-                      <a href="{{route('custom.bobot',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
+                      <a href="" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
                       </a>
                     </td>
