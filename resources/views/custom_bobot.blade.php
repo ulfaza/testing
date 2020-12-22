@@ -1,70 +1,64 @@
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Custom Bobot Karakteristik</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
-    <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <br />
-      <h3 align="center">Custom Bobot Karakteristik</h3>
-      <br />
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3>
-            @foreach($aplikasis as $a)
-              {{ $a->a_nama }}
-            @endforeach
-          </h3>
+@include('layouts.includes.header')
+@include('layouts.includes.leftmenu')
+
+@section('content')
+
+<div id="content">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="panel block">
+            <div class="panel-body">
+                <h1>Daftar Aplikasi</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{asset('/softwaretester/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Aplikasi</li>
+                </ol>
+            </div>
         </div>
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table id="editable" class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Nama Karakteristik</th>
-                  <th>Bobot Karakteristik</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($karakteristiks as $k)
-                <tr>
-                  <td>{{ $k->k_id }}</td>
-                  <td>{{ $k->k_nama }}</td>
-                  <td>{{ $k->k_bobot }}</td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+    </div>
+  </div>
+
+  <div class="col-md-12 top-20 padding-0">
+      <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+              @include('admin.shared.components.alert')
+              <div class="responsive-table">
+                <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <th style="width: 5%">ID</th>
+                    <th style="width: 25%">Nama Karakteristik</th>
+                    <th style="width: 20%">Bobot Karakteristik</th>
+                    <th style="width: 30%">Nama Subkarakteristik</th>
+                    <th style="width: 20%">Bobot Subkarakteristik</th>
+                  </thead>
+                  <tbody>
+                  @foreach($subkarakteristiks as $subs)
+                  <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $subs->k_nama }}</td>
+                    <td>{{ $subs->k_bobot }}</td>
+                    <td>{{ $subs->sk_nama }}</td>
+                    <td>{{ $subs->bobot_relatif }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </body>
-</html>
-
-<script type="text/javascript">
-$(document).ready(function(){
-  $('#editable').Tabledit({
-    url:'{{ route("custombobot.action", $a->a_id) }}',
-    dataType:"json",
-    columns:{
-      identifier:[0, 'k_id'],
-      editable:[[2, 'k_bobot']]
-    },
-    restoreButton:false,
-    onSuccess:function(data, textStatus, jqXHR)
-    {
-      if(data.action == 'delete')
-      {
-        $('#'+data.k_id).remove();
-      }
-    }
+  </div>
+</div>
+@section('js')
+<script>  
+$(document).ready(function() {
+  $(document).ready( function () {
+    $('#mydatatables').DataTable();
   });
-
-});  
+})
 </script>
+@endsection
+
+
