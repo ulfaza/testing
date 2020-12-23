@@ -57,27 +57,24 @@
             <div class="responsive-table">
               <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
-                  <th>ID</th>
-                  <th>Karakteristik</th>
-                  <th>Bobot Karakteristik</th>
-                  <th>Sub Karakteristik</th>
-                  <th>Bobot Relatif</th>
-                  <th>Aksi</th>
+                  <th style="width: 5%">ID</th>
+                  <th style="width: 20%">Karakteristik</th>
+                  <th style="width: 15%">Bobot Karakteristik</th>
+                  <th style="width: 20%">Sub Karakteristik</th>
+                  <th style="width: 20%">Bobot Relatif</th>
+                  <th style="width: 20%">Tambah Hasil Kuesioner</th>
                 </thead>
                 <tbody>
                 @foreach($subkarakteristiks as $s)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $s->karakteristik->k_nama }}</td>
-                    <td>{{ $s->karakteristik->k_bobot }}</td>
+                    <td>{{ $s->k_nama }}</td>
+                    <td>{{ $s->k_bobot }}</td>
                     <td>{{ $s->sk_nama }}</td>
                     <td>{{ $s->bobot_relatif }}</td>
                     <td>
-                        <a href="{{route('kuisioner',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
+                        <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
-                        </a>
-                        <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="#" class="btn btn-danger btn-sm">
-                        <span class="fa fa-trash"></span>
                         </a>
                     </td>
                 </tr>

@@ -7,7 +7,7 @@
   <div class="panel box-shadow-none content-header">
      <div class="panel-body">
        <div class="col-md-12">
-           <h3 class="animated fadeInLeft">Uji Aplikasi</h3>
+           <h3 class="animated fadeInLeft">Tambah Hasil Kuesioner</h3>
            <p class="animated fadeInDown">
         </p>
       </div>
@@ -17,7 +17,13 @@
  <div class="col-md-12 top-20 padding-0">
     <div class="col-md-12">
       <div class="panel">
-        <div class="panel-heading"><h3>Daftar Aplikasi</h3></div>
+        <div class="panel-heading">
+            <h3>
+                @foreach ($subkarakteristiks as $s)
+                {{ $s->sk_nama }}
+                @endforeach
+            </h3>
+        </div>
           <div class="panel-body">
 
             <form action="#" method="post">
@@ -25,15 +31,6 @@
                 
 
                 <div class="form-group">
-                    <div class="form-group col-md-12">
-                        <label>Nama SubKarakteristik :</label>
-                        <select class="form-control" name="sk_id">
-                        <option value="" disabled selected hidden>Pilih SubKarakteristik</option>
-                        @foreach($subkarakteristiks as $subkarakteristik)
-                            <option value="{{ $subkarakteristik->sk_id }}">{{ $subkarakteristik->karakteristik->k_nama }} - {{ $subkarakteristik->sk_nama }}</option>
-                        @endforeach
-                        </select>
-                    </div>
                     <div class="form-group col-md-12">
                         <label class="font-weight-bold">Jumlah Responden</label>
                         <input type="text" class="form-control" name="jml_res" required>
