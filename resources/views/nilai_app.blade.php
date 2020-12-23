@@ -34,11 +34,14 @@
               <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
                   <th style="width: 5%">ID</th>
-                  <th style="width: 20%">Karakteristik</th>
-                  <th style="width: 15%">Bobot Karakteristik</th>
-                  <th style="width: 20%">Sub Karakteristik</th>
-                  <th style="width: 20%">Bobot Relatif</th>
-                  <th style="width: 20%">Tambah Hasil Kuesioner</th>
+                  <th style="width: 15%">Karakteristik</th>
+                  <th style="width: 10%">Bobot Karakteristik</th>
+                  <th style="width: 15%">Sub Karakteristik</th>
+                  <th style="width: 10%">Bobot Relatif</th>
+                  <th style="width: 10%">Bobot Absolut</th>
+                  <th style="width: 10%">Nilai Subkarakteristik</th>
+                  <th style="width: 10%">Nilai Absolut</th>
+                  <th style="width: 15%">Tambah Hasil Kuesioner</th>
                 </thead>
                 <tbody>
                 @foreach($subkarakteristiks as $s)
@@ -48,6 +51,9 @@
                     <td>{{ $s->k_bobot }}</td>
                     <td>{{ $s->sk_nama }}</td>
                     <td>{{ $s->bobot_relatif }}</td>
+                    <td>{{ $s->bobot_absolut }}</td>
+                    <td>{{ $s->nilai_subfaktor }}</td>
+                    <td>{{ $s->nilai_absolut }}</td>
                     <td>
                         <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>

@@ -21,6 +21,8 @@ class CreateSubkarakteristikTable extends Migration
             $table->decimal('bobot_absolut',8,2);
             $table->decimal('nilai_subfaktor',8,2);
             $table->decimal('nilai_absolut',8,2);
+            $table->integer('jml_res');
+            $table->integer('total_per_sub');
         });
         Schema::table('subkarakteristik', function($table){
             $table->foreign('k_id')
