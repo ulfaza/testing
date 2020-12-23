@@ -103,7 +103,7 @@ class AplikasiController extends Controller
             }   
         }
         
-        return redirect()->route('custom.bobot', $aplikasi->a_id);
+        return redirect()->route('custom.kar', $aplikasi->a_id);
     }
 
     public function delete($a_id){
