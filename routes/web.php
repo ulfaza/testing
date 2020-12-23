@@ -76,6 +76,11 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/karakteristik/{id}/editbobot', 'KarakteristikController@editbobotkar')->name('edit.kar');
 	Route::post('/karakteristik/{id}/storebobot', 'KarakteristikController@storebobotkar')->name('store.kar');
 
+	//route subkarakteristik
+	Route::get('/aplikasi/{id}/customsubkarakteristik', 'SubkarakteristikController@customsub')->name('custom.sub');
+	Route::get('/subkarakteristik/{id}/editbobot', 'SubkarakteristikController@editbobotsub')->name('edit.sub');
+	Route::post('/subkarakteristik/{id}/storebobot', 'SubkarakteristikController@storebobotsub')->name('store.sub');
+
 	//automatic
 
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');

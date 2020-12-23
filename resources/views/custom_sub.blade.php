@@ -8,7 +8,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Custom Karakteristik</h1>
+                <h1>Custom Subkarakteristik</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/softwaretester/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Aplikasi</li>
@@ -23,8 +23,8 @@
         <div class="panel">
             <div class="panel-heading">
                 <h3>
-                    @foreach ($aplikasis as $aplikasi)
-                    {{ $aplikasi->a_nama }}
+                    @foreach ($karakteristiks as $k)
+                    {{ $k->k_nama }}
                     @endforeach
                 </h3>
             </div>
@@ -34,24 +34,18 @@
                 <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
-                    <th style="width: 30%">Nama Karakteristik</th>
-                    <th style="width: 25%">Bobot Karakteristik</th>
-                    <th style="width: 20%">Edit Bobot</th>
-                    <th style="width: 20%">Custom Subkarakteristik</th>
+                    <th style="width: 45%">Nama Subkarakteristik</th>
+                    <th style="width: 40%">Bobot Subkarakteristik</th>
+                    <th style="width: 10%">Edit Bobot</th>
                   </thead>
                   <tbody>
-                  @foreach($karakteristiks as $k)
+                  @foreach($subkarakteristiks as $s)
                   <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $k->k_nama }}</td>
-                    <td>{{ $k->k_bobot }}</td>
+                    <td>{{ $s->sk_nama }}</td>
+                    <td>{{ $s->bobot_relatif }}</td>
                     <td>
-                        <a href="{{route('edit.kar',$k->k_id)}}" class="btn btn-info btn-sm">
-                        <span class="fa fa-pencil"></span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{{route('custom.sub',$k->k_id)}}" class="btn btn-info btn-sm">
+                        <a href="{{route('edit.sub',$s->sk_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
                         </a>
                     </td>
