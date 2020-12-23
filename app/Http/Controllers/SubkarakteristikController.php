@@ -45,9 +45,11 @@ class SubkarakteristikController extends Controller
 
     public function storebobotsub(Request $request, $sk_id)
     {
-        DB::table('subkarakteristik')->where('sk_id',$sk_id)->update([
-            'bobot_relatif' => $request->bobot_relatif,
-        ]);    
-        return view('/home');
+        $subkarakteristik = SubKarakteristik::findorFail($sk_id);
+
+        $subkarakteristik->bobot_relatif      = $request->bobot_relatif;
+        if ($subkarakteristik->save()) {
+          return redirect()->route('custom.sub', $subkarakteristik->karakteristik->k_id)->with('success', 'item berhasil diubah');
+        }    
     }
 }

@@ -60,7 +60,8 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/update','UserController@update');
 
 	//route kuesioner
-	Route::get('/kuisioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
+	Route::get('/kuesioner/{id}', 'KuisionerController@kuis')->name('kuisioner');
+	Route::post('/kuesioner/{id}/update', 'KuisionerController@update')->name('tambah.kuesioner');
 
 	//Route Aplikasi
 	Route::get('/aplikasi', 'AplikasiController@index')->name('index.aplikasi');
