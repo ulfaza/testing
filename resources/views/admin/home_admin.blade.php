@@ -86,7 +86,6 @@
                           </div>
                           <div class="panel-body text-center">
                             <h1>{{$karakteristik}}</h1>
-                            <p>User active</p>
                             <hr/>
                           </div>
                         </div>
@@ -101,13 +100,12 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                                <h4>
-                               <span class="icon-basket-loaded icons icon text-right"></span>
+                               <!-- <span class="icon-basket-loaded icons icon text-right"></span> -->
                                </h4>
                             </div>
                           </div>
                           <div class="panel-body text-center">
                             <h1>{{$subkarakteristik}}</h1>
-                            <p>New Orders</p>
                             <hr/>
                           </div>
                         </div>
@@ -122,13 +120,12 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6 text-right">
                                <h4>
-                               <span class="icon-basket-loaded icons icon text-right"></span>
+                               <!-- <span class="icon-basket-loaded icons icon text-right"></span> -->
                                </h4>
                             </div>
                           </div>
                           <div class="panel-body text-center">
                             <h1>{{$admin}}</h1>
-                            <p>New Orders</p>
                             <hr/>
                           </div>
                         </div>

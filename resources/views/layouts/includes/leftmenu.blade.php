@@ -16,7 +16,7 @@
             </center>
             </li>
             <li class="active ripple">
-              <a class="tree-toggle nav-header" href="{{route('home')}}">
+              <a class="tree-toggle nav-header" href="{{route('softwaretester.home')}}">
                 <span class="fa-home fa"></span> Home 
               </a>
             </li>

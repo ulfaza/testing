@@ -95,5 +95,12 @@ class AdminController extends Controller
         return redirect()->route('adminview');
     }
 
+    //kelola data software tester//
+    public function view_softwaretester()
+    {
+        $data['users'] = User::where('role','softwaretester')->get();
+        return view('/admin/view_softwaretester',$data);
+    }
+
 }
 

@@ -18,14 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route Uji Aplikasi (Penilaian Karakteristik)
-Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
-Route::post('/store/pk', 'PKController@store')->name('store.pk');
+	Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
+	Route::post('/store/pk', 'PKController@store')->name('store.pk');
 
-Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
+	Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
 	Route::get('/home', 'AdminController@index')->name('adminhome');
 
-	// user -----------
 	Route::get('/kelolaadmin', 'AdminController@view_admin')->name('adminview');
 	Route::get('/profil', 'AdminController@editprofil')->name('editprofil');
 	Route::post('/profil', 'AdminController@editprofil');
@@ -34,6 +33,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
 	Route::post('/storeadmin', 'AdminController@storeadmin');
 	Route::get('/delete/user{id}','AdminController@delete')->name('delete.user');
+
+	Route::get('/kelolasoftwaretester', 'AdminController@view_softwaretester')->name('softwaretesterview');
 
 	// ini ikut mana ------
 	Route::post('/store/aplikasi', 'AplikasiController@store')->name('store.aplikasi');

@@ -11,11 +11,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-<<<<<<< HEAD:resources/views/custom_bobot.blade.php
-                <h1>Custom Bobot</h1>
-=======
                 <h1>Custom Subkarakteristik</h1>
->>>>>>> master:resources/views/custom_sub.blade.php
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
                     <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
