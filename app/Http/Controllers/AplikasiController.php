@@ -67,51 +67,43 @@ class AplikasiController extends Controller
         $aplikasi->a_url     = $request->a_url;
         $aplikasi->a_file    = $request->a_file;
         $aplikasi->a_nilai   = 0;
-        $aplikasi->save();
+        $aplikasi->save();        
 
-        // $patokan = DB::table('karakteristik')
-        //             ->where('a_id',1)->get();
         $kar = Karakteristik::where('a_id', 1)->get();
         $sub = DB::table('subkarakteristik')
         ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
         ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
         ->where('aplikasi.a_id',1)->get();
-
-        foreach ($sub as $s) {
-            echo "$s->sk_nama";
+        
+        foreach ($kar as $k) {
+            DB::table('karakteristik')->insert([
+            ['a_id' => $aplikasi->a_id, 
+             'k_nama' => $k->k_nama,
+             'k_bobot' => $k->k_bobot,
+             'k_nilai' => 0
+            ],
+            ]);
         }
 
-        // https://stackoverflow.com/questions/27118668/laravel-foreach-where-with-eloquent
+        $kar2 = Karakteristik::where('a_id', $aplikasi->a_id)->get();
 
+        foreach ($kar2 as $k2) {
+            foreach ($sub as $s) {
+                if ($s->k_nama == $k2->k_nama) {
+                    DB::table('subkarakteristik')->insert([
+                    ['k_id' => $k2->k_id, 
+                     'sk_nama' => $s->sk_nama,
+                     'bobot_relatif' => $s->bobot_relatif,
+                     'bobot_absolut' => 0,
+                     'nilai_subfaktor' => 0,
+                     'nilai_absolut' => 0
+                    ],
+                    ]);
+                }
+            }   
+        }
         
-        // foreach ($kar as $k) {
-        //     DB::table('karakteristik')->insert([
-        //     ['a_id' => $aplikasi->a_id, 
-        //      'k_nama' => $k->k_nama,
-        //      'k_bobot' => $k->k_bobot,
-        //      'k_nilai' => 0
-        //     ],
-        //     ]);
-        //     foreach ($sub as $s) {
-        //         DB::table('subkarakteristik')->insert([
-        //         ['k_id' => , 
-        //          'sk_nama' => $s->sk_nama,
-        //          'bobot_relatif' => $s->bobot_relatif,
-        //          'bobot_absolut' => 0,
-        //          'nilai_subfaktor' => 0,
-        //          'nilai_absolut' => 0
-        //         ],
-        //         ]);
-        //     }
-        // }
-
-        
-
-        
-
-        
-        
-        // return redirect()->route('custom.bobot', $aplikasi->a_id);
+        return redirect()->route('custom.bobot', $aplikasi->a_id);
     }
 
     public function delete($a_id){
