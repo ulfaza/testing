@@ -33,7 +33,8 @@ Auth::routes();
 	Route::get('/tambahadmin', 'AdminController@tambahadmin')->name('tambahadmin');
 	Route::post('/storeadmin', 'AdminController@storeadmin');
 	Route::get('/delete/user{id}','AdminController@delete')->name('delete.user');
-
+	
+	// admin lihat data software tester
 	Route::get('/kelolasoftwaretester', 'AdminController@view_softwaretester')->name('softwaretesterview');
 
 	// ini ikut mana ------

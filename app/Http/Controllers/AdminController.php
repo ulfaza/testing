@@ -18,6 +18,7 @@ class AdminController extends Controller
         $data['karakteristik'] = Karakteristik::count();
         $data['subkarakteristik'] = Subkarakteristik::count();
         $data['admin'] = User::where('role','admin')->count();
+        $data['softwaretester'] = User::where('role','softwaretester')->count();
         return view('/admin/home_admin',$data);
     }
 
