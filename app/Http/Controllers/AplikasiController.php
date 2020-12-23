@@ -25,7 +25,10 @@ class AplikasiController extends Controller
     {
         $data['no'] = 1;
         $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
-        $data['subkarakteristiks'] = SubKarakteristik::all();
+        $data['subkarakteristiks'] = DB::table('subkarakteristik')
+                                    ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+                                    ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+                                    ->where('aplikasi.a_id',$a_id)->get();
         return view('/nilai_app', $data);
     }
 
@@ -103,7 +106,7 @@ class AplikasiController extends Controller
             }   
         }
         
-        return redirect()->route('custom.bobot', $aplikasi->a_id);
+        return redirect()->route('custom.kar', $aplikasi->a_id);
     }
 
     public function delete($a_id){

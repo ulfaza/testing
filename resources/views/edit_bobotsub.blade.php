@@ -31,16 +31,20 @@
                      <div class="panel-body" style="padding-bottom:30px;">
                       <div class="col-md-12">
                        
-                        <div class="form-group"><label class="col-sm-2 control-label text-left">Nama Subkarakteristik</label>
-                          <div class="col-sm-10"><input type="text" class="form-control" disabled value="{{ $s->sk_nama }}"></div>
+                        <div class="form-group col-md-12">
+                            <label class="font-weight-bold">Nama Subkarakteristik</label>
+                            <input type="text" class="form-control" value="{{ $s->sk_nama }}" required disabled>
                         </div>
 
-                        <div class="form-group"><label class="col-sm-2 control-label text-left">Bobot Subkarakteristik</label>
-                          <div class="col-sm-10"><input type="text" name="bobot_relatif" class="form-control" value="{{ $s->bobot_relatif }}"></div>
+                        <div class="form-group col-md-12">
+                            <label class="font-weight-bold">Bobot Subkarakteristik</label>
+                            <input type="text" class="form-control" name="bobot_relatif" value="{{ $s->bobot_relatif }}" required>
                         </div>
-                        <div class="col-md-6">
-                            <input type="submit" class="btn btn-primary" value="Submit"/>
-                        </div>
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary ">Submit</button>
+                            <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
+                        </div>    
                         
                       </div>
                     </div>

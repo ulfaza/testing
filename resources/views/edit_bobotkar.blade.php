@@ -31,17 +31,21 @@
                      <div class="panel-body" style="padding-bottom:30px;">
                       <div class="col-md-12">
                        
-                        <div class="form-group"><label class="col-sm-2 control-label text-left">Nama Karakteristik</label>
-                          <div class="col-sm-10"><input type="text" class="form-control" disabled value="{{ $k->k_nama }}"></div>
+                        <div class="form-group col-md-12">
+                            <label class="font-weight-bold">Nama Karakteristik</label>
+                            <input type="text" class="form-control" value="{{ $k->k_nama }}" required disabled>
                         </div>
 
-                        <div class="form-group"><label class="col-sm-2 control-label text-left">Bobot Karakteristik</label>
-                          <div class="col-sm-10"><input type="text" name="k_bobot" class="form-control" value="{{ $k->k_bobot }}"></div>
+                        <div class="form-group col-md-12">
+                            <label class="font-weight-bold">Bobot Karakteristik</label>
+                            <input type="text" class="form-control" name="k_bobot" value="{{ $k->k_bobot }}" required>
                         </div>
-                        <div class="col-md-6">
-                            <input type="submit" class="btn btn-primary" value="Submit"/>
-                        </div>
-                        
+
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary ">Submit</button>
+                            <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
+                        </div>      
+                                          
                       </div>
                     </div>
                   </div>
