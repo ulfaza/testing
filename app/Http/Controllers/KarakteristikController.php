@@ -22,17 +22,27 @@ class KarakteristikController extends Controller
         return view('/admin/tambah_karakteristik');
     }
 
-    public function custombobot($a_id)
+    public function customkar($a_id)
     {
         $data['no'] = 1;
-        $data['subkarakteristiks'] = DB::table('subkarakteristik')
-        ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
-        ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
-        ->where('aplikasi.a_id',1)->get();
-        return view('/custom_bobot', $data);
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['karakteristiks'] = Karakteristik::where('a_id',$a_id)->get();
+        return view('/custom_kar', $data);
     }
 
+    public function editbobotkar($k_id)
+    {
+        $karakteristiks = Karakteristik::where('k_id',$k_id)->get();
+        return view('/edit_bobotkar', ['karakteristiks' => $karakteristiks]);
+    }
 
+    public function storebobotkar(Request $request, $k_id)
+    {
+        DB::table('karakteristik')->where('k_id',$k_id)->update([
+            'k_bobot' => $request->k_bobot,
+        ]);    
+        return view('/home');
+    }
 
     public function store(Request $request)
     {

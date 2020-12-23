@@ -13,11 +13,9 @@ use App\Subkarakteristik;
 
 class KuisionerController extends Controller
 {
-    public function kuis($a_id)
+    public function kuis($sk_id)
     {
-        $data['aplikasis'] = Aplikasi::all();
-        $data['karakteristiks'] = Karakteristik::all();
-        $data['subkarakteristiks'] = Subkarakteristik::all();
+        $data['subkarakteristiks'] = Subkarakteristik::where('sk_id',$sk_id)->get();
         return view('/kuisioner',$data);
     }
 }
