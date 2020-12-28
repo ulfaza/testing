@@ -10,7 +10,7 @@
             <div class="panel-body">
                 <h1>Daftar Aplikasi</h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
                     <li class="active">Aplikasi</li>
                 </ol>
             </div>
@@ -27,10 +27,10 @@
                 <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
-                    <th style="width: 30%">Nama User</th>
-                    <th style="width: 30%">Nama Aplikasi</th>
-                    <th style="width: 10%">Custom Bobot</th>
-                    <th style="width: 10%">Uji Aplikasi</th>
+                    <th style="width: 25%">Nama User</th>
+                    <th style="width: 25%">Nama Aplikasi</th>
+                    <th style="width: 15%">Custom Bobot</th>
+                    <th style="width: 15%">Ukur Aplikasi</th>
                     <th style="width: 15%">Aksi</th>
                   </thead>
                   <tbody>

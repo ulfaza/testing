@@ -99,7 +99,9 @@ class AplikasiController extends Controller
                      'bobot_relatif' => $s->bobot_relatif,
                      'bobot_absolut' => 0,
                      'nilai_subfaktor' => 0,
-                     'nilai_absolut' => 0
+                     'nilai_absolut' => 0,
+                     'jml_res' => 0,
+                     'total_per_sub' => 0
                     ],
                     ]);
                 }

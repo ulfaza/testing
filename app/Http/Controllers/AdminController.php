@@ -18,6 +18,7 @@ class AdminController extends Controller
         $data['karakteristik'] = Karakteristik::count();
         $data['subkarakteristik'] = Subkarakteristik::count();
         $data['admin'] = User::where('role','admin')->count();
+        $data['softwaretester'] = User::where('role','softwaretester')->count();
         return view('/admin/home_admin',$data);
     }
 
@@ -93,6 +94,13 @@ class AdminController extends Controller
         $data['users'] = User::all();
         $user = User::findOrFail($id)->delete();
         return redirect()->route('adminview');
+    }
+
+    //kelola data software tester//
+    public function view_softwaretester()
+    {
+        $data['users'] = User::where('role','softwaretester')->get();
+        return view('/admin/view_softwaretester',$data);
     }
 
 }

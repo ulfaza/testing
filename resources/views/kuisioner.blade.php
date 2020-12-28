@@ -21,12 +21,11 @@
             <h3>
                 @foreach ($subkarakteristiks as $s)
                 {{ $s->sk_nama }}
-                @endforeach
             </h3>
         </div>
           <div class="panel-body">
 
-            <form action="#" method="post">
+            <form action="{{route('tambah.kuesioner',$s->sk_id)}}" method="post">
                 {{ csrf_field() }}
                 
 
@@ -37,13 +36,14 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label class="font-weight-bold">Nilai Total Hasil Kuisioner Per Subkarkteristik</label>
-                        <input type="text" class="form-control" name="total_sub" required>
+                        <input type="text" class="form-control" name="total_per_sub" required>
                     </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-primary ">Submit</button>
                         <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
                     </div>
                 </div>
+                @endforeach
             </form>
         </div>
       </div>

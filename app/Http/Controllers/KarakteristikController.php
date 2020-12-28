@@ -38,10 +38,12 @@ class KarakteristikController extends Controller
 
     public function storebobotkar(Request $request, $k_id)
     {
-        DB::table('karakteristik')->where('k_id',$k_id)->update([
-            'k_bobot' => $request->k_bobot,
-        ]);    
-        return view('/home');
+        $karakteristik = Karakteristik::findorFail($k_id);
+
+        $karakteristik->k_bobot      = $request->k_bobot;
+        if ($karakteristik->save()) {
+          return redirect()->route('custom.kar', $karakteristik->aplikasi->a_id)->with('success', 'item berhasil diubah');
+        }    
     }
 
     public function store(Request $request)
@@ -65,6 +67,12 @@ class KarakteristikController extends Controller
     public function delete($k_id){
         $karakteristik = Karakteristik::findOrFail($k_id)->delete();
         return redirect()->route('index.karakteristik');
+    }
+
+        public function bobot()
+    {
+        $data['karakteristiks'] = Karakteristik::all();
+        return view('/bobot',$data);
     }
 
 }
