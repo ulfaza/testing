@@ -22,14 +22,18 @@ class KuisionerController extends Controller
     public function update(Request $request, $sk_id)
     {
         $subkarakteristik = Subkarakteristik::findorFail($sk_id);
-
+        
         $subkarakteristik->jml_res 			= $request->jml_res;
         $subkarakteristik->total_per_sub 	= $request->total_per_sub;
         $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
         $subkarakteristik->nilai_subfaktor 	= $subkarakteristik->total_per_sub / $subkarakteristik->jml_res * 25;
         $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
+        
+        // insert nilai karakteristik
+        $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
+        $karakteristik->k_nilai     += $subkarakteristik->nilai_absolut;
 
-        if ($subkarakteristik->save()) {
+        if ($subkarakteristik->save() && $karakteristik->save()) {
         	return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'item berhasil diubah');
         }
     }    

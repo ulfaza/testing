@@ -12,6 +12,7 @@ use App\Karakteristik;
 use App\Subkarakteristik;
 use App\PenilaianKarakteristik;
 use App\PenilaianSubKarakteristik;
+use Illuminate\Support\Facades\Storage;
 
 class AplikasiController extends Controller
 {
@@ -59,16 +60,14 @@ class AplikasiController extends Controller
     {
         $file = $request->file('a_file');
         
-        // $tujuan_upload = 'storage/app/public';
-        // // $file->move($tujuan_upload,$file->getClientOriginalName());
-        // $file->move(public_path('images/users'), $file->getClientOriginalName());
+        $file->move(public_path()."/file/",$file->getClientOriginalName()); 
 
         $aplikasi = new aplikasi;
 
         $aplikasi->id        = Auth::user()->id;
         $aplikasi->a_nama    = $request->a_nama;
         $aplikasi->a_url     = $request->a_url;
-        $aplikasi->a_file    = $request->a_file;
+        $aplikasi->a_file    = $file->getClientOriginalName();
         $aplikasi->a_nilai   = 0;
         $aplikasi->save();        
 

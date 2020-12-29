@@ -19,7 +19,7 @@
         <div class="panel-heading"><h3>Spesifikasi Aplikasi</h3></div>
           <div class="panel-body">
 
-            <form action="{{route('store.aplikasi')}}" method="post">
+            <form action="{{route('store.aplikasi')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }} 
                 <div class="form-group">
                   <label>Nama Aplikasi :</label>
