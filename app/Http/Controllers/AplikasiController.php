@@ -13,6 +13,7 @@ use App\Subkarakteristik;
 use App\PenilaianKarakteristik;
 use App\PenilaianSubKarakteristik;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 class AplikasiController extends Controller
 {
@@ -59,8 +60,16 @@ class AplikasiController extends Controller
     public function store(Request $request)
     {
         $file = $request->file('a_file');
+
+        $path = $request->a_nama;
+        File::makeDirectory($path, $mode = 0777, true, true);
         
-        $file->move(public_path()."/file/",$file->getClientOriginalName()); 
+        $file->move($path,$file->getClientOriginalName());
+        // $dir = 'D:\testing\public'.$path;
+        $test = public_path()."/".$path;
+
+        
+        system("cd $test && phpmetrics --report-html=myreport.html $test");
 
         $aplikasi = new aplikasi;
 
@@ -106,6 +115,7 @@ class AplikasiController extends Controller
                 }
             }   
         }
+        
         
         return redirect()->route('custom.kar', $aplikasi->a_id);
     }
