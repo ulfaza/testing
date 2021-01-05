@@ -70,6 +70,7 @@ class AplikasiController extends Controller
 
         
         system("cd $test && phpmetrics --report-html=myreport.html $test");
+        system("jmeter -n –t ".public_path()."/jmx/CobaTest.jmx -l ".public_path()."/jmx/testresults.csv");
 
         $aplikasi = new aplikasi;
 
