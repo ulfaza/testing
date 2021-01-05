@@ -67,7 +67,7 @@ class AplikasiController extends Controller
         $file->move($path,$file->getClientOriginalName());
         // $dir = 'D:\testing\public'.$path;
         $test = public_path()."/".$path;
-        $load = public_path()."/jmx";
+        $load = public_path()."/apache-jmeter-5.3/bin";
         
         system("cd $test && phpmetrics --report-html=myreport.html $test");
         system("cd $load && jmeter -n –t CobaTest.jmx -l testresults.csv");
