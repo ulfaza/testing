@@ -67,10 +67,10 @@ class AplikasiController extends Controller
         $file->move($path,$file->getClientOriginalName());
         // $dir = 'D:\testing\public'.$path;
         $test = public_path()."/".$path;
-
+        $load = public_path()."/jmx";
         
         system("cd $test && phpmetrics --report-html=myreport.html $test");
-        system("jmeter -n –t ".public_path()."/jmx/CobaTest.jmx -l ".public_path()."/jmx/testresults.csv");
+        system("cd $load && jmeter -n –t CobaTest.jmx -l testresults.csv");
 
         $aplikasi = new aplikasi;
 
