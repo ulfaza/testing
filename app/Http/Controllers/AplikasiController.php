@@ -59,28 +59,37 @@ class AplikasiController extends Controller
 
     public function store(Request $request)
     {
-        $file = $request->file('a_file');
-
-        $path = $request->a_nama;
-        File::makeDirectory($path, $mode = 0777, true, true);
-        
-        $file->move($path,$file->getClientOriginalName());
-        // $dir = 'D:\testing\public'.$path;
-        $test = public_path()."/".$path;
-        $load = public_path()."/apache-jmeter-5.3/bin";
-        
-        system("cd $test && phpmetrics --report-html=myreport.html $test");
-        system("cd $load && jmeter -n –t CobaTest.jmx -l testresults.csv");
-
+        $file = $request->file('a_file');  
+              
         $aplikasi = new aplikasi;
+
+        $this->validate($request,[
+            'a_nama' => 'required|min:5|max:20',
+            'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'a_file' => 'required'
+         ]);
 
         $aplikasi->id        = Auth::user()->id;
         $aplikasi->a_nama    = $request->a_nama;
         $aplikasi->a_url     = $request->a_url;
         $aplikasi->a_file    = $file->getClientOriginalName();
         $aplikasi->a_nilai   = 0;
-        $aplikasi->save();        
 
+        //Check the extension of file, only php extension is allowed to upload 
+        $extension = $file->getClientOriginalExtension();
+        $allowed_extension = 'php';
+
+        if ($extension==$allowed_extension){
+        $aplikasi->save();     
+        } else {
+           return redirect()->route('insert.aplikasi')->with('error','gagal ditambahkan kaerana ekstensi tidak zesuai');
+        };
+        
+        //Make folder named by id aplikasi and store the file uploaded in the folder 
+        $idpath = $aplikasi->a_id;
+        File::makeDirectory($idpath, $mode = 0777, true, true);
+        $file->move($idpath,$file->getClientOriginalName());
+        
         $kar = Karakteristik::where('a_id', 1)->get();
         $sub = DB::table('subkarakteristik')
         ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
