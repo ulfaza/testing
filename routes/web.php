@@ -74,7 +74,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/subkarakteristik/{id}/storebobot', 'SubkarakteristikController@storebobotsub')->name('store.sub');
 
 	//automatic
-
+	Route::get('/capacity/{id}','AutomaticController@capacity')->name('capacity');
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
