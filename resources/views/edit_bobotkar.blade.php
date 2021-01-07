@@ -83,6 +83,8 @@ $(document).ready(function() {
   // we used jQuery 'keyup' to trigger the computation as the user type
   $('.k_bobot').keyup(function () {
       // initialize the sum (total bobot) to zero
+
+      //$sum = number_format($sum, 2)
       var sum = 0;
        
       // we use jQuery each() to loop through all the textbox with 'bobot' class
@@ -91,6 +93,8 @@ $(document).ready(function() {
           let val = Number($(this).val());
           if(!isNaN(val))
             sum += val;
+          if(sum == 0.30000000000000004)
+          sum = 0.3
       });
        
       // set the computed value to 'total_bobot' textbox

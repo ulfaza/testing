@@ -78,6 +78,9 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
+	Route::get('/modularity/{id}','CohesionController@cohesion')->name('cohesion');
+	Route::get('/modularity/parser','CohesionController@setUp')->name('setup');
+	
 
 	//Route Bobot Karakteristik
 	Route::get('/bobot','KarakteristikController@bobot')->name('view.bobot');
