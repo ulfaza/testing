@@ -27,9 +27,19 @@ class KarakteristikController extends Controller
         $data['no'] = 1;
         $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
         $data['karakteristiks'] = Karakteristik::where('a_id',$a_id)->get();
+        
+        $data['total'] = DB::table('karakteristik')->where('a_id','=',$a_id)->sum('k_bobot');
+        return view('/edit_bobotkar', $data);
+    }
+    
+    public function viewkar($a_id)
+    {
+        $data['no'] = 1;
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['karakteristiks'] = Karakteristik::where('a_id',$a_id)->get();
         return view('/custom_kar', $data);
     }
-
+    
     public function editbobotkar($k_id)
     {
         $karakteristiks = Karakteristik::where('k_id',$k_id)->get();

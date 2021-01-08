@@ -179,6 +179,10 @@ return [
 
         // curl
         Ixudra\Curl\CurlServiceProvider::class,
+
+        //Lcom 
+        // Pattisahusiwa\Lcom\LcomVisitor::class,
+
     ],
 
     /*
@@ -230,6 +234,9 @@ return [
 
         // curl
         'Curl'          => Ixudra\Curl\Facades\Curl::class,
+
+        //Lcom
+        // 'LcomVisitor'  => Pattisahusiwa\Lcom\LcomVisitor::class,
     ],
 
 ];

@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -85,10 +74,13 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/subkarakteristik/{id}/storebobot', 'SubkarakteristikController@storebobotsub')->name('store.sub');
 
 	//automatic
-
+	Route::get('/capacity/{id}','AutomaticController@capacity')->name('capacity');
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
+	Route::get('/modularity/{id}','CohesionController@cohesion')->name('cohesion');
+	Route::get('/modularity/parser','CohesionController@setUp')->name('setup');
+	
 
 	//Route Bobot Karakteristik
 	Route::get('/bobot','KarakteristikController@bobot')->name('view.bobot');

@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Aplikasi;
 use App\Karakteristik;
-use App\Subkarakteristik;
+use App\SubKarakteristik;
 use App\PenilaianKarakteristik;
 use App\PenilaianSubKarakteristik;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 class AplikasiController extends Controller
 {
@@ -58,19 +59,45 @@ class AplikasiController extends Controller
 
     public function store(Request $request)
     {
-        $file = $request->file('a_file');
-        
-        $file->move(public_path()."/file/",$file->getClientOriginalName()); 
-
+        $file = $request->file('a_file');  
+              
         $aplikasi = new aplikasi;
+
+        $this->validate($request,[
+            'a_nama' => 'required|min:5|max:20',
+            'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'a_file' => 'required'
+         ]);
 
         $aplikasi->id        = Auth::user()->id;
         $aplikasi->a_nama    = $request->a_nama;
         $aplikasi->a_url     = $request->a_url;
         $aplikasi->a_file    = $file->getClientOriginalName();
         $aplikasi->a_nilai   = 0;
-        $aplikasi->save();        
 
+        //Check the extension of file, only php extension is allowed to upload 
+        $extension = $file->getClientOriginalExtension();
+        $allowed_extension = 'php';
+
+        if ($extension==$allowed_extension){
+        $aplikasi->save();     
+        } else {
+           return redirect()->route('insert.aplikasi')->with('error','gagal ditambahkan kaerana ekstensi tidak zesuai');
+        };
+        
+        //Make folder named by id aplikasi and store the file uploaded in the folder 
+        $idpath = $aplikasi->a_id;
+        File::makeDirectory($idpath, $mode = 0777, true, true);
+        $file->move($idpath,$file->getClientOriginalName());
+
+        //create and write url.txt
+        $myurl = fopen("url.txt", "w");
+        $txt = $request->a_url;
+        fwrite($myurl, $txt);
+        fclose($myurl);
+        // $myurl->move($idpath,$myurl);        
+        
+        //tambah bobot patokan ke aplikasi yang dibuat
         $kar = Karakteristik::where('a_id', 1)->get();
         $sub = DB::table('subkarakteristik')
         ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
@@ -106,6 +133,7 @@ class AplikasiController extends Controller
                 }
             }   
         }
+        
         
         return redirect()->route('custom.kar', $aplikasi->a_id);
     }
