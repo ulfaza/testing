@@ -1,28 +1,23 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
+@extends('layouts.app_softwaretester')
 
-@section('content')
-
-<div id="content">
-  <div class="row"> 
+@section('content_header')
+<div class="row">
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Bobot Sub Karakteristik</h1>
+                <h1>Bobot SubKarakteristik</h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
-                    <li><a href="{{asset('/softwaretester/bobot')}}">Bobot Karakteristik</a></li>
-
-                    <li> @foreach ($karakteristiks as $karakteristik)
-                      {{ $karakteristik->k_nama }}
-                    @endforeach
-                    </li>
+                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
+                    <li><a href="{{asset('/softwaretester/bobot')}}"></i> Karakteristik</a></li>
+                    <li class="active">Bobot SubKarakteristik</li>
                 </ol>
             </div>
         </div>
     </div>
-  </div>
+</div>
+@endsection
 
+@section('content')
   <div class="col-md-12 top-20 padding-0">
       <div class="col-md-12">
         <div class="panel">
@@ -51,15 +46,5 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-@section('js')
-<script>  
-$(document).ready(function() {
-  $(document).ready( function () {
-    $('#mydatatables').DataTable();
-  });
-})
-</script>
 @endsection
     
