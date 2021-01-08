@@ -65,7 +65,7 @@
           <div class="col-md-12 nav-wrapper">
             <div class="navbar-header" style="width:100%;">
               <a href="home" class="navbar-brand"> 
-                 <b>Testing Application</b>
+                 <b>Aplikasi Pengukuran Kualitas Perangkat Lunak ISO 25010</b>
               </a>               
               <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="user-name"><span>{{ Auth::user()->name }}</span></li>
