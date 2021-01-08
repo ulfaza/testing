@@ -39,7 +39,7 @@
 
                         <div class="form-group col-md-4">
                             <label class="font-weight-bold">Bobot Karakteristik</label>
-                            <input type="text" class="form-control k_bobot" name="k_k_bobot" value="{{ $k->k_k_bobot }}" required>
+                            <input type="text" class="form-control k_bobot" name="k_bobot" value="{{ $k->k_bobot }}" required>
                         </div>
 
                         <div class="col-md-4" style="padding-top: 20px">
@@ -57,7 +57,7 @@
                     <span>belom</span>
                   </a>
                 @else
-                  <a href="{{route('view.kar',$app->a_id)}}" class="btn btn-info btn-sm">
+                  <a href="{{route('custom.kar',$app->a_id)}}" class="btn btn-info btn-sm">
                     <span>Next</span>
                   </a> 
                 @endif

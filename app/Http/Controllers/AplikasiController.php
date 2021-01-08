@@ -89,7 +89,15 @@ class AplikasiController extends Controller
         $idpath = $aplikasi->a_id;
         File::makeDirectory($idpath, $mode = 0777, true, true);
         $file->move($idpath,$file->getClientOriginalName());
+
+        //create and write url.txt
+        $myurl = fopen("url.txt", "w");
+        $txt = $request->a_url;
+        fwrite($myurl, $txt);
+        fclose($myurl);
+        // $myurl->move($idpath,$myurl);        
         
+        //tambah bobot patokan ke aplikasi yang dibuat
         $kar = Karakteristik::where('a_id', 1)->get();
         $sub = DB::table('subkarakteristik')
         ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
