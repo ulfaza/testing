@@ -1,10 +1,7 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
+@extends('layouts.app_softwaretester')
 
-@section('content')
-
-<div id="content">
-  <div class="row">
+@section('content_header')
+<div class="row">
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
@@ -16,15 +13,19 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
+@endsection
 
+@section('content')
   <div class="col-md-12 top-20 padding-0">
       <div class="col-md-12">
         <div class="panel">
             <div class="panel-body">
               @include('admin.shared.components.alert')
+              <a href="{{asset('softwaretester/insert_aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
+              <hr>
               <div class="responsive-table">
-                <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                <table id="mydatatables" class="table table-striped table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
                     <th style="width: 25%">Nama User</th>
@@ -65,20 +66,10 @@
                 </tbody>
               </table>
             </div>
-            <a href="{{asset('softwaretester/insert_aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
           </div>
         </div>
       </div>
   </div>
-</div>
-@section('js')
-<script>  
-$(document).ready(function() {
-  $(document).ready( function () {
-    $('#mydatatables').DataTable();
-  });
-})
-</script>
 @endsection
 
 
