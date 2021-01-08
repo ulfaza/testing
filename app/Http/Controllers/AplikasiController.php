@@ -139,7 +139,7 @@ class AplikasiController extends Controller
         }
         
         
-        return redirect()->route('custom.kar', $aplikasi->a_id);
+        return redirect()->route('index.aplikasi');
     }
 
     public function delete($a_id){
