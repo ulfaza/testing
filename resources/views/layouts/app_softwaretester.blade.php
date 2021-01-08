@@ -11,7 +11,7 @@
  
     <!-- start: Css -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <!-- plugins -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/font-awesome.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/simple-line-icons.css')}}"/>
@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/fullcalendar.min.css')}}"/>
 	<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datatables.bootstrap.min.css')}}"/>
+   
       <!-- end: Css -->
 
 	<link rel="shortcut icon" href="{{asset('assets/img/logomi.png')}}">
@@ -100,7 +101,11 @@
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.ui.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-   
+    
+    {{-- table edit --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
+    <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
     
     <!-- plugins -->
     <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
@@ -113,10 +118,13 @@
     <script src="{{asset('assets/js/plugins/jquery.datatables.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/datatables.bootstrap.min.js')}}"></script>
 
+    
+
 
     <!-- custom -->
      <script src="{{asset('assets/js/main.js')}}"></script>
      <script type="text/javascript" src="{{asset('assets/js/template.js')}}"></script>
+     <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script>
      @yield('js')
 
   <!-- end: Javascript -->
