@@ -202,6 +202,7 @@
                         </br>2) Deskripsi Nilai Karakteristik: Ini adalah deskripsi dari nilai karakteristik. 
                         </br>3) Nilai Aplikasi: Nilai ini adalah nilai kualitas keseluruhan aplikasi anda yang merupakan akumulasi dari nilai-nilai karakteristik.
                         </br>4) Deskripsi Nilai Aplikasi : Ini merupakan deskripsi dari nilai aplikasi.</p>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
@@ -217,6 +218,7 @@
                         <p>Langkah kelima yaitu mengunduh hasil pengukuran.</p>
                         <p>Pilih menu <b>EXPORT TO PDF</b></p>
                         <p>Langkah ini merupakan langkah pilihan yang bisa anda lakukan jika ingin menyimpan hasil pengukuan aplikasi anda.</p>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
