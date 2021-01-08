@@ -79,7 +79,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');
 	Route::get('/modularity/{id}','CohesionController@cohesion')->name('cohesion');
-	Route::get('/modularity/parser','CohesionController@setUp')->name('setup');
+	// Route::get('/modularity/parser','CohesionController@cohesion')->name('cohesion');
 	
 
 	//Route Bobot Karakteristik
