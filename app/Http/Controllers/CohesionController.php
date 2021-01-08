@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
-use LcomVisitor;
 
 use Illuminate\Http\Request;
 use PhpParser\ParserFactory;
-use Pattisahusiwa\Lcom\AstTraverser;
-use Pattisahusiwa\Lcom\PhpParser;
+use Pts\Lcom\AstTraverser;
+use Pts\Lcom\PhpParser;
+use \Pts\Lcom\LcomVisitor;
 
 use App\Karakteristik;
 use App\SubKarakteristik;
@@ -34,24 +34,23 @@ class CohesionController extends Controller
       }
       
       public function cohesion($sk_id){
-        
-        //Get teh file name and its directory path
+  
+        //Get file name and its directory path
         $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
         $filename = $subkarakteristik->karakteristik->aplikasi->a_file;
         $apps_id = $subkarakteristik->karakteristik->aplikasi->a_id;
-        // $path = public_path()."/".$apps_id."/".$filename;
         $path = public_path()."/".$apps_id."/";
         
-        //Read the file content
+        //Read file content
         $content = file_get_contents($path. $filename);
-        return $content;
-        //Parse the file content 
+        
+        //Parse file content 
         $this->parser->parse($content);
 
         $lcom = $this->lcom->getLcom();
-        $this->assertSame($count, $lcom[$name]);
-        // return $this->assertSame($count, $lcom[$name]);
-        
+        // return $lcom;
+        $this->assertSame($count, $lcom[$content]);
+        return $this->assertSame($count, $lcom[$name]);
       }
 
 }
