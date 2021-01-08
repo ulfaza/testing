@@ -95,7 +95,11 @@ class AplikasiController extends Controller
         $txt = $request->a_url;
         fwrite($myurl, $txt);
         fclose($myurl);
-        // $myurl->move($idpath,$myurl);        
+
+        $new_path = public_path()."/".$idpath."/url.txt";
+        $your_file = public_path()."/url.txt";
+        rename($your_file, $new_path);
+  
         
         //tambah bobot patokan ke aplikasi yang dibuat
         $kar = Karakteristik::where('a_id', 1)->get();
