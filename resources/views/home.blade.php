@@ -1,116 +1,128 @@
 @extends('layouts.app_softwaretester')
 
+@section('css')
+<style>
+    body{
+        overflow: hidden;
+    }
+</style>
+@endsection
+
 @section('content_header')
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h3> Halo, {{ Auth::user()->name }}</h3>
-                <h4>Selamat Datang di Aplikasi Pengukuran Kualitas Perangkat Lunak </h4>
-                </br>
-                <p>Sebelum menggunakan aplikasi ini, pastikan untuk membaca petunjuk langkah-langkah penggunaan aplikasi di bawah ini.</p>
-                <p>Selamat Mencoba</p>
-            </div>
+<div class="col-md-12 padding-1">
+    <div class="panel block">
+        <div class="panel-body">
+            <h3> Halo, {{ Auth::user()->name }}</h3>
+            <h4>Selamat Datang di Aplikasi Pengukuran Kualitas Perangkat Lunak </h4>
+            <p>Sebelum menggunakan aplikasi ini, pastikan untuk membaca petunjuk langkah-langkah penggunaan aplikasi di bawah ini. <br> Selamat mencoba.</p>
         </div>
     </div>
+</div>
 @endsection
 
 @section('content')
-    <div class="col-md-12 padding-0">
-        <div class="col-md-4">
-            <div class="panel bg-light-blue">
-                <div class="panel-body">
-                    <div class="col-md-12 padding-0">
-                        <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
-                            <h5>STEP 1</h5>
+    <div class="col-md-12 padding-1">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel bg-light-blue">
+                    <div class="panel-body">
+                        <div class="col-md-12 padding-0">
+                            <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
+                                <h5>STEP 1</h5>
+                            </div>
+                        </div>
+                        <div class="panel-body text-white">
+                            <h4>Masukkan Data Aplikasi</h4>
+                            <p>Pilih menu <b>APLIKASI</b> lalu pilih menu <b>TAMBAH APLIKASI</b></p>
+                        </div>
+                        <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_1">
+                            <h5 style="text-align:center">Details</p>
                         </div>
                     </div>
-                    <div class="panel-body text-white">
-                        <h4>Masukkan Data Aplikasi</h4>
-                        <p>Pilih menu <b>APLIKASI</b> lalu pilih menu <b>TAMBAH APLIKASI</b></p>
-                    </div>
-                    <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_1">
-                        <h5 style="text-align:center">Details</p>
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="panel bg-light-blue">
+                    <div class="panel-body">
+                        <div class="col-md-12 padding-0">
+                            <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
+                                <h5>STEP 2</h5>
+                            </div>
+                        </div>
+                        <div class="panel-body text-white">
+                            <h4>Pilih Opsi Pengukuran</h4>
+                            <p>Pilih menu <b>PENGUKURAN</b> lalu pilih menu <b>DEFAULT</b> atau <b>CUSTOM</b></p>
+                        </div>
+                        <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_2">
+                            <h5 style="text-align:center">Details</p>
+                        </div>
                     </div>
                 </div>
-            </div> 
-        </div>
-        <div class="col-md-4">
-            <div class="panel bg-light-blue">
-                <div class="panel-body">
-                    <div class="col-md-12 padding-0">
-                        <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
-                            <h5>STEP 2</h5>
+            </div>
+            <div class="col-md-4">
+                <div class="panel bg-light-blue">
+                    <div class="panel-body">
+                        <div class="col-md-12 padding-0">
+                            <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
+                                <h5>STEP 3</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel-body text-white">
-                        <h4>Pilih Opsi Pengukuran</h4>
-                        <p>Pilih menu <b>PENGUKURAN</b> lalu pilih menu <b>DEFAULT</b> atau <b>CUSTOM</b></p>
-                    </div>
-                    <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_2">
-                        <h5 style="text-align:center">Details</p>
-                    </div>
-                </div>
-            </div> 
-        </div>
-        <div class="col-md-4">
-            <div class="panel bg-light-blue">
-                <div class="panel-body">
-                    <div class="col-md-12 padding-0">
-                        <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
-                            <h5>STEP 3</h5>
-                        </div>
-                    </div>
-                    <div class="panel-body text-white">
-                        <h4>Lakukan Pengukuran Aplikasi</h4>
-                        <p>Pilih menu <b>MULAI PENGUKURAN</b> lalu pilih tanda<b> [+]</b></p>
-                    </div>
-                    <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_3">
-                        <h5 style="text-align:center">Details</p>
-                    </div>
-                </div>
-            </div> 
-        </div>
-        <div class="col-md-4">
-            <div class="panel bg-light-blue">
-                <div class="panel-body">
-                    <div class="col-md-12 padding-0">
-                        <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
-                            <h5>STEP 4</h5>
-                        </div>
-                    </div>
-                    <div class="panel-body text-white">
-                        <h4>Lihat Hasil Pengukuran</h4>
-                        <p>Pilih menu <b>HASIL</b></p>
+                        <div class="panel-body text-white">
+                            <h4>Lakukan Pengukuran Aplikasi</h4>
+                            <p>Pilih menu <b>MULAI PENGUKURAN</b> lalu pilih tanda<b> [+]</b></p>
                         </br>
-                    </div>
-                    <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_4">
-                        <h5 style="text-align:center">Details</p>
-                    </div>
-                </div>
-            </div> 
-        </div>
-        <div class="col-md-4">
-            <div class="panel bg-light-blue">
-                <div class="panel-body">
-                    <div class="col-md-12 padding-0">
-                        <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
-                            <h5>STEP 5</h5>
+                        </div>
+                        <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_3">
+                            <h5 style="text-align:center">Details</p>
                         </div>
                     </div>
-                    <div class="panel-body text-white">
-                        <h4>Unduh Hasil Pengukuran</h4>
-                        <p>Pilih menu <b>EXPORT TO PDF</b></p>
-                        </br>
-                    </div>
-                    <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_5">
-                        <h5 style="text-align:center">Details</p>
-                    </div>
-                </div>
-            </div> 
+                </div> 
+            </div>
         </div>
-        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel bg-light-blue">
+                    <div class="panel-body">
+                        <div class="col-md-12 padding-0">
+                            <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
+                                <h5>STEP 4</h5>
+                            </div>
+                        </div>
+                        <div class="panel-body text-white">
+                            <h4>Lihat Hasil Pengukuran</h4>
+                            <p>Pilih menu <b>HASIL</b></p>
+                            </br>
+                        </div>
+                        <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_4">
+                            <h5 style="text-align:center">Details</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-md-4">
+                <div class="panel bg-light-blue">
+                    <div class="panel-body">
+                        <div class="col-md-12 padding-0">
+                            <div class="text-white text-left col-md-7 col-xs-12 col-sm-7 padding-0">
+                                <h5>STEP 5</h5>
+                            </div>
+                        </div>
+                        <div class="panel-body text-white">
+                            <h4>Unduh Hasil Pengukuran</h4>
+                            <p>Pilih menu <b>EXPORT TO PDF</b></p>
+                            </br>
+                        </div>
+                        <div class="panel-footer col-md-12 padding-0" data-toggle="modal" data-target="#modal_5">
+                            <h5 style="text-align:center">Details</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div>
         <!-- MODAL  -->
-        <div class="modal fade" id="modal_1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -133,7 +145,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_2" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -161,7 +173,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_3" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -184,7 +196,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_4" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -210,7 +222,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modal_5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="modal_5" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -224,7 +236,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>    
     </div>
 @endsection

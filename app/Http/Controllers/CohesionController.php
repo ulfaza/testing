@@ -1,17 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Storage;
-
-use Illuminate\Http\Request;
 use PhpParser\ParserFactory;
 use Pts\Lcom\AstTraverser;
 use Pts\Lcom\PhpParser;
-use \Pts\Lcom\LcomVisitor;
-
-use App\Karakteristik;
+use Pts\Lcom\LcomVisitor;
 use App\SubKarakteristik;
-use App\Aplikasi;
 
 class CohesionController extends Controller
 {
@@ -43,14 +37,30 @@ class CohesionController extends Controller
         
         //Read file content
         $content = file_get_contents($path. $filename);
+
+        $lastPos = 0;
+        $classnames = [];
+        while(($lastPos = strpos($content, "class ", $lastPos)) !== false){
+          $startsAt = strpos($content, "class ", $lastPos) + strlen("class ");
+          $endsAt = strpos($content, "{", $startsAt);
+          $res = trim(substr($content, $startsAt, $endsAt - $startsAt));
+          $classnames[] = explode(" ", $res)[0];
+
+          $lastPos = $endsAt + 1;
+        }
         
+        $this->setUp();
         //Parse file content 
         $this->parser->parse($content);
-
         $lcom = $this->lcom->getLcom();
-        // return $lcom;
-        $this->assertSame($count, $lcom[$content]);
-        return $this->assertSame($count, $lcom[$name]);
+        
+        $result = [];       
+        foreach ($classnames as $key => $value)
+          $result[$value] = $lcom[$value];
+        
+        return $result;
+
+
       }
 
 }

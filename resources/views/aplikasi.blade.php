@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-  <div class="col-md-12 top-20 padding-0">
+  <div class="col-md-12 padding-0">
       <div class="col-md-12">
         <div class="panel">
             <div class="panel-body">
@@ -87,7 +87,7 @@
                         <a href="{{route('custom.kar',$aplikasi->a_id)}}" class="btn btn-default btn-login">
                           Custom Bobot?                         
                         </a> 
-<!--                          <button href="{{route('edit.kar',$aplikasi->a_id)}}" class="btn btn-default btn-login">
+<!--                        <button href="{{route('edit.kar',$aplikasi->a_id)}}" class="btn btn-default btn-login">
                           Custom Bobot?
                          </button> -->
                       </div>
