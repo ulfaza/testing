@@ -86,9 +86,6 @@
                         <a href="{{route('custom.kar',$aplikasi->a_id)}}" class="btn btn-default btn-login">
                           Custom Bobot?                         
                         </a> 
-<!--                        <button href="{{route('edit.kar',$aplikasi->a_id)}}" class="btn btn-default btn-login">
-                          Custom Bobot?
-                         </button> -->
                       </div>
                       <div class="modal-footer">
                       </div>
