@@ -30,10 +30,7 @@ class AplikasiController extends Controller
         $subkarakteristiks = DB::table('subkarakteristik')
                                     ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
                                     ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
-                                    ->where('aplikasi.a_id',$a_id)
-                                    ->orderBy('k_nama')->get();
-      
-      
+                                    ->where('aplikasi.a_id',$a_id)->get();      
         $rowspan = [];
         foreach ($subkarakteristiks as $key => $value)
             if(!@$rowspan[$value->k_nama])
@@ -49,10 +46,22 @@ class AplikasiController extends Controller
     public function insert()
     {
         $data['no'] = 1;
-        $data['subkarakteristiks'] = DB::table('subkarakteristik')
+        $subkarakteristiks = DB::table('subkarakteristik')
         ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
         ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
-        ->where('aplikasi.a_id',1)->get();        
+        ->where('aplikasi.a_id',1)->get();
+        
+        $rowspan = [];
+        foreach ($subkarakteristiks as $key => $value)
+            if(!@$rowspan[$value->k_nama])
+                $rowspan[$value->k_nama] = 1;
+            else
+                $rowspan[$value->k_nama]++;
+
+        $data['subkarakteristiks'] = $subkarakteristiks;
+        $data['rowspan'] = $rowspan;
+
+
         return view('/tambah_aplikasi', $data);
     }
 
