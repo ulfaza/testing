@@ -40,6 +40,20 @@
                 @endforeach
               </tbody>
             </table>
+            <span class="info-box-number">{{$total}}</span><br>
+            @foreach ($aplikasis as $app)
+                @if ($total != 1)
+                  <a class="btn btn-info btn-sm">
+                    <span>belom</span>
+                  </a>
+                @else
+                  <a href="{{route('custom.kar',$app->a_id)}}" class="btn btn-info btn-sm">
+                    <span>Next</span>
+                  </a> 
+                @endif
+                   
+              @endforeach
+                
           </div>
       </div>
     </div>
@@ -50,7 +64,6 @@
 @section('js')
 <script type="text/javascript">
 $(document).ready(function(){
-   
   $.ajaxSetup({
     headers:{
       'X-CSRF-Token' : $("input[name=_token]").val()
@@ -65,6 +78,22 @@ $(document).ready(function(){
       editable:[[1, 'k_nama'], [2, 'k_bobot']]
     },
     restoreButton:false,
+    onAlways:function(){
+      var sum = 0;
+       
+      // we use jQuery each() to loop through all the textbox with 'bobot' class
+      // and compute the sum for each loop
+      $('input[name="k_bobot"]').each(function() {
+          let val = Number($(this).val());
+          if(!isNaN(val))
+            sum += val;
+          if(sum == 0.30000000000000004)
+          sum = 0.3
+      });
+       
+      // set the computed value to 'total_bobot' textbox
+      $('.info-box-number').html(sum);
+    },
     onSuccess:function(data, textStatus, jqXHR)
     {
       if(data.action == 'delete')

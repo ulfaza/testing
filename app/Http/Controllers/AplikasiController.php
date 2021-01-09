@@ -149,7 +149,7 @@ class AplikasiController extends Controller
             return redirect()->route('nilai', $aplikasi->a_id);
         }
         else{
-            return redirect()->route('edit.kar', $aplikasi->a_id);
+            return redirect()->route('custom.kar', $aplikasi->a_id);
         }
     }
 
