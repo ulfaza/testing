@@ -33,7 +33,7 @@
             <div class="responsive-table">
               <table id="datatables-example" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
-                  {{-- <th style="width: 5%">ID</th> --}}
+                  <th style="width: 5%">ID</th>
                   <th style="width: 15%">Karakteristik</th>
                   <th style="width: 10%">Bobot Karakteristik</th>
                   <th style="width: 15%">Sub Karakteristik</th>
@@ -46,8 +46,9 @@
                 <tbody>
                 @foreach($subkarakteristiks as $key => $s)
                 <tr>
-                    {{-- <td>{{ $no++ }}</td> --}}
+                    
                     @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
+                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
                       <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
                       <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_bobot }}</td>
                     @endif

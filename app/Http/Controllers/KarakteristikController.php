@@ -105,7 +105,22 @@ class KarakteristikController extends Controller
 
         public function bobot()
     {
-        $data['karakteristiks'] = Karakteristik::all();
+        $data['no'] = 1;
+        $subkarakteristiks = DB::table('subkarakteristik')
+        ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+        ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+        ->where('aplikasi.a_id',1)->get();
+
+        $rowspan = [];
+        foreach ($subkarakteristiks as $key => $value)
+            if(!@$rowspan[$value->k_nama])
+                $rowspan[$value->k_nama] = 1;
+            else
+                $rowspan[$value->k_nama]++;
+
+        $data['subkarakteristiks'] = $subkarakteristiks;
+        $data['rowspan'] = $rowspan;
+
         return view('/bobot',$data);
     }
 
