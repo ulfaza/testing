@@ -47,19 +47,12 @@
               </tbody>
             </table>
             <span class="info-box-number">{{$total}}</span><br>
-            @foreach ($aplikasis as $app)
-                @if ($total != 1)
-                  <a class="btn btn-info btn-sm">
-                    <span>belom</span>
-                  </a>
-                @else
-                  <a href="{{route('custom.kar',$app->a_id)}}" class="btn btn-info btn-sm">
-                    <span>Next</span>
-                  </a> 
-                @endif
-                   
-              @endforeach
-                
+            <a class="btn btn-info btn-sm" id="belom"  >
+              <span>belom</span>
+            </a>
+            <a href="" id="next" class="btn btn-info btn-sm"  >
+              <span>Next</span>
+            </a>
           </div>
       </div>
     </div>
@@ -69,7 +62,20 @@
 
 @section('js')
 <script type="text/javascript">
+function toggleNext(sum){
+  if(sum == 1){
+    $("#next").show();
+    $("#belom").hide();
+  }
+  else{
+    $("#next").hide();
+    $("#belom").show();
+  }
+}
+
 $(document).ready(function(){
+  toggleNext(Number($('.info-box-number').html()));
+
   $.ajaxSetup({
     headers:{
       'X-CSRF-Token' : $("input[name=_token]").val()
@@ -100,6 +106,8 @@ $(document).ready(function(){
        
       // set the computed value to 'total_bobot' textbox
       $('.info-box-number').html(sum);
+
+      toggleNext(sum);
     },
     onSuccess:function(data, textStatus, jqXHR)
     {

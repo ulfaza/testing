@@ -1,4 +1,4 @@
-@extends('layouts.app_softwaretester')
+@extends('layouts.app_topnav')
 
 @section('content_header')
 <div class="row">
