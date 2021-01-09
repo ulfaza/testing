@@ -31,9 +31,9 @@
           <div class="panel-body">
             @include('admin.shared.components.alert')
             <div class="responsive-table">
-              <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+              <table id="datatables-example" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
-                  <th style="width: 5%">ID</th>
+                  {{-- <th style="width: 5%">ID</th> --}}
                   <th style="width: 15%">Karakteristik</th>
                   <th style="width: 10%">Bobot Karakteristik</th>
                   <th style="width: 15%">Sub Karakteristik</th>
@@ -44,11 +44,13 @@
                   <th style="width: 15%">Tambah Hasil Kuesioner</th>
                 </thead>
                 <tbody>
-                @foreach($subkarakteristiks as $s)
+                @foreach($subkarakteristiks as $key => $s)
                 <tr>
-                    <td>{{ $no++ }}</td>
-                    <td>{{ $s->k_nama }}</td>
-                    <td>{{ $s->k_bobot }}</td>
+                    {{-- <td>{{ $no++ }}</td> --}}
+                    @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
+                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
+                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_bobot }}</td>
+                    @endif
                     <td>{{ $s->sk_nama }}</td>
                     <td>{{ $s->bobot_relatif }}</td>
                     <td>{{ $s->bobot_absolut }}</td>
@@ -86,6 +88,7 @@
                     </td>
                     @endif
                 </tr>
+                
                 @endforeach
               </tbody>
             </table>

@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/fullcalendar.min.css')}}"/>
 	<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datatables.bootstrap.min.css')}}"/>
-   
+   @yield('css')
       <!-- end: Css -->
 
 	<link rel="shortcut icon" href="{{asset('assets/img/logomi.png')}}">
