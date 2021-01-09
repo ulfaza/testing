@@ -22,30 +22,33 @@
     <div class="panel">
         <div class="panel-body">
               @include('admin.shared.components.alert')
-              <div class="responsive-table">
+              <div class="modal-body">
                 <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
-                    <th style="width: 35%">Nama Karakteristik</th>
-                    <th style="width: 30%">Bobot Karakteristik</th>
+                    <th style="width: 15%">Karakteristik</th>
+                    <th style="width: 10%">Bobot Karakteristik</th>
                     <th style="width: 15%">Sub Karakteristik</th>
+                    <th style="width: 10%">Bobot Relatif</th>
                   </thead>
                   <tbody>
-                  @foreach($karakteristiks as $karakteristik)
+                  @foreach($subkarakteristiks as $key => $s)
                   <tr>
-                    <td>{{ $karakteristik->k_id }}</td>
-                    <td>{{ $karakteristik->k_nama }}</td>
-                    <td>{{ $karakteristik->k_bobot }}</td>
-                    <td>
-                    <a href="{{route('view.bobotsub',$karakteristik->k_id)}}" class="btn btn-info btn-sm">
-                        <span class="fa fa-location-arrow"></span>
-                      </a>
-                    </td>
+                      @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
+                        <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
+                        <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
+                        <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_bobot }}</td>
+                      @endif
+                      {{-- <td>{{ $no++ }}</td>
+                      <td>{{ $s->k_nama }}</td>
+                      <td>{{ $s->k_bobot }}</td> --}}
+                      <td>{{ $s->sk_nama }}</td>
+                      <td>{{ $s->bobot_relatif }}</td>
                   </tr>
                   @endforeach
-                </tbody>
-              </table>
-            </div>
+                  </tbody>
+                </table>
+              </div>
           </div>
         </div>
       </div>

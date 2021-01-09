@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/fullcalendar.min.css')}}"/>
 	<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datatables.bootstrap.min.css')}}"/>
-   
+   @yield('css')
       <!-- end: Css -->
 
 	<link rel="shortcut icon" href="{{asset('assets/img/logomi.png')}}">
@@ -49,7 +49,7 @@
                   <li class="dropdown avatar-dropdown" style="padding-right: 30px">
                    <img src="{{asset('assets/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                    <ul class="dropdown-menu user-dropdown">
-                      <li><a href="#"><span class="fa fa-user"></span> My Profile</a></li>
+                      <li><a href="/softwaretester/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
                       <li>
                         <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -104,7 +104,7 @@
     
     {{-- table edit --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>             --}}
     <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
     
     <!-- plugins -->
@@ -124,7 +124,7 @@
     <!-- custom -->
      <script src="{{asset('assets/js/main.js')}}"></script>
      <script type="text/javascript" src="{{asset('assets/js/template.js')}}"></script>
-     <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script>
+     <!-- <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script> -->
      @yield('js')
 
   <!-- end: Javascript -->

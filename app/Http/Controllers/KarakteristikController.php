@@ -25,11 +25,33 @@ class KarakteristikController extends Controller
     public function customkar($a_id)
     {
         $data['no'] = 1;
-        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['id_aplikasi'] = $a_id;
         $data['karakteristiks'] = Karakteristik::where('a_id',$a_id)->get();
-        
         $data['total'] = DB::table('karakteristik')->where('a_id','=',$a_id)->sum('k_bobot');
-        return view('/edit_bobotkar', $data);
+        return view('/custom_kar', $data);
+    }
+
+    function actionkar(Request $request)
+    {
+        if($request->ajax())
+        {
+            if($request->action == 'edit')
+            {
+                $data = array(
+                    'k_bobot'       =>  $request->k_bobot
+                );
+                DB::table('karakteristik')
+                    ->where('k_id', $request->k_id)
+                    ->update($data);
+            }
+            if($request->action == 'delete')
+            {
+                DB::table('karakteristik')
+                    ->where('k_id', $request->k_id)
+                    ->delete();
+            }
+            return response()->json($request);
+        }
     }
     
     public function viewkar($a_id)
@@ -40,10 +62,12 @@ class KarakteristikController extends Controller
         return view('/custom_kar', $data);
     }
     
-    public function editbobotkar($k_id)
+    public function editbobotkar($a_id)
     {
-        $karakteristiks = Karakteristik::where('k_id',$k_id)->get();
-        return view('/edit_bobotkar', ['karakteristiks' => $karakteristiks]);
+        $data['total'] = DB::table('karakteristik')->where('a_id','=',$a_id)->sum('k_bobot');
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['karakteristiks'] = Karakteristik::where('a_id',$a_id)->get();
+        return view('/edit_bobotkar', $data);
     }
 
     public function storebobotkar(Request $request, $k_id)
@@ -81,7 +105,22 @@ class KarakteristikController extends Controller
 
         public function bobot()
     {
-        $data['karakteristiks'] = Karakteristik::all();
+        $data['no'] = 1;
+        $subkarakteristiks = DB::table('subkarakteristik')
+        ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+        ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+        ->where('aplikasi.a_id',1)->get();
+
+        $rowspan = [];
+        foreach ($subkarakteristiks as $key => $value)
+            if(!@$rowspan[$value->k_nama])
+                $rowspan[$value->k_nama] = 1;
+            else
+                $rowspan[$value->k_nama]++;
+
+        $data['subkarakteristiks'] = $subkarakteristiks;
+        $data['rowspan'] = $rowspan;
+
         return view('/bobot',$data);
     }
 

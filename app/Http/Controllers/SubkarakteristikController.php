@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Aplikasi;
 use App\Karakteristik;
 use App\SubKarakteristik;
 
@@ -36,12 +37,43 @@ class SubkarakteristikController extends Controller
         return view('/bobotsub', $data);
     }
     
-    public function customsub($k_id)
+    public function customsub($a_id)
     {
         $data['no'] = 1;
-        $data['karakteristiks'] = Karakteristik::where('k_id',$k_id)->get();
-        $data['subkarakteristiks'] = SubKarakteristik::where('k_id',$k_id)->get();        
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $data['karakteristiks'] = Karakteristik::where('a_id', $a_id)->get();
+        $data['subkarakteristiks'] = DB::table('subkarakteristik')
+                                    ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+                                    ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+                                    ->where('aplikasi.a_id',$a_id)->get();
+        $data['total'] = DB::table('subkarakteristik')
+                                    ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+                                    ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+                                    ->where('aplikasi.a_id',$a_id)->sum('bobot_relatif');
         return view('/custom_sub', $data);
+    }
+
+    function actionsub(Request $request)
+    {
+        if($request->ajax())
+        {
+            if($request->action == 'edit')
+            {
+                $data = array(
+                    'bobot_relatif'       =>  $request->bobot_relatif
+                );
+                DB::table('subkarakteristik')
+                    ->where('sk_id', $request->sk_id)
+                    ->update($data);
+            }
+            if($request->action == 'delete')
+            {
+                DB::table('subkarakteristik')
+                    ->where('sk_id', $request->sk_id)
+                    ->delete();
+            }
+            return response()->json($request);
+        }
     }
 
     public function editbobotsub($sk_id)

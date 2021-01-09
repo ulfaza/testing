@@ -1,77 +1,123 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
+@extends('layouts.app_softwaretester')
 
-@section('content')
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://markcell.github.io/jquery-tabledit/assets/js/tabledit.min.js"></script>
-
-  <div id="content">
-  <div class="row"> 
+@section('content_header')
+<div class="row">
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
                 <h1>Custom Subkarakteristik</h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
-                    <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
-                    <li>Custom Bobot</li>
+                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
+                    <li class="active">Custom Subkarakteristik</li>
                 </ol>
             </div>
         </div>
     </div>
-  </div>
-
-  <div class="col-md-12 top-20 padding-0">
-      <div class="col-md-12">
-        <div class="panel">
-            <div class="panel-heading">
-                <h3>
-                    @foreach ($karakteristiks as $k)
-                    {{ $k->k_nama }}
-                    @endforeach
-                </h3>
-            </div>
-            <div class="panel-body">
-              @include('admin.shared.components.alert')
-              <div class="responsive-table">
-                <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
-                  <thead>
-                    <th style="width: 5%">ID</th>
-                    <th style="width: 45%">Nama Subkarakteristik</th>
-                    <th style="width: 40%">Bobot Subkarakteristik</th>
-                    <th style="width: 10%">Edit Bobot</th>
-                  </thead>
-                  <tbody>
-                  @foreach($subkarakteristiks as $s)
+</div>
+@endsection
+@section('content')
+<div class="col-md-12 top-20 padding-0">
+  <div class="col-md-12">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="table-responsive">
+            {{ csrf_field() }}
+            <table id="editable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nama Karakteristik</th>
+                  <th>Nama Subkarakteristik</th>
+                  <th>Bobot Subarakteristik</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($karakteristiks as $kar)
+                  @foreach($subkarakteristiks as $sub)
                   <tr>
-                    <td>{{ $no++ }}</td>
-                    <td>{{ $s->sk_nama }}</td>
-                    <td>{{ $s->bobot_relatif }}</td>
-                    <td>
-                        <a href="{{route('edit.sub',$s->sk_id)}}" class="btn btn-info btn-sm">
-                        <span class="fa fa-pencil"></span>
-                        </a>
-                    </td>
+                    @if($kar->k_nama == $sub->k_nama)
+                    <td>{{ $sub->sk_id }}</td>
+                    <td>{{ $sub->k_nama }}</td>
+                    <td>{{ $sub->sk_nama }}</td>
+                    <td>{{ $sub->bobot_relatif }}</td>
+                    @endif
                   </tr>
                   @endforeach
-                </tbody>
-              </table>
-            </div>
-
+                @endforeach
+              </tbody>
+            </table>
+            <span class="info-box-number">{{$total}}</span><br>
+            <a class="btn btn-info btn-sm" id="belom"  >
+              <span>belom</span>
+            </a>
+            <a href="" id="next" class="btn btn-info btn-sm"  >
+              <span>Next</span>
+            </a>
           </div>
-        </div>
       </div>
+    </div>
   </div>
 </div>
-@section('js')
-<script>  
-$(document).ready(function() {
-  $(document).ready( function () {
-    $('#mydatatables').DataTable();
-  });
-})
-</script>
 @endsection
 
+@section('js')
+<script type="text/javascript">
+function toggleNext(sum){
+  if(sum == 1){
+    $("#next").show();
+    $("#belom").hide();
+  }
+  else{
+    $("#next").hide();
+    $("#belom").show();
+  }
+}
 
+$(document).ready(function(){
+  toggleNext(Number($('.info-box-number').html()));
+
+  $.ajaxSetup({
+    headers:{
+      'X-CSRF-Token' : $("input[name=_token]").val()
+    }
+  });
+
+  $('#editable').Tabledit({
+    url:'{{ route("action.sub") }}',
+    dataType:"json",
+    columns:{
+      identifier:[0, 'sk_id'],
+      editable:[[3, 'bobot_relatif']]
+    },
+    deleteButton:false,
+    restoreButton:false,
+    onAlways:function(){
+      var sum = 0;
+       
+      // we use jQuery each() to loop through all the textbox with 'bobot' class
+      // and compute the sum for each loop
+      $('input[name="bobot_relatif"]').each(function() {
+          let val = Number($(this).val());
+          if(!isNaN(val))
+            sum += val;
+          if(sum == 0.30000000000000004)
+          sum = 0.3
+      });
+       
+      // set the computed value to 'total_bobot' textbox
+      $('.info-box-number').html(sum);
+
+      toggleNext(sum);
+    },
+    onSuccess:function(data, textStatus, jqXHR)
+    {
+      if(data.action == 'delete')
+      {
+        $('#'+data.sk_id).remove();
+      }
+    }
+  });
+
+});  
+</script>
+@endsection
