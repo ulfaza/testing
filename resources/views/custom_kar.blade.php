@@ -15,6 +15,7 @@
     </div>
 </div>
 @endsection
+
 @section('content')
 <div class="col-md-12 top-20 padding-0">
   <div class="col-md-12">

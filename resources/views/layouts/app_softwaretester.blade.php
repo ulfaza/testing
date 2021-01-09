@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/simple-line-icons.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/animate.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/fullcalendar.min.css')}}"/>
-	<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+	  <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datatables.bootstrap.min.css')}}"/>
    @yield('css')
       <!-- end: Css -->
@@ -28,7 +28,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    </head>
+</head>
 
   <body id="mimin" class="dashboard">
       <!-- start: Header -->
@@ -124,7 +124,7 @@
     <!-- custom -->
      <script src="{{asset('assets/js/main.js')}}"></script>
      <script type="text/javascript" src="{{asset('assets/js/template.js')}}"></script>
-     <!-- <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script> -->
+     <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script> 
      @yield('js')
 
   <!-- end: Javascript -->
