@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="panel block">
             <div class="panel-body">
-                <h1>Daftar Aplikasi</h1>
+                <h1>Custom Karakteristik</h1>
                 <ol class="breadcrumb">
                     <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
                     <li class="active">Custom Karakteristik</li>
@@ -41,19 +41,12 @@
               </tbody>
             </table>
             <span class="info-box-number">{{$total}}</span><br>
-            @foreach ($aplikasis as $app)
-                @if ($total != 1)
-                  <a class="btn btn-info btn-sm">
-                    <span>belom</span>
-                  </a>
-                @else
-                  <a href="{{route('custom.kar',$app->a_id)}}" class="btn btn-info btn-sm">
-                    <span>Next</span>
-                  </a> 
-                @endif
-                   
-              @endforeach
-                
+            <a class="btn btn-info btn-sm" id="belom"  >
+              <span>belom</span>
+            </a>
+            <a href="{{route('custom.sub',$id_aplikasi)}}" id="next" class="btn btn-info btn-sm"  >
+              <span>Next</span>
+            </a>
           </div>
       </div>
     </div>
@@ -63,7 +56,20 @@
 
 @section('js')
 <script type="text/javascript">
+function toggleNext(sum){
+  if(sum == 1){
+    $("#next").show();
+    $("#belom").hide();
+  }
+  else{
+    $("#next").hide();
+    $("#belom").show();
+  }
+}
+
 $(document).ready(function(){
+  toggleNext(Number($('.info-box-number').html()));
+
   $.ajaxSetup({
     headers:{
       'X-CSRF-Token' : $("input[name=_token]").val()
@@ -75,8 +81,9 @@ $(document).ready(function(){
     dataType:"json",
     columns:{
       identifier:[0, 'k_id'],
-      editable:[[1, 'k_nama'], [2, 'k_bobot']]
+      editable:[[2, 'k_bobot']]
     },
+    deleteButton:false,
     restoreButton:false,
     onAlways:function(){
       var sum = 0;
@@ -93,6 +100,8 @@ $(document).ready(function(){
        
       // set the computed value to 'total_bobot' textbox
       $('.info-box-number').html(sum);
+
+      toggleNext(sum);
     },
     onSuccess:function(data, textStatus, jqXHR)
     {
