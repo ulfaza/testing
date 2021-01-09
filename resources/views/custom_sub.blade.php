@@ -32,13 +32,17 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach($subkarakteristiks as $row)
-                <tr>
-                  <td>{{ $row->sk_id }}</td>
-                  <td>{{ $row->k_nama }}</td>
-                  <td>{{ $row->sk_nama }}</td>
-                  <td>{{ $row->bobot_relatif }}</td>
-                </tr>
+                @foreach($karakteristiks as $kar)
+                  @foreach($subkarakteristiks as $sub)
+                  <tr>
+                    @if($kar->k_nama == $sub->k_nama)
+                    <td>{{ $sub->sk_id }}</td>
+                    <td>{{ $sub->k_nama }}</td>
+                    <td>{{ $sub->sk_nama }}</td>
+                    <td>{{ $sub->bobot_relatif }}</td>
+                    @endif
+                  </tr>
+                  @endforeach
                 @endforeach
               </tbody>
             </table>
