@@ -42,8 +42,7 @@
                     <td>{{ $aplikasi->a_nama }}</td>
 
                     <td>
-                      <!-- <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-info btn-sm"> -->
-                      <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_custom" >
+                      <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                         <span class="fa fa-pencil"></span>
                       </a>
                     </td>

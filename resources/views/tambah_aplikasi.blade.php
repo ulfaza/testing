@@ -1,24 +1,29 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
-@section('content')
+@extends('layouts.app_softwaretester')
 
-<div id="content">
-  <div class="panel box-shadow-none content-header">
-     <div class="panel-body">
-       <div class="col-md-12">
-           <h3 class="animated fadeInLeft">Tambah Aplikasi</h3>
-           <p class="animated fadeInDown">
-        </p>
-      </div>
+@section('content_header')
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel block">
+            <div class="panel-body">
+                <h1>Tambah Aplikasi</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
+                    <li><a href="{{asset('/softwaretester/aplikasi')}}"></i> Aplikasi</a></li>
+                    <li class="active">Tambah Aplikasi</li>
+                </ol>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+@endsection
 
+@section('content')
  <div class="col-md-12 top-20 padding-0">
     <div class="col-md-12">
       <div class="panel">
-        <div class="panel-heading"><h3>Spesifikasi Aplikasi</h3></div>
           <div class="panel-body">
-
+            <a data-toggle="modal" data-target="#modal_custom" class="btn btn-info btn-md">Lihat Bobot Patokan</a>
+            <hr>
             <form action="{{route('store.aplikasi')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }} 
                 <div class="form-group">
@@ -33,11 +38,67 @@
                   <label>File :</label>
                   <div><input type="file"  name="a_file" required></div>
                 </div> 
+
+                <div class="form-group" >
+                  <div class="form-animate-radio" required>
+                    <label class="radio">
+                    <input id="radio1" type="radio" name="radios" value="custom" />
+                    <span class="outer">
+                      <span class="inner"></span></span> Custom Bobot
+                    </label>
+                    <label class="radio">
+                    <input id="radio2" type="radio" name="radios" value="patokan" />
+                    <span class="outer">
+                      <span class="inner"></span></span> Gunakan Bobot Patokan
+                    </label>
+                  </div>
+                </div>
                 
                 <button type="submit" class="btn btn-primary ">Submit</button>
                 <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/home')}}" class="btn btn-secondary"> Cancel</a>
             </form>
-        </div>
+
+            <div class="col-md-12">
+                <div class="modal fade modal-v1" id="modal_custom">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">
+                          <h3>Bobot Patokan</h3>
+                        </h2>
+                      </div>
+                      <div class="modal-body">
+                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                          <thead>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 15%">Karakteristik</th>
+                            <th style="width: 10%">Bobot Karakteristik</th>
+                            <th style="width: 15%">Sub Karakteristik</th>
+                            <th style="width: 10%">Bobot Relatif</th>
+                          </thead>
+                          <tbody>
+                          @foreach($subkarakteristiks as $s)
+                          <tr>
+                              <td>{{ $no++ }}</td>
+                              <td>{{ $s->k_nama }}</td>
+                              <td>{{ $s->k_bobot }}</td>
+                              <td>{{ $s->sk_nama }}</td>
+                              <td>{{ $s->bobot_relatif }}</td>
+                          </tr>
+                          @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="modal-footer">
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            </div>            
+        
+          </div>
       </div>
     </div>
 </div>
+@endsection

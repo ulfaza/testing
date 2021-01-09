@@ -48,7 +48,12 @@ class AplikasiController extends Controller
 
     public function insert()
     {
-        return view('/tambah_aplikasi');
+        $data['no'] = 1;
+        $data['subkarakteristiks'] = DB::table('subkarakteristik')
+        ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+        ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+        ->where('aplikasi.a_id',1)->get();        
+        return view('/tambah_aplikasi', $data);
     }
 
     public function edit($a_id)
@@ -78,7 +83,8 @@ class AplikasiController extends Controller
         $this->validate($request,[
             'a_nama' => 'required|min:5|max:20',
             'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'a_file' => 'required'
+            'a_file' => 'required',
+            'radios' => 'required'
          ]);
 
         $aplikasi->id        = Auth::user()->id;
@@ -151,7 +157,12 @@ class AplikasiController extends Controller
         }
         
         
-        return redirect()->route('index.aplikasi');
+        if ($request->radios == "patokan") {
+            return redirect()->route('nilai', $aplikasi->a_id);
+        }
+        else{
+            return redirect()->route('custom.kar', $aplikasi->a_id);
+        }
     }
 
     public function delete($a_id){

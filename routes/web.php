@@ -63,8 +63,11 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/edit/aplikasi{id}', 'AplikasiController@edit')->name('edit.aplikasi');
 	Route::post('/update/aplikasi{id}','AplikasiController@update')->name('update.aplikasi');
 
-	//route karakteristik
+	//route tabledit
 	Route::get('/aplikasi/{id}/customkarakteristik', 'KarakteristikController@customkar')->name('custom.kar');
+	Route::post('/aplikasi/customkarakteristik/action', 'KarakteristikController@actionkar')->name('action.kar');
+
+	//route karakteristik
 	Route::get('/karakteristik/{id}/editbobot', 'KarakteristikController@editbobotkar')->name('edit.kar');
 	Route::post('/karakteristik/{id}/storebobot', 'KarakteristikController@storebobotkar')->name('store.kar');
 
