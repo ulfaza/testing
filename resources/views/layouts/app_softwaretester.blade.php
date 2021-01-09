@@ -124,7 +124,7 @@
     <!-- custom -->
      <script src="{{asset('assets/js/main.js')}}"></script>
      <script type="text/javascript" src="{{asset('assets/js/template.js')}}"></script>
-     <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script>
+     <!-- <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script> -->
      @yield('js')
 
   <!-- end: Javascript -->
