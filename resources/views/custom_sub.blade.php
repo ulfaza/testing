@@ -15,6 +15,7 @@
     </div>
 </div>
 @endsection
+
 @section('content')
 <div class="col-md-12 top-20 padding-0">
   <div class="col-md-12">
@@ -26,33 +27,29 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Nama Karakteristik</th>
                   <th>Nama Subkarakteristik</th>
                   <th>Bobot Subkarakteristik</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($subkarakteristiks as $key => $s)
+                @foreach($subkarakteristiks as $s)
                 <tr>
-                    @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
-                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
-                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
-                    @endif
-                    {{-- <td>{{ $no++ }}</td>
-                    <td>{{ $s->k_nama }}</td> --}}
+                    <td>{{ $s->sk_id }}</td>
                     <td>{{ $s->sk_nama }}</td>
                     <td>{{ $s->bobot_relatif }}</td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <span class="info-box-number"></span><br>
+            <span class="info-box-number">{{$total}}</span><br>
             <a class="btn btn-info btn-sm" id="belom"  >
               <span>belom</span>
             </a>
-            <a href="" id="next" class="btn btn-info btn-sm"  >
+            @foreach($aplikasis as $app)
+            <a href="{{route('custom.kar',$app->a_id)}}" id="next" class="btn btn-info btn-sm"  >
               <span>Next</span>
             </a>
+            @endforeach
           </div>
       </div>
     </div>
@@ -87,7 +84,7 @@ $(document).ready(function(){
     dataType:"json",
     columns:{
       identifier:[0, 'sk_id'],
-      editable:[[3, 'bobot_relatif']]
+      editable:[[2, 'bobot_relatif']]
     },
     deleteButton:false,
     restoreButton:false,
