@@ -1,4 +1,4 @@
-@extends('layouts.app_softwaretester')
+@extends('layouts.app_topnav')
 
 @section('content_header')
 <div class="row">
@@ -28,25 +28,25 @@
                   <th>ID</th>
                   <th>Nama Karakteristik</th>
                   <th>Nama Subkarakteristik</th>
-                  <th>Bobot Subarakteristik</th>
+                  <th>Bobot Subkarakteristik</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($karakteristiks as $kar)
-                  @foreach($subkarakteristiks as $sub)
-                  <tr>
-                    @if($kar->k_nama == $sub->k_nama)
-                    <td>{{ $sub->sk_id }}</td>
-                    <td>{{ $sub->k_nama }}</td>
-                    <td>{{ $sub->sk_nama }}</td>
-                    <td>{{ $sub->bobot_relatif }}</td>
+                @foreach($subkarakteristiks as $key => $s)
+                <tr>
+                    @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
+                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
+                      <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
                     @endif
-                  </tr>
-                  @endforeach
+                    {{-- <td>{{ $no++ }}</td>
+                    <td>{{ $s->k_nama }}</td> --}}
+                    <td>{{ $s->sk_nama }}</td>
+                    <td>{{ $s->bobot_relatif }}</td>
+                </tr>
                 @endforeach
               </tbody>
             </table>
-            <span class="info-box-number">{{$total}}</span><br>
+            <span class="info-box-number"></span><br>
             <a class="btn btn-info btn-sm" id="belom"  >
               <span>belom</span>
             </a>

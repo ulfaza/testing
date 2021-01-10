@@ -61,7 +61,6 @@ class AplikasiController extends Controller
         $data['subkarakteristiks'] = $subkarakteristiks;
         $data['rowspan'] = $rowspan;
 
-
         return view('/tambah_aplikasi', $data);
     }
 
