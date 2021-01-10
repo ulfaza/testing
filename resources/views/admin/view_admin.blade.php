@@ -38,7 +38,7 @@
                   <td>{{ $user->instansi }}</td>
                   <td>{{ $user->email }}</td>
                   <td>
-                    <a href="#" class="btn btn-info btn-sm">
+                    <a href="/admin/profil/{{ $user->id }}" class="btn btn-info btn-sm">
                       <span class="fa fa-pencil"></span>
                     </a>
                     <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.user',$user->id)}}" class="btn btn-danger btn-sm">
