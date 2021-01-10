@@ -29,6 +29,7 @@
                   <th>ID</th>
                   <th>Nama Karakteristik</th>
                   <th>Bobot Karakteristik</th>
+                  <th>Custom Bobot SubKarakteristik</th>
                 </tr>
               </thead>
               <tbody>
@@ -37,6 +38,11 @@
                   <td>{{ $row->k_id }}</td>
                   <td>{{ $row->k_nama }}</td>
                   <td>{{ $row->k_bobot }}</td>
+                  <td>
+                    <a href="{{route('custom.sub',$row->k_id)}}" >
+                      <span class="fa fa-external-link"></span>
+                    </a>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -45,7 +51,7 @@
             <a class="btn btn-info btn-sm" id="belom"  >
               <span>belom</span>
             </a>
-            <a href="{{route('custom.sub',$id_aplikasi)}}" id="next" class="btn btn-info btn-sm"  >
+            <a href="{{route('nilai',$id_aplikasi)}}" id="next" class="btn btn-info btn-sm"  >
               <span>Next</span>
             </a>
           </div>
