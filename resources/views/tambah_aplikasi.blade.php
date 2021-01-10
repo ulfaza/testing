@@ -24,6 +24,15 @@
           <div class="panel-body">
             <a data-toggle="modal" data-target="#modal_custom" class="btn btn-info btn-md">Lihat Bobot Patokan</a>
             <hr>
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                  </ul>
+                </div>
+            @endif
             <form action="{{route('store.aplikasi')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }} 
                 <div class="form-group">
