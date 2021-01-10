@@ -12,6 +12,13 @@ use App\SubKarakteristik;
 
 class SubkarakteristikController extends Controller
 {
+    
+    public function index()
+    {
+        $data['subkarakteristiks'] = SubKarakteristik::all();
+        return view('/admin/tambahbobot',$data);
+    }
+
     public function edit($sk_id)
     {
         $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
@@ -30,6 +37,11 @@ class SubkarakteristikController extends Controller
           return redirect()->route('tambahbobot');
     }
 
+    public function delete($sk_id){
+        $subkarakteristik = SubKarakteristik::findOrFail($sk_id)->delete();
+        return redirect()->route('index.subkarakteristik');
+    }
+    
     public function bobotsub(Request $request, $k_id)
     {
         $data['karakteristiks'] = Karakteristik::where('k_id',$k_id)->get();
