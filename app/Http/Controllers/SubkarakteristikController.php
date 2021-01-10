@@ -52,12 +52,36 @@ class SubkarakteristikController extends Controller
     public function customsub($k_id)
     {
         $data['no'] = 1;
+
         $data['aplikasis'] = DB::table('karakteristik')
             ->where('k_id', $k_id)->get();
         $data['subkarakteristiks'] = DB::table('subkarakteristik')
             ->where('k_id', $k_id)->get();
         $data['total'] = DB::table('subkarakteristik')
             ->where('k_id','=',$k_id)->sum('bobot_relatif');
+
+        $subkarakteristiks = DB::table('subkarakteristik')
+        ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+        ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+        ->where('aplikasi.a_id', $a_id)->get();
+
+        $rowspan = [];
+        foreach ($subkarakteristiks as $key => $value)
+            if(!@$rowspan[$value->k_nama])
+                $rowspan[$value->k_nama] = 1;
+            else
+                $rowspan[$value->k_nama]++;
+
+        $data['subkarakteristiks'] = $subkarakteristiks;
+        $data['rowspan'] = $rowspan;
+
+        $total = [];
+        foreach ($subkarakteristiks as $key => $value){
+            if(!@$total[$value->k_nama])
+                $total[$value->k_nama] = $value->bobot_relatif;
+            else
+                $total[$value->k_nama] += $value->bobot_relatif; 
+            }   
 
         return view('/custom_sub', $data);
     }
