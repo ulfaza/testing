@@ -6,6 +6,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+	Route::get('/home', 'UserController@index')->name('admin.home');
 //Route Uji Aplikasi (Penilaian Karakteristik)
 	Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
 	Route::post('/store/pk', 'PKController@store')->name('store.pk');
