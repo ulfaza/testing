@@ -174,7 +174,14 @@ class AplikasiController extends Controller
     }
 
     public function delete($a_id){
-        $aplikasi = Aplikasi::findOrFail($a_id)->delete();
+        $aplikasi = Aplikasi::findOrFail($a_id);
+        $apps_id = $aplikasi->a_id;
+        
+        $path = public_path()."/".$apps_id."/";
+        File::deleteDirectory($path);
+
+        $aplikasi->delete($apps_id);
+
         return redirect()->route('index.aplikasi');
     }
 }
