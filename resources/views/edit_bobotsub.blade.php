@@ -1,9 +1,6 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
+@extends('layouts.app_softwaretester')
 
-@section('content')
-
-<div id="content">
+@section('content_header')
   <div class="row">
     <div class="col-md-12">
         <div class="panel block">
@@ -17,7 +14,9 @@
         </div>
     </div>
   </div>
+@endsection
 
+@section('content')
   <div class="col-md-12 top-20 padding-0">
       <div class="col-md-12">
         <div class="panel">
@@ -56,7 +55,8 @@
         </div>
       </div>
   </div>
-</div>
+@endsection
+
 @section('js')
 <script>  
 $(document).ready(function() {

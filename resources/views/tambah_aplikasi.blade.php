@@ -1,28 +1,25 @@
 @extends('layouts.app_softwaretester')
 
 @section('content_header')
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h1>Tambah Aplikasi</h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
-                    <li><a href="{{asset('/softwaretester/aplikasi')}}"></i> Aplikasi</a></li>
-                    <li class="active">Tambah Aplikasi</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="col-md-12">
+      <div class="panel block">
+          <div class="panel-body">
+              <h1>Tambah Aplikasi</h1>
+              <ol class="breadcrumb">
+                  <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
+                  <li><a href="{{asset('/softwaretester/aplikasi')}}"></i> Aplikasi</a></li>
+                  <li class="active">Tambah Aplikasi</li>
+              </ol>
+          </div>
+      </div>
+  </div>
 @endsection
 
 @section('content')
- <div class="col-md-12 top-20 padding-0">
+ <div class="col-md-12 padding-0">
     <div class="col-md-12">
       <div class="panel">
           <div class="panel-body">
-            <a data-toggle="modal" data-target="#modal_custom" class="btn btn-info btn-md">Lihat Bobot Patokan</a>
             <hr>
             @if ($errors->any())
               <div class="alert alert-danger">
@@ -60,11 +57,12 @@
                     <span class="outer">
                       <span class="inner"></span></span> Gunakan Bobot Patokan
                     </label>
+                    <a data-toggle="modal" data-target="#modal_custom" class="btn btn-info btn-md" style="background: white">Lihat Bobot Patokan</a>
                   </div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary ">Submit</button>
-                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/softwaretester/aplikasi')}}" class="btn btn-secondary"> Cancel</a>
+                <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{('/softwaretester/aplikasi/{id')}}" class="btn btn-secondary"> Cancel</a>
             </form>
 
             <div class="col-md-12">
@@ -78,7 +76,7 @@
                         </h2>
                       </div>
                       <div class="modal-body">
-                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                        <table id="datatables-example" class="table table-bordered" width="100%" cellspacing="0">
                           <thead>
                             <th style="width: 5%">ID</th>
                             <th style="width: 15%">Karakteristik</th>
