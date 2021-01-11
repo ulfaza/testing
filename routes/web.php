@@ -37,8 +37,10 @@ Auth::routes();
 	Route::get('/delete/karakteristik{id}','KarakteristikController@delete')->name('delete.karakteristik');
 	
 	// sub-Karakteristik
+	Route::get('/tambahbobot', 'SubkarakteristikController@index')->name('index.subkarakteristik');
 	Route::get('/edit_sub/subkarakteristik{id}', 'SubkarakteristikController@edit')->name('edit.sub');
 	Route::post('/update/subkarakteristik{id}','SubkarakteristikController@update')->name('update.sub');
+	Route::get('/delete/subkarakteristik{id}','SubkarakteristikController@delete')->name('delete.subkarakteristik');
 
 });
 

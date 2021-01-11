@@ -73,7 +73,7 @@
                           <a href="{{route('edit.sub',$subkarakteristik->sk_id)}}" class="btn btn-info btn-sm">
                             <span class="fa fa-pencil"></span>
                           </a>
-                          <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="#" class="btn btn-danger btn-sm">
+                          <a onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')" href="{{route('delete.subkarakteristik',$subkarakteristik->sk_id)}}" class="btn btn-danger btn-sm">
                             <span class="fa fa-trash"></span>
                           </a>
                         </td>
