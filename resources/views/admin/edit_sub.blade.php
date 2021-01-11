@@ -25,12 +25,18 @@
                 {{ csrf_field() }}
 
                     <div class="form-group">
+                        <label>Sub Karakteristik Baru :</label>
+                        <div>
+                          <input type="text" class="form-control" name="sk_nama" value="{{ $subkarakteristik->sk_nama}}"required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>Bobot Relatif Baru :</label>
                         <div>
                           <input type="text" class="form-control" name="bobot_relatif" value="{{ $subkarakteristik->bobot_relatif}}"required>
                         </div>
                     </div>
-                
 
                     <button type="submit" class="btn btn-primary ">Update</button>
                     <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/superadmin/user')}}" class="btn btn-secondary"> Cancel</a>

@@ -35,6 +35,8 @@ Auth::routes();
 	Route::get('/karakteristik', 'KarakteristikController@index')->name('index.karakteristik');
 	Route::get('/tambah_karakteristik', 'KarakteristikController@insert')->name('insert.karakteristik');
 	Route::post('/store/karakteristik', 'KarakteristikController@store')->name('store.karakteristik');
+	Route::get('/edit_karakteristik/karakteristik{id}', 'KarakteristikController@edit')->name('edit.karakteristik');
+	Route::post('/update/karakteristik{id}','KarakteristikController@update')->name('update.karakteristik');
 	Route::get('/delete/karakteristik{id}','KarakteristikController@delete')->name('delete.karakteristik');
 	
 	// sub-Karakteristik
