@@ -1,29 +1,27 @@
 @extends('layouts.app_softwaretester')
 
 @section('content_header')
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h1>Bobot Karakteristik</h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
-                    <li class="active">Bobot Karakteristik</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="col-md-12">
+      <div class="panel block">
+          <div class="panel-body">
+              <h1>Bobot Karakteristik dan Sub Karakteristik</h1>
+              <ol class="breadcrumb">
+                  <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
+                  <li class="active">Bobot Karakteristik dan Sub Karakteristik</li>
+              </ol>
+          </div>
+      </div>
+  </div>
 @endsection
 
 @section('content')
-<div class="col-md-12 top-20 padding-0">
+<div class="col-md-12 padding-0">
   <div class="col-md-12">
     <div class="panel">
         <div class="panel-body">
               @include('admin.shared.components.alert')
               <div class="modal-body">
-                <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                <table id="datatables-example" class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
                     <th style="width: 15%">Karakteristik</th>
