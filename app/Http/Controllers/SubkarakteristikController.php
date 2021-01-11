@@ -37,7 +37,7 @@ class SubkarakteristikController extends Controller
             
   
         if ($subkarakteristik->save())
-          return redirect()->route('tambahbobot');
+          return redirect()->route('index.subkarakteristik');
     }
 
     public function delete($sk_id){
