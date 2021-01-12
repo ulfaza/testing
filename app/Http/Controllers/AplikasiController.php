@@ -14,6 +14,7 @@ use App\PenilaianKarakteristik;
 use App\PenilaianSubKarakteristik;
 use Illuminate\Support\Facades\Storage;
 use File;
+use PDF;
 
 class AplikasiController extends Controller
 {
@@ -183,5 +184,54 @@ class AplikasiController extends Controller
         $aplikasi->delete($apps_id);
 
         return redirect()->route('index.aplikasi');
+    }
+
+    public function hasil($a_id)
+    {
+        $data['no'] = 1;
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $subkarakteristiks = DB::table('subkarakteristik')
+                                    ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+                                    ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+                                    ->where('aplikasi.a_id',$a_id)->get();      
+        $rowspan = [];
+        foreach ($subkarakteristiks as $key => $value)
+            if(!@$rowspan[$value->k_nama])
+                $rowspan[$value->k_nama] = 1;
+            else
+                $rowspan[$value->k_nama]++;
+
+        $data['subkarakteristiks'] = $subkarakteristiks;
+        $data['rowspan'] = $rowspan;
+
+        $pdf = PDF::loadView('pdf', $data);  
+        return $pdf->download('medium.pdf');
+       
+        return view('/hasil_ukur', $data);
+    }
+
+    //Fungsi Cetak PDF
+
+    public function cetak_pdf($a_id)
+    {
+        dd('halo');
+        $data['no'] = 1;
+        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+        $subkarakteristiks = DB::table('subkarakteristik')
+                                    ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+                                    ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+                                    ->where('aplikasi.a_id',$a_id)->get();      
+        $rowspan = [];
+        foreach ($subkarakteristiks as $key => $value)
+            if(!@$rowspan[$value->k_nama])
+                $rowspan[$value->k_nama] = 1;
+            else
+                $rowspan[$value->k_nama]++;
+
+        $data['subkarakteristiks'] = $subkarakteristiks;
+        $data['rowspan'] = $rowspan;
+
+        $pdf = PDF::loadView('pdf', $data);  
+        return $pdf->download('medium.pdf');
     }
 }
