@@ -43,7 +43,7 @@
                         </a>
                       </td>
                       <td>
-                        <a href="" class="btn btn-info btn-sm">
+                        <a href="{{route('hasil',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
                           <span class="fa fa-pencil"></span>
                         </a>
                       </td>
