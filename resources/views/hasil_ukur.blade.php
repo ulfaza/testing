@@ -27,22 +27,22 @@
                 font-size: 9pt;
             }
         </style>
-        <div class="col-md-12 padding-0">
+        <div class="col-md-12">
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-body">
                         @include('admin.shared.components.alert')
                         <div class="responsive-table">
-                            <table id="datatables-example" class="table table-bordered" width="100%" cellspacing="0">
+                            <table id="datatables-example" class="table table-bordered">
                                 <thead>
-                                    <th style="width: 5%">ID</th>
-                                    <th style="width: 15%">Karakteristik</th>
-                                    <th style="width: 10%">Bobot Karakteristik</th>
-                                    <th style="width: 15%">Sub Karakteristik</th>
-                                    <th style="width: 10%">Bobot Relatif</th>
-                                    <th style="width: 10%">Bobot Absolut</th>
-                                    <th style="width: 10%">Nilai Subkarakteristik</th>
-                                    <th style="width: 10%">Nilai Absolut</th>
+                                    <th>ID</th>
+                                    <th>Karakteristik</th>
+                                    <th>Bobot Karakteristik</th>
+                                    <th>Sub Karakteristik</th>
+                                    <th>Bobot Relatif</th>
+                                    <th>Bobot Absolut</th>
+                                    <th>Nilai Subkarakteristik</th>
+                                    <th>Nilai Absolut</th>
                                 </thead>
                                 <tbody>
                                     @foreach($subkarakteristiks as $key => $s)

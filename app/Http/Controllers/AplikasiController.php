@@ -212,7 +212,6 @@ class AplikasiController extends Controller
                                     ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
                                     ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
                                     ->where('aplikasi.a_id',$a_id)->get();      
-        // return $subkarakteristiks;
         $rowspan = [];
         foreach ($subkarakteristiks as $key => $value)
             if(!@$rowspan[$value->k_nama])
@@ -222,8 +221,6 @@ class AplikasiController extends Controller
 
         $data['subkarakteristiks'] = $subkarakteristiks;
         $data['rowspan'] = $rowspan;
-
-        // return $data;
 
         $pdf = PDF::loadView('pdf', $data);  
         // return $pdf->download('laporan_pengukuran.pdf');
