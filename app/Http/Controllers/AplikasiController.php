@@ -198,24 +198,21 @@ class AplikasiController extends Controller
                 $rowspan[$value->k_nama]++;
 
         $data['subkarakteristiks'] = $subkarakteristiks;
-        $data['rowspan'] = $rowspan;
-
-        $pdf = PDF::loadView('pdf', $data);  
-        return $pdf->download('medium.pdf');
-       
+        $data['rowspan'] = $rowspan;      
         return view('/hasil_ukur', $data);
     }
 
     //CETAK PDF
     public function cetak_pdf($a_id)
     {
-        dd('halo');
+        set_time_limit(300);
         $data['no'] = 1;
         $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
         $subkarakteristiks = DB::table('subkarakteristik')
                                     ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
                                     ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
                                     ->where('aplikasi.a_id',$a_id)->get();      
+        // return $subkarakteristiks;
         $rowspan = [];
         foreach ($subkarakteristiks as $key => $value)
             if(!@$rowspan[$value->k_nama])
@@ -226,7 +223,10 @@ class AplikasiController extends Controller
         $data['subkarakteristiks'] = $subkarakteristiks;
         $data['rowspan'] = $rowspan;
 
+        // return $data;
+
         $pdf = PDF::loadView('pdf', $data);  
-        return $pdf->download('medium.pdf');
+        // return $pdf->download('laporan_pengukuran.pdf');
+        return $pdf->stream();
     }
 }
