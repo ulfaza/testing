@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use App\Aplikasi;
 use App\Karakteristik;
 use App\SubKarakteristik;
-use App\PenilaianKarakteristik;
-use App\PenilaianSubKarakteristik;
-use Illuminate\Support\Facades\Storage;
 use File;
 use PDF;
 
@@ -186,6 +181,7 @@ class AplikasiController extends Controller
         return redirect()->route('index.aplikasi');
     }
 
+    //SHOW HASIL
     public function hasil($a_id)
     {
         $data['no'] = 1;
@@ -210,8 +206,7 @@ class AplikasiController extends Controller
         return view('/hasil_ukur', $data);
     }
 
-    //Fungsi Cetak PDF
-
+    //CETAK PDF
     public function cetak_pdf($a_id)
     {
         dd('halo');

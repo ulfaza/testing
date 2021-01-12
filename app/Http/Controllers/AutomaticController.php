@@ -3,14 +3,8 @@
 namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Karakteristik;
 use App\SubKarakteristik;
-use App\Aplikasi;
 
 class AutomaticController extends Controller
 {
