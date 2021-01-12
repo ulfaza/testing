@@ -6,6 +6,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+	Route::get('/home', 'UserController@index')->name('admin.home');
 //Route Uji Aplikasi (Penilaian Karakteristik)
 	Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
 	Route::post('/store/pk', 'PKController@store')->name('store.pk');
@@ -34,6 +35,8 @@ Auth::routes();
 	Route::get('/karakteristik', 'KarakteristikController@index')->name('index.karakteristik');
 	Route::get('/tambah_karakteristik', 'KarakteristikController@insert')->name('insert.karakteristik');
 	Route::post('/store/karakteristik', 'KarakteristikController@store')->name('store.karakteristik');
+	Route::get('/edit_karakteristik/karakteristik{id}', 'KarakteristikController@edit')->name('edit.karakteristik');
+	Route::post('/update/karakteristik{id}','KarakteristikController@update')->name('update.karakteristik');
 	Route::get('/delete/karakteristik{id}','KarakteristikController@delete')->name('delete.karakteristik');
 	
 	// sub-Karakteristik

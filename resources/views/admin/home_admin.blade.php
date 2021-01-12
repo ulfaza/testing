@@ -1,19 +1,26 @@
-@include('layouts.includes.admin_header')
-@include('layouts.includes.admin_leftmenu')
-@section('tabeladmin')
+@extends('layouts.app_admin')
 
-<div id="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel block">
-                    <div class="panel-body">
-                        <h3 class="animated fadeInLeft">Welcome {{ Auth::user()->name }}</h3>
-                    </div>
-                </div>
-            </div>
+@section('css')
+<style>
+    body{
+        overflow: hidden;
+    }
+</style>
+@endsection
+
+@section('content_header')
+<div class="col-md-12 padding-1">
+    <div class="panel block">
+        <div class="panel-body">
+            <h3> Halo, {{ Auth::user()->name }}</h3>
+            <h4>Selamat Datang di Aplikasi Pengukuran Kualitas Perangkat Lunak </h4>
         </div>
+    </div>
+</div>
+@endsection
 
-    <div class="col-s-12" style="padding:20px;">
+@section('content')
+    <div class="col-s-12 padding-1>
         <div class="col-md-12 padding-0">
                 <div class="col-md-3">
                     <a href="{{asset('/admin/karakteristik')}}">
@@ -98,5 +105,4 @@
         </div>
     </div>
 </div>
-
-
+@endsection
