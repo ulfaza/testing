@@ -61,35 +61,6 @@
                 </table>
               </div>
               <a href="{{asset('softwaretester/insert_aplikasi')}}" class="btn btn-info btn-md">Tambah Aplikasi</a>
-
-              {{-- MODAL --}}
-              <div class="col-md-12">
-                  <div class="modal fade modal-v1" id="modal_custom">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h2 class="modal-title">
-                            <h3>Custom Bobot</h3>
-                          </h2>
-                        </div>
-                        <div class="modal-body">
-                          <h3>Apakah Anda ingin melakukan custom bobot atau menggunakan bobot default?</h3>
-                          <p>Bobot karakteristik dan subkarakteristik default didapatkan dari kuesioner pakar dan dihitung menggunakan metode AHP. Jika Anda ingin melakukan custom bobot, maka Anda harus menghitung bobot karakteristik dan subkarakteristik. </p>
-                          <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-primary btn-3d btn-login">
-                            Gunakan Bobot Default                          
-                          </a> 
-                          <a href="{{route('custom.kar',$aplikasi->a_id)}}" class="btn btn-default btn-login">
-                            Custom Bobot?                         
-                          </a> 
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-
           </div>
         </div>
       </div>

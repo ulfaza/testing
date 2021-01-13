@@ -11,7 +11,7 @@ def ping():
 
 threads = []
 start_time = time.time()
-for x in range(100):
+for x in range(150):
     t = threading.Thread(target=ping())
     threads.append(t)
     t.start()
