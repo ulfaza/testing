@@ -6,10 +6,6 @@
         <div class="panel block">
             <div class="panel-body">
                 <h1>Custom Subkarakteristik</h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
-                    <li class="active">Custom Subkarakteristik</li>
-                </ol>
             </div>
         </div>
     </div>
@@ -34,7 +30,7 @@
               <tbody>
                 @foreach($subkarakteristiks as $s)
                 <tr>
-                    <td>{{ $s->sk_id }}</td>
+                    <td>{{ $no++}}</td>
                     <td>{{ $s->sk_nama }}</td>
                     <td>{{ $s->bobot_relatif }}</td>
                 </tr>
