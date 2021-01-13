@@ -1,28 +1,26 @@
-@include('layouts.includes.header')
-@include('layouts.includes.leftmenu')
+@extends('layouts.app_softwaretester')
+
+@section('content_header')
+  <div class="col-md-12">
+      <div class="panel block">
+          <div class="panel-body">
+              <h1>Pengukuran Aplikasi</h1>
+              <ol class="breadcrumb">
+                <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
+                <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
+                {{-- <li><a href="{{asset('/softwaretester/aplikasi/{id}')}}">Pengukuran Aplikasi</a></li> --}}
+                <li class="active">Pengukuran Aplikasi</li>
+          </div>
+      </div>
+  </div>
+@endsection
 
 @section('content')
-
-  <div id="content">
-  <div class="row">
-    <div class="col-md-12">
-        <div class="panel block">
-            <div class="panel-body">
-                <h1>Pengukuran Aplikasi</h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
-                    <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
-                    <li class="active">Pengukuran Aplikasi</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-  </div>
- <div class="col-md-12 top-20 padding-0">
+  <div class="col-md-12 padding-0">
     <div class="col-md-12">
       <div class="panel">
-        <div class="panel-heading">
-            <h3>
+        <div class="panel-heading" style="background:#2196F3">
+            <h3 style="color: white">
                 @foreach ($aplikasis as $aplikasi)
                 {{ $aplikasi->a_nama }}
                 @endforeach
@@ -97,4 +95,5 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
+@endsection

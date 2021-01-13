@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Aplikasi;
 use App\Karakteristik;
 use App\SubKarakteristik;
 
@@ -28,13 +25,16 @@ class SubkarakteristikController extends Controller
     public function update(Request $request, $id){
         $subkarakteristik = SubKarakteristik::findorFail($id);
         $this->validate($request,[
+            'sk_nama'            =>['required'],
             'bobot_relatif'      =>['required'],
         ]);
+        
+        $subkarakteristik->sk_nama             = $request->sk_nama;
         $subkarakteristik->bobot_relatif       = $request->bobot_relatif;
             
   
         if ($subkarakteristik->save())
-          return redirect()->route('tambahbobot');
+          return redirect()->route('index.subkarakteristik');
     }
 
     public function delete($sk_id){
@@ -59,29 +59,6 @@ class SubkarakteristikController extends Controller
             ->where('k_id', $k_id)->get();
         $data['total'] = DB::table('subkarakteristik')
             ->where('k_id','=',$k_id)->sum('bobot_relatif');
-
-        $subkarakteristiks = DB::table('subkarakteristik')
-        ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
-        ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
-        ->where('aplikasi.a_id', $a_id)->get();
-
-        $rowspan = [];
-        foreach ($subkarakteristiks as $key => $value)
-            if(!@$rowspan[$value->k_nama])
-                $rowspan[$value->k_nama] = 1;
-            else
-                $rowspan[$value->k_nama]++;
-
-        $data['subkarakteristiks'] = $subkarakteristiks;
-        $data['rowspan'] = $rowspan;
-
-        $total = [];
-        foreach ($subkarakteristiks as $key => $value){
-            if(!@$total[$value->k_nama])
-                $total[$value->k_nama] = $value->bobot_relatif;
-            else
-                $total[$value->k_nama] += $value->bobot_relatif; 
-            }   
 
         return view('/custom_sub', $data);
     }

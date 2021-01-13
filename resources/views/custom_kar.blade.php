@@ -6,10 +6,6 @@
         <div class="panel block">
             <div class="panel-body">
                 <h1>Custom Karakteristik</h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
-                    <li class="active">Custom Karakteristik</li>
-                </ol>
             </div>
         </div>
     </div>
@@ -35,7 +31,7 @@
               <tbody>
                 @foreach($karakteristiks as $row)
                 <tr>
-                  <td>{{ $row->k_id }}</td>
+                  <td>{{ $no++ }}</td>
                   <td>{{ $row->k_nama }}</td>
                   <td>{{ $row->k_bobot }}</td>
                   <td>

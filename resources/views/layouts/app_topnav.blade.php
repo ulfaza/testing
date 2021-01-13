@@ -7,7 +7,7 @@
 	<meta name="author" content="Isna Nur Azis">
 	<meta name="keyword" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miminium</title>
+  <title>Aplikasi Pengukuran Kualitas Perangkat Lunak ISO 25010</title>
 
   <!-- start: Css -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -31,29 +31,9 @@
         <nav class="navbar navbar-default header navbar-fixed-top">
           <div class="col-md-12 nav-wrapper">
             <div class="navbar-header" style="width:100%;">
-                <a href="{{asset('indexs.html')}}" class="navbar-brand"> 
-                 <b>MIMIN</b>
+                <a class="navbar-brand"> 
+                 <b>Aplikasi Pengukuran Kualitas Perangkat Lunak ISO 25010</b>
                 </a>
-
-                <ul class="nav navbar-nav navbar-right user-nav">
-                  <li class="user-name"><span>{{ Auth::user()->name }}</span></li>
-                    <li class="dropdown avatar-dropdown" style="padding-right: 30px">
-                     <img src="{{asset('assets/img/avatar.jpg')}}" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-                     <ul class="dropdown-menu user-dropdown">
-                        <li><a href="/softwaretester/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a></li>
-                        <li>
-                          <a href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                          Logout
-                          </a>
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          {{ csrf_field() }}
-                          </form>
-                        </li>
-                    </ul>
-                  </li>
-                </ul>
                 </li>
               </ul>
             </div>

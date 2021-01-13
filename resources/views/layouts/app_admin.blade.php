@@ -30,7 +30,7 @@
               </a>
               <ul class="nav navbar-nav navbar-right user-nav">
                   <li>
-                    <a href="/softwaretester/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a>
+                    <a href="/admin/profil/{{ Auth::user()->id }}"><span class="fa fa-user"></span> My Profile</a>
                   </li>
                   <li>
                     <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span class="fa fa-sign-out"></span>
@@ -58,9 +58,10 @@
                       <p class="animated fadeInRight">Sat,October 1st 2029</p>
                     </li>
                     
-                    <li class="ripple"><a href="{{route('softwaretester.home')}}"><span class="fa fa-home"></span>Home</a></li>
-                    <li class="ripple"><a href="{{route('index.aplikasi')}}"><span class="fa-globe fa"></span>Aplikasi</a></li>
-                    <li class="ripple"><a href="{{route('view.bobot')}}"><span class="fa-balance-scale fa"></span>Bobot Default</a></li>
+                    <li class="ripple"><a href="{{route('admin.home')}}"><span class="fa fa-home"></span>Home</a></li>
+                    <li class="ripple"><a href="{{route('index.subkarakteristik')}}"><span class="fa-globe fa"></span>Bobot Relatif</a></li>
+                    <li class="ripple"><a href="{{route('adminview')}}"><span class="fa-globe fa"></span>Administrator</a></li>
+                    <li class="ripple"><a href="{{route('softwaretesterview')}}"><span class="fa-balance-scale fa"></span>Software Tester</a></li>
                   </ul>
                 </div>
             </div>
