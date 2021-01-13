@@ -27,8 +27,8 @@
                     <th style="width: 5%">ID</th>
                     <th style="width: 25%">Nama User</th>
                     <th style="width: 25%">Nama Aplikasi</th>
-                    <th style="width: 15%">Ukur Aplikasi</th>
-                    <th style="width: 15%">Lihat Hasil Ukur</th>
+                    <th style="width: 15%">Pengukuran</th>
+                    <th style="width: 15%">Hasil Pengukuran</th>
                     <th style="width: 15%">Aksi</th>
                   </thead>
                   <tbody>
@@ -39,12 +39,12 @@
                       <td>{{ $aplikasi->a_nama }}</td>
                       <td>
                         <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
-                          <span class="fa fa-pencil"></span>
+                          <span class="fa fa-paper-plane"></span>
                         </a>
                       </td>
                       <td>
                         <a href="{{route('hasil',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
-                          <span class="fa fa-pencil"></span>
+                          <span class="fa fa-file"></span>
                         </a>
                       </td>
                       <td>

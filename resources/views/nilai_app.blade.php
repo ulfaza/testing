@@ -20,7 +20,7 @@
     <div class="col-md-12">
       <div class="panel">
         <div class="panel-heading" style="background:#2196F3">
-            <h3>
+            <h3 style="color: white">
                 @foreach ($aplikasis as $aplikasi)
                 {{ $aplikasi->a_nama }}
                 @endforeach

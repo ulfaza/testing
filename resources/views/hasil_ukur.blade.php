@@ -61,10 +61,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            @foreach ($aplikasis as $aplikasi)
+                            {{-- @foreach ($aplikasis as $aplikasi)
                             <a href="{{route('cetak_pdf',$aplikasi->a_id)}}">Print PDF</a>
                             @endforeach
-                            
+                             --}}
+                             <button onclick="window.print()">Print this page</button>
                         </div>
                     </div>
                 </div>

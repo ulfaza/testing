@@ -13,12 +13,14 @@ use PDF;
 
 class AplikasiController extends Controller
 {
+    //TAMPILIN HALAMAN APLIKASI
     public function index()
     {
         $data['no'] = 1;
         $data['aplikasis'] = Aplikasi::where('id',Auth::user()->id)->get();
         return view('/aplikasi',$data);
     }
+    //TAMPILIN HALAMAN PENGUKURAN / NILAI
     public function nilai($a_id)
     {
         $data['no'] = 1;
@@ -38,7 +40,7 @@ class AplikasiController extends Controller
         $data['rowspan'] = $rowspan;
         return view('/nilai_app', $data);
     }
-
+    //TAMPILIN HALAMAN TAMBAH APLIKASI
     public function insert()
     {
         $data['no'] = 1;
@@ -59,37 +61,38 @@ class AplikasiController extends Controller
 
         return view('/tambah_aplikasi', $data);
     }
-
+    // EDIT APLIKASI
     public function edit($a_id)
     {
         $aplikasi = Aplikasi::findOrFail($a_id);
         return view('/edit_aplikasi')->with('aplikasi', $aplikasi);
     }
-
+    //UPDATE / SAVE SETELAH EDIT APLIKASI
     public function update(Request $request, $a_id){
         $aplikasi = Aplikasi::findorFail($a_id);
         $this->validate($request,[
             'a_nama'      =>['required'],
         ]);
         $aplikasi->a_nama       = $request->a_nama;
-            
-  
         if ($aplikasi->save())
           return redirect()->route('index.aplikasi');
     }
-
+    //SIMPAN DATA APLIKASI SETELAH NAMBAH
     public function store(Request $request)
     {
-        $file = $request->file('a_file');  
-              
+        $file = $request->file('a_file');    
         $aplikasi = new aplikasi;
-
         $this->validate($request,[
             'a_nama' => 'required',
             'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'a_file' => 'required',
+            'a_file' => 'required|mimes:php',
             'radios' => 'required'
-         ]);
+        ],
+        [
+        'a_url.required' => 'you have to enter the right url format',
+        'a_file.required' => 'you have to choos file with .php extension'
+        ]
+        );
 
         $aplikasi->id        = Auth::user()->id;
         $aplikasi->a_nama    = $request->a_nama;
@@ -97,14 +100,14 @@ class AplikasiController extends Controller
         $aplikasi->a_file    = $file->getClientOriginalName();
         $aplikasi->a_nilai   = 0;
 
-        //Check the extension of file, only php extension is allowed to upload 
+        // Check the extension of file, only php extension is allowed to upload 
         $extension = $file->getClientOriginalExtension();
         $allowed_extension = 'php';
 
         if ($extension==$allowed_extension){
         $aplikasi->save();     
         } else {
-           return redirect()->route('insert.aplikasi')->with('error','gagal ditambahkan kaerana ekstensi tidak zesuai');
+           return redirect()->route('insert.aplikasi')->with('error','File harus berekstensi .php');
         };
         
         //Make folder named by id aplikasi and store the file uploaded in the folder 
@@ -203,27 +206,27 @@ class AplikasiController extends Controller
     }
 
     //CETAK PDF
-    public function cetak_pdf($a_id)
-    {
-        set_time_limit(300);
-        $data['no'] = 1;
-        $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
-        $subkarakteristiks = DB::table('subkarakteristik')
-                                    ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
-                                    ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
-                                    ->where('aplikasi.a_id',$a_id)->get();      
-        $rowspan = [];
-        foreach ($subkarakteristiks as $key => $value)
-            if(!@$rowspan[$value->k_nama])
-                $rowspan[$value->k_nama] = 1;
-            else
-                $rowspan[$value->k_nama]++;
+    // public function cetak_pdf($a_id)
+    // {
+    //     set_time_limit(300);
+    //     $data['no'] = 1;
+    //     $data['aplikasis'] = Aplikasi::where('a_id',$a_id)->get();
+    //     $subkarakteristiks = DB::table('subkarakteristik')
+    //                                 ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+    //                                 ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+    //                                 ->where('aplikasi.a_id',$a_id)->get();      
+    //     $rowspan = [];
+    //     foreach ($subkarakteristiks as $key => $value)
+    //         if(!@$rowspan[$value->k_nama])
+    //             $rowspan[$value->k_nama] = 1;
+    //         else
+    //             $rowspan[$value->k_nama]++;
 
-        $data['subkarakteristiks'] = $subkarakteristiks;
-        $data['rowspan'] = $rowspan;
+    //     $data['subkarakteristiks'] = $subkarakteristiks;
+    //     $data['rowspan'] = $rowspan;
 
-        $pdf = PDF::loadView('pdf', $data);  
-        // return $pdf->download('laporan_pengukuran.pdf');
-        return $pdf->stream();
-    }
+    //     $pdf = PDF::loadView('pdf', $data);  
+    //     // return $pdf->download('laporan_pengukuran.pdf');
+    //     return $pdf->stream();
+    // }
 }
