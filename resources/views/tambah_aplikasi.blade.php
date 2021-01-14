@@ -30,6 +30,7 @@
                   </ul>
                 </div>
             @endif
+            @include('admin.shared.components.alert')  
             <form action="{{route('store.aplikasi')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }} 
                 <div class="form-group">
