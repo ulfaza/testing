@@ -85,7 +85,7 @@ class AplikasiController extends Controller
         $this->validate($request,[
             'a_nama' => 'required',
             'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'a_file' => 'required|mimes:php',
+            'a_file' => 'required',
             'radios' => 'required'
         ],
         [
