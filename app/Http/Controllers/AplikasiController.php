@@ -85,14 +85,13 @@ class AplikasiController extends Controller
         $this->validate($request,[
             'a_nama' => 'required',
             'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-            'a_file' => 'required|mimes:php',
+            'a_file' => 'required|mimetypes:text/php',
             'radios' => 'required'
-        ],
-        [
-        'a_url.required' => 'you have to enter the right url format',
-        'a_file.required' => 'you have to choos file with .php extension'
         ]
-        );
+        ,$messages = [
+            'mimetypes' => 'you have to choose file with .php extension',
+            'regex'   => 'you have to enter the right url format'
+        ]);
 
         $aplikasi->id        = Auth::user()->id;
         $aplikasi->a_nama    = $request->a_nama;
