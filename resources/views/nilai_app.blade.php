@@ -27,7 +27,7 @@
             </h3>
         </div>
           <div class="panel-body">
-            @include('admin.shared.components.alert')
+            @include('admin.shared.components.alert') 
             <div class="responsive-table">
               <table id="datatables-example" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
