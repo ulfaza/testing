@@ -73,6 +73,22 @@
                           <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm">
                             <span class="fa fa-plus"></span>
                           </a>
+                          <div class="col-md-3">
+                            <div class="sk-fading-circle">
+                              <div class="sk-circle1 sk-circle"></div>
+                              <div class="sk-circle2 sk-circle"></div>
+                              <div class="sk-circle3 sk-circle"></div>
+                              <div class="sk-circle4 sk-circle"></div>
+                              <div class="sk-circle5 sk-circle"></div>
+                              <div class="sk-circle6 sk-circle"></div>
+                              <div class="sk-circle7 sk-circle"></div>
+                              <div class="sk-circle8 sk-circle"></div>
+                              <div class="sk-circle9 sk-circle"></div>
+                              <div class="sk-circle10 sk-circle"></div>
+                              <div class="sk-circle11 sk-circle"></div>
+                              <div class="sk-circle12 sk-circle"></div>
+                            </div>
+                        </div>
                         </td>
                       @else
                         <td>
@@ -82,9 +98,49 @@
                         </td>
                       @endif
                     @else
-                    <td>
-                      Sukses
-                    </td>
+
+                        @if ($s->sk_nama == 'Modularity')
+                          <td>
+                            <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @elseif ($s->sk_nama == 'Time Behaviour')
+                          <td>
+                            <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @elseif ($s->sk_nama == 'Capacity')
+                          <td>
+                            <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-warning btn-sm capacity">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                            <div class="col-md-3">
+                              <div class="sk-fading-circle">
+                                <div class="sk-circle1 sk-circle"></div>
+                                <div class="sk-circle2 sk-circle"></div>
+                                <div class="sk-circle3 sk-circle"></div>
+                                <div class="sk-circle4 sk-circle"></div>
+                                <div class="sk-circle5 sk-circle"></div>
+                                <div class="sk-circle6 sk-circle"></div>
+                                <div class="sk-circle7 sk-circle"></div>
+                                <div class="sk-circle8 sk-circle"></div>
+                                <div class="sk-circle9 sk-circle"></div>
+                                <div class="sk-circle10 sk-circle"></div>
+                                <div class="sk-circle11 sk-circle"></div>
+                                <div class="sk-circle12 sk-circle"></div>
+                              </div>
+                            </div>
+                          </td>
+                        @else
+                          <td>
+                            <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @endif
+
                     @endif
                 </tr>
                 
@@ -96,4 +152,14 @@
       </div>
     </div>
   </div>
+@endsection
+@section(js)
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.capacity').({
+
+  });
+
+});
+</script>
 @endsection

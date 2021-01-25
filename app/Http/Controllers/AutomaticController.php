@@ -29,7 +29,7 @@ class AutomaticController extends Controller
       //create the array of cURL handles and add to a multi_curl
         $mh = curl_multi_init();
         // foreach ($urls as $key => $url) 
-        for ($key=0;$key<7000;$key++){
+        for ($key=0;$key<100;$key++){
             $chs[$key] = curl_init($url);
             curl_setopt($chs[$key], CURLOPT_RETURNTRANSFER, true);
             curl_setopt($chs[$key], CURLOPT_POST, true);
