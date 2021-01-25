@@ -18,7 +18,9 @@ class AutomaticController extends Controller
         
     }
     public function capacity(Request $request, $sk_id)
-    {    
+    {   
+        $seconds = 5000;
+        set_time_limit($seconds);
         $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
         $url = $subkarakteristik->karakteristik->aplikasi->a_url;
 
