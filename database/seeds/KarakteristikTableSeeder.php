@@ -35,14 +35,14 @@ class KarakteristikTableSeeder extends Seeder
         \App\Karakteristik::create([
             'a_id'  => 1,
             'k_nama' => 'Usability',
-            'k_desc' => '',
+            'k_desc' => 'Sejauh mana suatu produk atau sistem dapat digunakan oleh pengguna yang dituju untuk mencapai suatu tujuan dengan efisien',
             'k_bobot' => 0.19,
             'k_nilai' => 0
         ]);
         \App\Karakteristik::create([
             'a_id'  => 1,
             'k_nama' => 'Reliability',
-            'k_desc' => 'Sejauh mana suatu produk atau sistem dapat digunakan oleh pengguna yang dituju untuk mencapai suatu tujuan dengan efisien',
+            'k_desc' => '',
             'k_bobot' => 0.09,
             'k_nilai' => 0
         ]);
