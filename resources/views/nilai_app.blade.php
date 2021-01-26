@@ -131,7 +131,7 @@
       $btn.button('loading');
       setTimeout(function(){
         $btn.button('reset');
-    },2000);
+    },1000000);
   });
 });
 </script>
