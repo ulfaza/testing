@@ -17,6 +17,7 @@ class CreateKarakteristikTable extends Migration
             $table->increments('k_id')->unique();                        
             $table->integer('a_id')->unsigned();
             $table->string('k_nama');
+            $table->string('k_desc');
             $table->decimal('k_bobot',8,2);
             $table->decimal('k_nilai',8,2);
         });

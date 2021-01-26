@@ -17,6 +17,7 @@ class CreateSubkarakteristikTable extends Migration
             $table->increments('sk_id')->unique();
             $table->integer('k_id')->unsigned();
             $table->string('sk_nama');
+            $table->string('sk_desc');
             $table->decimal('bobot_relatif',8,2);
             $table->decimal('bobot_absolut',8,2);
             $table->decimal('nilai_subfaktor',8,2);

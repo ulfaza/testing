@@ -12,6 +12,9 @@
                     <h4> 
                         URL : {{$aplikasi->a_url}} 
                     </h4>
+                    <h4> 
+                        Nilai Aplikasi : {{$aplikasi->a_nilai}} 
+                    </h4>
                     @endforeach
                 </div>
             </div>
@@ -38,6 +41,7 @@
                                     <th>ID</th>
                                     <th>Karakteristik</th>
                                     <th>Bobot Karakteristik</th>
+                                    <th>Nilai Karakteristik</th>
                                     <th>Sub Karakteristik</th>
                                     <th>Bobot Relatif</th>
                                     <th>Bobot Absolut</th>
@@ -51,6 +55,7 @@
                                                 <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
                                                 <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
                                                 <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_bobot }}</td>
+                                                <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nilai }}</td>
                                             @endif
                                                 <td>{{ $s->sk_nama }}</td>
                                                 <td>{{ $s->bobot_relatif }}</td>

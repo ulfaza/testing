@@ -70,25 +70,9 @@
                         </td>
                       @elseif ($s->sk_nama == 'Capacity')
                         <td>
-                          <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm">
+                          <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm loading">
                             <span class="fa fa-plus"></span>
                           </a>
-                          <div class="col-md-3">
-                            <div class="sk-fading-circle">
-                              <div class="sk-circle1 sk-circle"></div>
-                              <div class="sk-circle2 sk-circle"></div>
-                              <div class="sk-circle3 sk-circle"></div>
-                              <div class="sk-circle4 sk-circle"></div>
-                              <div class="sk-circle5 sk-circle"></div>
-                              <div class="sk-circle6 sk-circle"></div>
-                              <div class="sk-circle7 sk-circle"></div>
-                              <div class="sk-circle8 sk-circle"></div>
-                              <div class="sk-circle9 sk-circle"></div>
-                              <div class="sk-circle10 sk-circle"></div>
-                              <div class="sk-circle11 sk-circle"></div>
-                              <div class="sk-circle12 sk-circle"></div>
-                            </div>
-                        </div>
                         </td>
                       @else
                         <td>
@@ -113,7 +97,7 @@
                           </td>
                         @elseif ($s->sk_nama == 'Capacity')
                           <td>
-                            <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-warning btn-sm capacity">
+                            <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-warning btn-sm loading">
                               <span class="fa fa-pencil"></span>
                             </a>
                           </td>
@@ -137,13 +121,18 @@
     </div>
   </div>
 @endsection
-@section(js)
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-  $('.capacity').({
-
+  $('.loading').on('click',function(){
+    var $btn = $(this);
+      $btn.button('loading');
+      setTimeout(function(){
+        $btn.button('reset');
+    },2000);
   });
-
 });
 </script>
 @endsection
