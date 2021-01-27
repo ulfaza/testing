@@ -24,14 +24,16 @@
                 <tr>
                   <th>ID</th>
                   <th>Nama Karakteristik</th>
-                  <th>Bobot Karakteristik</th>
+                  <th>Bobot Karakteristik
+                    <a id="belom" data-toggle="popover" title="Warning" data-content="Total dari karakteristik Harus sama dengan 1. Lihat dibawah untuk mengetahui hasil saat ini" href="#"><span class="badge badge-danger">?</span></a>
+                  </th>
                   <th>Custom Bobot SubKarakteristik</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($karakteristiks as $row)
                 <tr>
-                  <td>{{ $no++ }}</td>
+                  <td>{{ $row->k_id }}</td>
                   <td>{{ $row->k_nama }}</td>
                   <td>{{ $row->k_bobot }}</td>
                   <td>
@@ -43,12 +45,13 @@
                 @endforeach
               </tbody>
             </table>
-            <span class="info-box-number">{{$total}}</span><br>
-            <a class="btn btn-info btn-sm" id="belom"  >
-              <span>belom</span>
-            </a>
-            <a href="{{route('nilai',$id_aplikasi)}}" id="next" class="btn btn-info btn-sm"  >
-              <span>Next</span>
+            <table class="table table-bordered">
+              <tr>
+                <td style="text-align: center">Total :<span class="info-box-number">{{$total}}</span></td>
+              </tr>
+            </table>
+            <a style="height: 40px" href="{{route('nilai',$id_aplikasi)}}" id="next" class="btn btn-info btn-sm col-md-12"  >
+              <span>Submit</span>
             </a>
           </div>
       </div>
@@ -114,7 +117,11 @@ $(document).ready(function(){
       }
     }
   });
-
 });  
+</script>
+<script>
+	$(document).ready(function(){
+	  $('[data-toggle="popover"]').popover();
+	});
 </script>
 @endsection
