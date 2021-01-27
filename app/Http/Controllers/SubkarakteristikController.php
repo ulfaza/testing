@@ -10,11 +10,17 @@ use App\SubKarakteristik;
 class SubkarakteristikController extends Controller
 {
     
-    public function index()
-    {
-        $data['subkarakteristiks'] = SubKarakteristik::all();
-        return view('/admin/tambahbobot',$data);
-    }
+    // public function index() //admin
+    // {
+    //     $data['no'] = 1;
+    //     $data['total'] = 1;
+    //     $data['subKarakteristiks'] = DB::table('subkarakteristik')
+    //     ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
+    //     ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
+    //     ->where('aplikasi.a_id',1)->get();
+    //     $data['karakteristiks'] = Karakteristik::where('a_id',1)->get();
+    //     return view('/admin/tambahbobot',$data);
+    // }
 
     public function edit($sk_id)
     {

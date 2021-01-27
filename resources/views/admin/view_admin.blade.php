@@ -18,8 +18,9 @@
  <div class="col-md-12 top-20 padding-0">
     <div class="col-md-12">
       <div class="panel">
-        <div class="panel-heading"><h3>Daftar Admin</h3></div>
-          <div class="panel-body">
+        <div class="panel-body">
+          <a href="{{asset('/admin/tambahadmin')}}" class="btn btn-info btn-md">Tambah Admin</a>
+          <hr>
             <div class="responsive-table">
               <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                 <thead>
@@ -51,7 +52,6 @@
               </tbody>
             </table>
           </div>
-          <a href="{{asset('/admin/tambahadmin')}}" class="btn btn-info btn-md">Tambah Admin</a>
         </div>
       </div>
     </div>
