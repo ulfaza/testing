@@ -15,7 +15,7 @@
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/font-awesome.min.css')}}"/>
       <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/datatables.bootstrap.min.css')}}"/>
-    @yield('css')
+      @yield('css')
       <!-- end: Css -->
 
   </head>
@@ -59,7 +59,7 @@
                     </li>
                     
                     <li class="ripple"><a href="{{route('admin.home')}}"><span class="fa fa-home"></span>Home</a></li>
-                    <li class="ripple"><a href="{{route('index.subkarakteristik')}}"><span class="fa-globe fa"></span>Bobot Relatif</a></li>
+                    <li class="ripple"><a href="{{route('edit.bobot.karakteristik.admin')}}"><span class="fa-globe fa"></span>Bobot Relatif</a></li>
                     <li class="ripple"><a href="{{route('adminview')}}"><span class="fa-globe fa"></span>Administrator</a></li>
                     <li class="ripple"><a href="{{route('softwaretesterview')}}"><span class="fa-balance-scale fa"></span>Software Tester</a></li>
                   </ul>
@@ -99,8 +99,6 @@
 
     <!-- custom -->
      <script src="{{asset('assets/js/main.js')}}"></script>
-     <script type="text/javascript" src="{{asset('assets/js/template.js')}}"></script>
-     <script type="text/javascript" src="{{asset('assets/js/tableedit.js')}}"></script> 
      @yield('js')
 
   <!-- end: Javascript -->

@@ -13,7 +13,7 @@ Auth::routes();
 	Route::get('/insert/pk', 'PKController@insert')->name('insert.pk');
 	Route::post('/store/pk', 'PKController@store')->name('store.pk');
 
-	Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
+Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 // halaman admin disini
 	Route::get('/home', 'AdminController@index')->name('adminhome');
 
@@ -40,9 +40,16 @@ Auth::routes();
 	Route::get('/edit_karakteristik/karakteristik{id}', 'KarakteristikController@edit')->name('edit.karakteristik');
 	Route::post('/update/karakteristik{id}','KarakteristikController@update')->name('update.karakteristik');
 	Route::get('/delete/karakteristik{id}','KarakteristikController@delete')->name('delete.karakteristik');
-	
+
+	//route admin table edit karakteristik ----------------------------------------
+	Route::get('/edit_bobot_karakteristik_admin', 'EditTableAdminController@edit_bobot_karakteristik_admin')->name('edit.bobot.karakteristik.admin');
+	Route::post('edit_bobot_karakteristik/action', 'EditTableAdminController@action_edit_kar')->name('action.edit.kar');
+
+	//route table edit admin subkarakteristik
+	Route::get('/karakteristik/{id}/edit_sub_admin', 'EditTableAdminController@edit_sub_admin')->name('edit.sub.admin');
+	Route::post('/karakteristik/edit_sub_admin/action', 'EditTableAdminController@action_sub_admin')->name('action.sub.admin');
+
 	// sub-Karakteristik
-	Route::get('/tambahbobot', 'SubkarakteristikController@index')->name('index.subkarakteristik');
 	Route::get('/edit_sub/subkarakteristik{id}', 'SubkarakteristikController@edit')->name('edit.sub');
 	Route::post('/update/subkarakteristik{id}','SubkarakteristikController@update')->name('update.sub');
 	Route::get('/delete/subkarakteristik{id}','SubkarakteristikController@delete')->name('delete.subkarakteristik');
@@ -74,7 +81,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::get('/aplikasi/{id}/customkarakteristik', 'KarakteristikController@customkar')->name('custom.kar');
 	Route::post('/aplikasi/customkarakteristik/action', 'KarakteristikController@actionkar')->name('action.kar');
 
-	//route tabledit karakteristik
+	//route tabledit subkarakteristik
 	Route::get('/aplikasi/{id}/customsubkarakteristik', 'SubkarakteristikController@customsub')->name('custom.sub');
 	Route::post('/aplikasi/customsubkarakteristik/action', 'SubkarakteristikController@actionsub')->name('action.sub');
 

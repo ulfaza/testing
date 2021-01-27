@@ -4,11 +4,11 @@
   <div class="col-md-12">
       <div class="panel block">
           <div class="panel-body">
-              <h1>Edit Bobot Karakteristik</h1>
+              <h1>Edit Bobot Subkarakteristik</h1>
               <ol class="breadcrumb">
                 <li><a href="{{asset('/admin/home')}}"></i>Home</a></li>
-                <li><a href="{{asset('/admin/karakteristik')}}"></i>Karakteristik</a></li>
-                <li class="active">Edit bobot Karakteristik</li>
+                <li><a href="{{asset('/admin/subkarakteristik')}}"></i>Subkarakteristik</a></li>
+                <li class="active">Edit bobot Subkarakteristik</li>
               </ol>
           </div>
       </div>
@@ -26,33 +26,26 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Nama Karakteristik</th>
-                  <th>Bobot Karakteristik
-                      <a id="belom" data-toggle="popover" title="Warning" data-content="Total dari karakteristik Harus sama dengan 1. Lihat dibawah untuk mengetahui hasil saat ini" href="#"><span class="badge badge-danger">?</span></a>
+                  <th>Nama Subkarakteristik</th>
+                  <th>Bobot Subkarakteristik
+                    <a id="belom" data-toggle="popover" title="Warning" data-content="Total dari karakteristik Harus sama dengan 1. Lihat dibawah untuk mengetahui hasil saat ini" href="#"><span class="badge badge-danger">?</span></a>
                   </th>
-                  <th>Edit Bobot SubKarakteristik</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($karakteristiks as $karakteristik)
+                @foreach($subkarakteristiks as $subs)
                 <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $karakteristik->k_nama }}</td>
-                  <td>{{ $karakteristik->k_bobot }}</td>
-                  
-                  <td>
-                    <a href="{{route('edit.sub.admin', $karakteristik->k_id)}}" >
-                      <span class="fa fa-external-link"></span>
-                    </a>
-                  </td>
+                    <td>{{ $no++}}</td>
+                    <td>{{ $subs->sk_nama }}</td>
+                    <td>{{ $subs->bobot_relatif }}</td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
             <table class="table table-bordered">
-              <tr>
-                <td style="text-align: center">Total :<span class="info-box-number">{{$total}}</span></td>
-              </tr>
+                <tr>
+                  <td style="text-align: center">Total : <span class="info-box-number">{{$total}}</span></td>
+                </tr>
             </table>
           </div>
       </div>
@@ -84,11 +77,11 @@ $(document).ready(function(){
   });
 
   $('#editable').Tabledit({
-    url:'{{ route("action.edit.kar") }}',
+    url:'{{ route("action.sub.admin") }}',
     dataType:"json",
     columns:{
-      identifier:[0, 'k_id'],
-      editable:[[2, 'k_bobot']]
+      identifier:[0, 'sk_id'],
+      editable:[[2, 'bobot_relatif']]
     },
     deleteButton:false,
     restoreButton:false,
@@ -97,7 +90,7 @@ $(document).ready(function(){
        
       // we use jQuery each() to loop through all the textbox with 'bobot' class
       // and compute the sum for each loop
-      $('input[name="k_bobot"]').each(function() {
+      $('input[name="bobot_relatif"]').each(function() {
           let val = Number($(this).val());
           if(!isNaN(val))
             sum += val;
@@ -114,7 +107,7 @@ $(document).ready(function(){
     {
       if(data.action == 'delete')
       {
-        $('#'+data.k_id).remove();
+        $('#'+data.sk_id).remove();
       }
     }
   });
