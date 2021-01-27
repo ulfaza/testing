@@ -64,7 +64,7 @@
                         </td>
                       @elseif ($s->sk_nama == 'Time Behaviour')
                         <td>
-                          <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-success btn-sm">
+                          <a href="{{route('responsetime',$s->sk_id)}}" class="btn btn-success btn-sm">
                             <span class="fa fa-plus"></span>
                           </a>
                         </td>

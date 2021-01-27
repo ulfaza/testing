@@ -20,13 +20,3 @@ for x in range(5):
     	response_time = time.time() - start_time
     	print("Response Time: %.3f seconds" % (response_time))
 
-responsetime = [response_time]
-maxTime = responsetime[0]
-minTime = responsetime[0]
-
-for i in range (0, len(responsetime), 1):
-	maxTime = max(maxTime, responsetime[i])
-	minTime = max(minTime, responsetime[i])
-
-print("\nMaximum Response Time: %.3f seconds" % (maxTime))
-print("Minimum Response Time: %.3f seconds" % (minTime))
