@@ -70,7 +70,7 @@
                         </td>
                       @elseif ($s->sk_nama == 'Capacity')
                         <td>
-                          <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm">
+                          <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm loading">
                             <span class="fa fa-plus"></span>
                           </a>
                         </td>
@@ -82,9 +82,33 @@
                         </td>
                       @endif
                     @else
-                    <td>
-                      Sukses
-                    </td>
+
+                        @if ($s->sk_nama == 'Modularity')
+                          <td>
+                            <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @elseif ($s->sk_nama == 'Time Behaviour')
+                          <td>
+                            <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @elseif ($s->sk_nama == 'Capacity')
+                          <td>
+                            <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-warning btn-sm loading">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @else
+                          <td>
+                            <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                              <span class="fa fa-pencil"></span>
+                            </a>
+                          </td>
+                        @endif
+
                     @endif
                 </tr>
                 
@@ -96,4 +120,19 @@
       </div>
     </div>
   </div>
+@endsection
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('.loading').on('click',function(){
+    var $btn = $(this);
+      $btn.button('loading');
+      setTimeout(function(){
+        $btn.button('reset');
+    },1000000);
+  });
+});
+</script>
 @endsection

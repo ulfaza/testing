@@ -27,7 +27,7 @@
                             <th>ID</th>
                             <th>Karakteristik</th>
                             <th>Bobot Karakteristik</th>
-                            <th>Nilai karakteristik</th>
+                            <th>Nilai Karakteristik</th>
                             <th>Sub Karakteristik</th>
                             <th>Bobot Relatif</th>
                             <th>Bobot Absolut</th>
@@ -41,7 +41,7 @@
                                         <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
                                         <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
                                         <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_bobot }}</td>
-                                        <td rowspan="{{ $rowspan[$s->k_nama] }}">81.25</td>
+                                        <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nilai }}</td>
                                     @endif
                                         <td>{{ $s->sk_nama }}</td>
                                         <td>{{ $s->bobot_relatif }}</td>
