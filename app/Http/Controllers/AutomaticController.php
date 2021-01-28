@@ -17,6 +17,7 @@ class AutomaticController extends Controller
         system("cd $test && py ping_statuscode.py");
         
     }
+
     public function capacity(Request $request, $sk_id)
     {   
         $seconds = 5000;
@@ -30,12 +31,10 @@ class AutomaticController extends Controller
 
       //create the array of cURL handles and add to a multi_curl
         $mh = curl_multi_init();
-        // foreach ($urls as $key => $url) 
         for ($key=0;$key<7000;$key++){
             $chs[$key] = curl_init($url);
             curl_setopt($chs[$key], CURLOPT_RETURNTRANSFER, true);
             curl_setopt($chs[$key], CURLOPT_POST, true);
-            // curl_setopt($chs[$key], CURLOPT_POSTFIELDS, $request_contents[$key]);
 
             curl_multi_add_handle($mh, $chs[$key]);
         }
@@ -53,11 +52,10 @@ class AutomaticController extends Controller
             $time = curl_getinfo($chs[$key], CURLINFO_TOTAL_TIME);
             $response = curl_multi_getcontent($chs[$key]);  // get results
             if (!empty($error)) {
-            echo "The request $key return a error: $error" . "\n";
+                $temp += 0;
             }
             else {
                 $temp += 1;
-                // echo "The request to '$last_effective_URL' returned '$response' in $time seconds." . "\n";
             }
 
             curl_multi_remove_handle($mh, $chs[$key]);
@@ -69,11 +67,21 @@ class AutomaticController extends Controller
         $subkarakteristik->nilai_subfaktor = $hasil;
         $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
         $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
-        
-        $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
-        $karakteristik->k_nilai     += $subkarakteristik->nilai_absolut;
+        $subkarakteristik->save();
 
-        if ($subkarakteristik->save() && $karakteristik->save()) {
+        // insert nilai karakteristik
+        $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
+        $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
+        $karakteristik->k_nilai = $total;
+        $karakteristik->save();
+
+        //insert nilai aplikasi
+        $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
+        $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
+        $aplikasi->a_nilai = $totalapp;
+
+
+        if ($aplikasi->save()) {
         	return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'Url berhasil direquest');
         }
         else {
