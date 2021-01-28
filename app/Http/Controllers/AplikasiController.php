@@ -124,6 +124,7 @@ class AplikasiController extends Controller
             DB::table('karakteristik')->insert([
             ['a_id' => $aplikasi->a_id, 
              'k_nama' => $k->k_nama,
+             'k_desc' => $k->k_desc,
              'k_bobot' => $k->k_bobot,
              'k_nilai' => 0
             ],
@@ -138,6 +139,7 @@ class AplikasiController extends Controller
                     DB::table('subkarakteristik')->insert([
                     ['k_id' => $k2->k_id, 
                      'sk_nama' => $s->sk_nama,
+                     'sk_desc' => $s->sk_desc,
                      'bobot_relatif' => $s->bobot_relatif,
                      'bobot_absolut' => 0,
                      'nilai_subfaktor' => 0,

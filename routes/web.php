@@ -87,6 +87,7 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 
 	//automatic
 	Route::get('/capacity/{id}','AutomaticController@capacity')->name('capacity');
+	Route::get('/responsetime/{id}','AutomaticController@responsetime')->name('responsetime');
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
 	Route::post('/uploadFile/proses', 'UploadController@proses_upload')->name('proses');

@@ -55,7 +55,7 @@
                     @include('layouts.utils.errorMessages')
                 </div>
                 <div class="form-group text-center">
-                    <button class="btn btn-primary btn-block">Log Me In</button>
+                    <button class="btn btn-primary btn-block">Sign Up</button>
                     <a class="btn btn-link" href="{{ route('password.request') }}">
                         Forgot Your Password?
                     </a><br>
