@@ -37,7 +37,7 @@
                   <td>{{ $row->k_nama }}</td>
                   <td>{{ $row->k_bobot }}</td>
                   <td>
-                    <a href="{{route('custom.sub',$row->k_id)}}" >
+                    <a href="{{route('custom.sub',$row->k_id)}}" class="btn btn-info btn-sm">
                       <span class="fa fa-external-link"></span>
                     </a>
                   </td>
