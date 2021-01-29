@@ -25,8 +25,7 @@
                 <table id="mydatatables" class="table table-striped table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <th style="width: 5%">ID</th>
-                    <th style="width: 25%">Nama User</th>
-                    <th style="width: 25%">Nama Aplikasi</th>
+                    <th style="width: 50%">Nama Aplikasi</th>
                     <th style="width: 15%">Pengukuran</th>
                     <th style="width: 15%">Hasil Pengukuran</th>
                     <th style="width: 15%">Aksi</th>
@@ -35,7 +34,6 @@
                     @foreach($aplikasis as $aplikasi)
                     <tr>
                       <td>{{ $no++ }}</td>
-                      <td>{{ $aplikasi->user->name }}</td>
                       <td>{{ $aplikasi->a_nama }}</td>
                       <td>
                         <a href="{{route('nilai',$aplikasi->a_id)}}" class="btn btn-info btn-sm">
