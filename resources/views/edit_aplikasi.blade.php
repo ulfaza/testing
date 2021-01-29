@@ -21,17 +21,27 @@
  <div class="col-md-12 top-20 padding-0">
     <div class="col-md-12">
       <div class="panel">
-        <div class="panel-heading"><h3>Aplikasi</h3></div>
           <div class="panel-body">
+            <hr>
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                  </ul>
+                </div>
+            @endif
+            @include('admin.shared.components.alert')
             <form action="{{route('update.aplikasi', $aplikasi->a_id)}}" method="POST">
                 {{ csrf_field() }}
                     <div class="form-group">
-                      @include('admin.shared.components.alert')
                         <label>Nama Aplikasi :</label>
                         <div>
                           <input type="text" class="form-control" name="a_nama" value="{{ $aplikasi->a_nama}}"required>
                         </div>
-                        <br>
+                    </div>
+                    <div class="form-group">
                         <label>URL :</label>
                         <div>
                           <input type="text" class="form-control" name="a_url" value="{{ $aplikasi->a_url}}"required>
