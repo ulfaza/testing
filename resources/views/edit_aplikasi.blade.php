@@ -26,9 +26,15 @@
             <form action="{{route('update.aplikasi', $aplikasi->a_id)}}" method="POST">
                 {{ csrf_field() }}
                     <div class="form-group">
+                      @include('admin.shared.components.alert')
                         <label>Nama Aplikasi :</label>
                         <div>
                           <input type="text" class="form-control" name="a_nama" value="{{ $aplikasi->a_nama}}"required>
+                        </div>
+                        <br>
+                        <label>URL :</label>
+                        <div>
+                          <input type="text" class="form-control" name="a_url" value="{{ $aplikasi->a_url}}"required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary ">Update</button>

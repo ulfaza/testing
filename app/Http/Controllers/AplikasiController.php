@@ -72,8 +72,13 @@ class AplikasiController extends Controller
         $aplikasi = Aplikasi::findorFail($a_id);
         $this->validate($request,[
             'a_nama'      =>['required'],
+            'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+        ]
+        ,$messages = [
+            'regex'   => 'you have to enter the right url format'
         ]);
         $aplikasi->a_nama       = $request->a_nama;
+        $aplikasi->a_url        = $request->a_url;
         if ($aplikasi->save())
           return redirect()->route('index.aplikasi');
     }
