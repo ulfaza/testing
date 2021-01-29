@@ -26,19 +26,18 @@ class KuisionerController extends Controller
         $subkarakteristik->nilai_subfaktor 	= $subkarakteristik->total_per_sub / $subkarakteristik->jml_res * 25;
         $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
         $subkarakteristik->save();
-
         // insert nilai karakteristik
         $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
-        $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
+        $total = DB::table('subkarakteristik')->where('k_id','=',$karakteristik->k_id)->sum('nilai_absolut');
         $karakteristik->k_nilai = $total;
         $karakteristik->save();
 
         //insert nilai aplikasi
-        $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
-        $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
-        $aplikasi->a_nilai = $totalapp;
+        $aplikasis = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
+        $total_app = DB::table('karakteristik')->where('a_id','=',$aplikasis->a_id)->sum('k_nilai');
+        $aplikasis->a_nilai = $total_app;
 
-        if ($aplikasi->save()) {
+        if ($aplikasis->save()) {
         	return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'item berhasil diubah');
         }
     }    

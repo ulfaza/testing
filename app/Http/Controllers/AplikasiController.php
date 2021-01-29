@@ -187,7 +187,6 @@ class AplikasiController extends Controller
         $subkarakteristiks = DB::table('subkarakteristik')
                                     ->join('karakteristik', 'karakteristik.k_id', '=', 'subkarakteristik.k_id')
                                     ->join('aplikasi','aplikasi.a_id','=','karakteristik.a_id')
-                                    ->where('karakteristik.k_nama','=','maintainability')
                                     ->where('aplikasi.a_id',$a_id)->get(); 
            
         $rowspan = [];

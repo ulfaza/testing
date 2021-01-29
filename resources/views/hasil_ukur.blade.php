@@ -1,13 +1,14 @@
-@extends('layouts.app_softwaretester')
+@extends('layouts.app_topnav')
 
 @section('content_header') 
   <div class="col-md-12">
       <div class="panel block">
           <div class="panel-body">
-              <h1>Daftar Aplikasi</h1>
+              <h1>Hasil Pengukuran Aplikasi</h1>
               <ol class="breadcrumb">
                   <li><a href="{{asset('/softwaretester/home')}}"></i> Home</a></li>
-                  <li class="active">Aplikasi</li>
+                  <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
+                  <li class="active">Hasil Pengukuran</li>
               </ol>
           </div>
       </div>
@@ -26,13 +27,8 @@
                         <thead>
                             <th>ID</th>
                             <th>Karakteristik</th>
-                            <th>Bobot Karakteristik</th>
+                            <th>Deskripsi</th>
                             <th>Nilai Karakteristik</th>
-                            <th>Sub Karakteristik</th>
-                            <th>Bobot Relatif</th>
-                            <th>Bobot Absolut</th>
-                            <th>Nilai Subkarakteristik</th>
-                            <th>Nilai Absolut</th>
                         </thead>
                         <tbody>
                             @foreach($subkarakteristiks as $key => $s)
@@ -40,14 +36,9 @@
                                     @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
                                         <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $no++ }}</td>
                                         <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nama }}</td>
-                                        <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_bobot }}</td>
+                                        <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ 'isinya deskripsi masing-masing karakteristik, kalo di database udh ada ya tinggal manggil brrti kan k_deskripsi gitu isinya deskripsi masing-masing karakteristik, kalo di database udh ada ya tinggal manggil brrti kan k_deskripsi gitu isinya deskripsi masing-masing karakteristik, kalo di database udh ada ya tinggal manggil brrti kan k_deskripsi gitu' }}</td>
                                         <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_nilai }}</td>
-                                    @endif
-                                        <td>{{ $s->sk_nama }}</td>
-                                        <td>{{ $s->bobot_relatif }}</td>
-                                        <td>{{ $s->bobot_absolut }}</td>
-                                        <td>{{ $s->nilai_subfaktor }}</td>
-                                        <td>{{ $s->nilai_absolut }}</td>                                        
+                                    @endif                                
                                 </tr>                                
                             @endforeach
                         </tbody>

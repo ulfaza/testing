@@ -6,6 +6,8 @@ use Pts\Lcom\AstTraverser;
 use Pts\Lcom\PhpParser;
 use Pts\Lcom\LcomVisitor;
 use App\SubKarakteristik;
+use App\Karakteristik;
+use App\Aplikasi;
 
 class CohesionController extends Controller
 {
@@ -53,18 +55,12 @@ class CohesionController extends Controller
         //   $res = trim(substr($content, $startsAt, $endsAt - $startsAt));
         //   $classnames[] = explode(" ", $res)[0];
         //   $lastPos = $endsAt + 1;  
-        // }     
+        // }   
+
         while(($lastPos = strpos($content, "class ", $lastPos)) !== false){
           if(@$content[$lastPos - 1] == '$') {
             $lastPos++;
             continue;
-          }
-          elseif($content == 'class '){
-            $current_class = $content;
-          }
-          elseif($content == ' function '){
-            $classes[current_class]++;
-            $current_class = $content;
           }
           $startsAt = strpos($content, "class ", $lastPos) + strlen("class ");
           $endsAt = strpos($content, "{", $startsAt);
@@ -73,16 +69,6 @@ class CohesionController extends Controller
 
           $lastPos = $endsAt + 1;
         }
- 
-        //      var classes = []
-        // var current_class = ''
-        // for string in file:
-        //   if(string == ' class ')
-        //     current_class = string
-        //   if(string == ' function '
-        //     classes[current_class]++
-
-
 
         $this->setUp();
         //Parse file content 
@@ -92,7 +78,32 @@ class CohesionController extends Controller
         $result = [];    
         foreach ($classnames as $key => $value)
           $result[$value] = $lcom[$value];
-        return $result;
+        // return $result;
+      }
+
+      // ikut punya ulfa hehe
+      $hasil = $result/1;
+      $subkarakteristik->nilai_subfaktor = $hasil;
+      $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
+      $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
+      $subkarakteristik->save();
+
+      // insert nilai karakteristik
+      $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
+      $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
+      $karakteristik->k_nilai = $total;
+      $karakteristik->save();
+
+      //insert nilai aplikasi
+      $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
+      $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
+      $aplikasi->a_nilai = $totalapp;
+
+      if ($aplikasi->save()) {
+        return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'Url berhasil direquest');
+      }
+      else {
+          return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('error', 'Url gagal direquest');
       }
 
 }
