@@ -27,6 +27,7 @@ class EditTableAdminController extends Controller
             if($request->action == 'edit')
             {
                 $data = array(
+                    'k_nama'        =>  $request->k_nama,
                     'k_bobot'       =>  $request->k_bobot
                 );
                 DB::table('karakteristik')
