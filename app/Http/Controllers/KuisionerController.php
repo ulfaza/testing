@@ -18,9 +18,16 @@ class KuisionerController extends Controller
 
     public function update(Request $request, $sk_id)
     {
+        $subkarakteristik = SubKarakteristik::findorFail($sk_id);
+            
+        $this->validate($request,[
+            'jml_res'       => 'required|integer',
+            'total_per_sub' => 'required|integer',
+        ]
+        ,$messages = [
+            'integer'   => 'Anda harus memasukkan angka',
+        ]);
         if (($request->total_per_sub/$request->jml_res) <= 4) {
-            $subkarakteristik = SubKarakteristik::findorFail($sk_id);
-        
             $subkarakteristik->jml_res          = $request->jml_res;
             $subkarakteristik->total_per_sub    = $request->total_per_sub;
             $subkarakteristik->bobot_absolut    = $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
@@ -43,7 +50,7 @@ class KuisionerController extends Controller
             }
         }
         else{
-            return redirect()->route('kuisioner', $sk_id)->with('error', 'maksimal rata-rata 4');
+            return redirect()->route('kuisioner', $sk_id)->with('error', 'Skala likert harus mulai dari 0-4');
         }
     }    
 }
