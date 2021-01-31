@@ -16,6 +16,11 @@
 <div class="col-md-12 top-20 padding-0">
   <div class="col-md-12">
     <div class="panel">
+      <div class="panel-heading">
+        @foreach($aplikasis as $app)
+        <h3>{{$app->k_nama}}</h3>
+        @endforeach
+      </div>
       <div class="panel-body">
         <div class="table-responsive">
             {{ csrf_field() }}
