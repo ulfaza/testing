@@ -94,7 +94,8 @@ class AplikasiController extends Controller
             'radios' => 'required'
         ]
         ,$messages = [
-            'regex'   => 'you have to enter the right url format'
+            'regex'   => 'Format url yang Anda masukkan salah',
+            'required' => 'Anda harus memilih salah satu pilihan bobot'
         ]);
 
         $aplikasi->id        = Auth::user()->id;
@@ -110,7 +111,7 @@ class AplikasiController extends Controller
         if ($extension==$allowed_extension){
         $aplikasi->save();     
         } else {
-           return redirect()->route('insert.aplikasi')->with('error', 'you have to choose file with .php extension');
+           return redirect()->route('insert.aplikasi')->with('error', 'Format file harus berekstensi .php');
         };
         
         //Make folder named by id aplikasi and store the file uploaded in the folder 
