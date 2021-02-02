@@ -6,8 +6,11 @@ use Pts\Lcom\AstTraverser;
 use Pts\Lcom\PhpParser;
 use Pts\Lcom\LcomVisitor;
 use App\SubKarakteristik;
-use App\Karakteristik;
-use App\Aplikasi;
+use PhpParser\Node;
+use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\ClassLike;
+use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Trait_;
 
 class CohesionController extends Controller
 {
@@ -28,6 +31,15 @@ class CohesionController extends Controller
           $this->parser = new PhpParser($parser, $traverser);
           $this->parser->addVisitor($this->lcom);
       }
+
+      private function nodeName(ClassLike $node): string
+      {
+          if ($node instanceof Class_ && $node->isAnonymous() === true) {
+              return 'anonymous@' . spl_object_hash($node);
+          }
+  
+          return $node->namespacedName->toString();
+      }
       
       public function cohesion($sk_id){
   
@@ -36,19 +48,12 @@ class CohesionController extends Controller
         $filename = $subkarakteristik->karakteristik->aplikasi->a_file;
         $apps_id = $subkarakteristik->karakteristik->aplikasi->a_id;
         $path = public_path()."/".$apps_id."/";
-        // return $path;
         
         //Read file content
         $content = file_get_contents($path. $filename);
-        // return $content;
-
         $lastPos = 0;
-        $lastFun = 0;
         $classnames = [];
-        $functions = [];
-        $classes = [];
-        $current_class = '';
-
+       
         // while(($lastPos = strpos($content, "class ", $lastPos)) !== false){
         //   $startsAt = strpos($content, "class ", $lastPos) + strlen("class ");
         //   $endsAt = strpos($content, "{", $startsAt);
@@ -74,36 +79,26 @@ class CohesionController extends Controller
         //Parse file content 
         $this->parser->parse($content);
         $lcom = $this->lcom->getLcom();
+        return $lcom;
         
         $result = [];    
-        foreach ($classnames as $key => $value)
+        $final_sum = 0;
+        $sum = 0;
+        $count =0;
+        foreach ($classnames as $key=> $value){
           $result[$value] = $lcom[$value];
-        // return $result;
+          //return $result;
+          $count ++;
+          $sum = array_sum ($result)/$count;
+          // $sum += $result;
+          // $final_sum = array_merge($result[$value],$result[$value]);
+        };
+        return $result;
+        return $sum;
+
+
       }
 
-      // ikut punya ulfa hehe
-      $hasil = $result/1;
-      $subkarakteristik->nilai_subfaktor = $hasil;
-      $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
-      $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
-      $subkarakteristik->save();
-
-      // insert nilai karakteristik
-      $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
-      $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
-      $karakteristik->k_nilai = $total;
-      $karakteristik->save();
-
-      //insert nilai aplikasi
-      $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
-      $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
-      $aplikasi->a_nilai = $totalapp;
-
-      if ($aplikasi->save()) {
-        return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'Url berhasil direquest');
-      }
-      else {
-          return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('error', 'Url gagal direquest');
-      }
+    
 
 }
