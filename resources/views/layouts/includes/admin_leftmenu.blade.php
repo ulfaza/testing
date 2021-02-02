@@ -23,7 +23,7 @@
 
             <li class="ripple">
               <a class="tree-toggle nav-header" href="/admin/tambahbobot">
-                <span class="fa-balance-scale fa" ></span> Bobot Relatif
+                <span class="fa-balance-scale fa" ></span> Bobot
               </a>
             </li>
 

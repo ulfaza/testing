@@ -9,15 +9,6 @@ use App\Aplikasi;
 
 class AutomaticController extends Controller
 {
-    public function capacity2(Request $request, $sk_id){
-        $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
-        $url = $subkarakteristik->karakteristik->aplikasi->a_url;
-
-        $test = public_path()."/python";
-        system("cd $test && py ping_statuscode.py");
-        
-    }
-
     public function capacity(Request $request, $sk_id)
     {   
         $seconds = 5000;
@@ -90,11 +81,4 @@ class AutomaticController extends Controller
 
     }
 
-    public function responsetime(Request $request, $sk_id){
-        $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
-        $url = $subkarakteristik->karakteristik->aplikasi->a_url;
-
-        $test = public_path()."/python";
-        system("cd $test && python ping.py");
-    }
 }

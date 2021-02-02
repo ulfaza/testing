@@ -23,6 +23,15 @@
   <div class="col-md-12">
     <div class="panel">
         <div class="panel-body">
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+              </div>
+          @endif
           @include('admin.shared.components.alert')
             <h3>
                 @foreach ($subkarakteristiks as $s)

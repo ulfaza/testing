@@ -70,15 +70,35 @@ class AplikasiController extends Controller
     //UPDATE / SAVE SETELAH EDIT APLIKASI
     public function update(Request $request, $a_id){
         $aplikasi = Aplikasi::findorFail($a_id);
+        $file_name = $request->hidden_file;
+
+        if ($request->a_file) {       
+            $file_name = $request->a_file->getClientOriginalName();
+            // Check the extension of file, only php extension is allowed to upload 
+            $extension = $request->a_file->getClientOriginalExtension();
+            $allowed_extension = 'php';
+
+            if ($extension==$allowed_extension){
+            $aplikasi->save();     
+            } else {
+               return redirect()->route('edit.aplikasi', $aplikasi->a_id)->with('error', 'Format file harus berekstensi .php');
+            };     
+
+            $request->a_file->move($aplikasi->a_id,$request->a_file->getClientOriginalName());
+            $hapus = $request->hidden_file;
+            File::delete( public_path()."/".$aplikasi->a_id."/".$hapus);
+        } 
+
         $this->validate($request,[
-            'a_nama'      =>['required'],
-            'a_url' =>  'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            'a_nama'      =>'required',
+            'a_url'       =>'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
         ]
         ,$messages = [
-            'regex'   => 'you have to enter the right url format'
+            'regex'   => 'Format url yang Anda masukkan salah'
         ]);
         $aplikasi->a_nama       = $request->a_nama;
         $aplikasi->a_url        = $request->a_url;
+        $aplikasi->a_file       = $file_name;
         if ($aplikasi->save())
           return redirect()->route('index.aplikasi');
     }
@@ -94,7 +114,8 @@ class AplikasiController extends Controller
             'radios' => 'required'
         ]
         ,$messages = [
-            'regex'   => 'you have to enter the right url format'
+            'regex'   => 'Format url yang Anda masukkan salah',
+            'required' => 'Anda harus memilih salah satu pilihan bobot'
         ]);
 
         $aplikasi->id        = Auth::user()->id;
@@ -110,7 +131,7 @@ class AplikasiController extends Controller
         if ($extension==$allowed_extension){
         $aplikasi->save();     
         } else {
-           return redirect()->route('insert.aplikasi')->with('error', 'you have to choose file with .php extension');
+           return redirect()->route('insert.aplikasi')->with('error', 'Format file harus berekstensi .php');
         };
         
         //Make folder named by id aplikasi and store the file uploaded in the folder 

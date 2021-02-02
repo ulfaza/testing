@@ -91,7 +91,7 @@
                           </td>
                         @elseif ($s->sk_nama == 'Time Behaviour')
                           <td>
-                            <a href="{{route('kuisioner',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                            <a href="{{route('responsetime',$s->sk_id)}}" class="btn btn-warning btn-sm">
                               <span class="fa fa-pencil"></span>
                             </a>
                           </td>

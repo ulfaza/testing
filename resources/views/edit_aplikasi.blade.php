@@ -33,20 +33,27 @@
                 </div>
             @endif
             @include('admin.shared.components.alert')
-            <form action="{{route('update.aplikasi', $aplikasi->a_id)}}" method="POST">
+            <form action="{{route('update.aplikasi', $aplikasi->a_id)}}" method="POST" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label>Nama Aplikasi :</label>
                         <div>
-                          <input type="text" class="form-control" name="a_nama" value="{{ $aplikasi->a_nama}}"required>
+                          <input type="text" class="form-control" name="a_nama" value="{{ $aplikasi->a_nama}}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>URL :</label>
                         <div>
-                          <input type="text" class="form-control" name="a_url" value="{{ $aplikasi->a_url}}"required>
+                          <input type="text" class="form-control" name="a_url" value="{{ $aplikasi->a_url}}" required>
                         </div>
                     </div>
+                    <div class="form-group">
+                      <label>File :</label>
+                      <div>  
+                        <input type="hidden" name="hidden_file" value="{{ $aplikasi->a_file }}" />
+                        <input type="file"  name="a_file" value="{{ $aplikasi->a_file}}">
+                      </div>
+                    </div> 
                     <button type="submit" class="btn btn-primary ">Update</button>
                     <a onclick="return confirm('Perubahan anda belum disimpan. Tetap tinggalkan halaman ini ?')" href="{{asset('/softwaretester/aplikasi')}}" class="btn btn-secondary"> Cancel</a>
             </form>

@@ -58,8 +58,8 @@
                       <p class="animated fadeInRight">Sat,October 1st 2029</p>
                     </li>
                     
-                    <li class="ripple"><a href="{{route('admin.home')}}"><span class="fa fa-home"></span>Home</a></li>
-                    <li class="ripple"><a href="{{route('edit.bobot.karakteristik.admin')}}"><span class="fa-globe fa"></span>Bobot Relatif</a></li>
+                    <li class="ripple"><a href="{{route('adminhome')}}"><span class="fa fa-home"></span>Home</a></li>
+                    <li class="ripple"><a href="{{route('edit.bobot.karakteristik.admin')}}"><span class="fa-globe fa"></span>Bobot</a></li>
                     <li class="ripple"><a href="{{route('adminview')}}"><span class="fa-globe fa"></span>Administrator</a></li>
                     <li class="ripple"><a href="{{route('softwaretesterview')}}"><span class="fa-balance-scale fa"></span>Software Tester</a></li>
                   </ul>

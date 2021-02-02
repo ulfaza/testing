@@ -5,10 +5,6 @@
       <div class="panel block">
           <div class="panel-body">
               <h1>Kelola Karakteristik</h1>
-              <ol class="breadcrumb">
-                  <li><a href="{{asset('/admin/tambah_karakteristik')}}"></i>Karakteristik</a></li>
-                  <li class="active">Tambah Karakteristik</li>
-              </ol>
           </div>
       </div>
   </div>

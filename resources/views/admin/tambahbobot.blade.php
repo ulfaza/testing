@@ -5,11 +5,11 @@
       <div class="panel block">
           <div class="panel-body">
               <h1>Edit Bobot Karakteristik</h1>
-              <ol class="breadcrumb">
+              <!-- <ol class="breadcrumb">
                 <li><a href="{{asset('/admin/home')}}"></i>Home</a></li>
                 <li><a href="{{asset('/admin/karakteristik')}}"></i>Karakteristik</a></li>
                 <li class="active">Edit bobot Karakteristik</li>
-              </ol>
+              </ol> -->
           </div>
       </div>
   </div>
@@ -33,27 +33,30 @@
                   <th>Edit Bobot SubKarakteristik</th>
                 </tr>
               </thead>
+              
               <tbody>
                 @foreach($karakteristiks as $karakteristik)
-                <tr>
-                  <td>{{ $no++ }}</td>
-                  <td>{{ $karakteristik->k_nama }}</td>
-                  <td>{{ $karakteristik->k_bobot }}</td>
-                  
-                  <td>
-                    <a href="{{route('edit.sub.admin', $karakteristik->k_id)}}" >
-                      <span class="fa fa-external-link"></span>
-                    </a>
-                  </td>
-                </tr>
+                  <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $karakteristik->k_nama }}</td>
+                    <td>{{ $karakteristik->k_bobot }}</td>    
+                    <td>
+                      <a href="{{route('edit.sub.admin', $karakteristik->k_id)}}" class="btn btn-info btn-sm" >
+                        <span class="fa fa-external-link"></span>
+                      </a>
+                    </td>
+                  </tr>
                 @endforeach
               </tbody>
             </table>
+            
             <table class="table table-bordered">
               <tr>
                 <td style="text-align: center">Total :<span class="info-box-number">{{$total}}</span></td>
               </tr>
             </table>
+
+            <a href="{{asset('/admin/tambah_karakteristik')}}" class="btn btn-info btn-md">Tambah Karakteristik</a>
           </div>
       </div>
     </div>
@@ -88,9 +91,9 @@ $(document).ready(function(){
     dataType:"json",
     columns:{
       identifier:[0, 'k_id'],
-      editable:[[2, 'k_bobot']]
+      editable:[[1, 'k_nama'], [2, 'k_bobot']]
     },
-    deleteButton:false,
+    deleteButton:true,
     restoreButton:false,
     onAlways:function(){
       var sum = 0;
