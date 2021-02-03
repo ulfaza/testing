@@ -6,11 +6,12 @@ use Pts\Lcom\AstTraverser;
 use Pts\Lcom\PhpParser;
 use Pts\Lcom\LcomVisitor;
 use App\SubKarakteristik;
-use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassLike;
-use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Trait_;
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitorAbstract;
+use Pts\Lcom\Graph\GraphDeduplicated;
+use Pts\Lcom\Graph\GraphNode;
 
 class CohesionController extends Controller
 {
@@ -32,15 +33,6 @@ class CohesionController extends Controller
           $this->parser->addVisitor($this->lcom);
       }
 
-      private function nodeName(ClassLike $node): string
-      {
-          if ($node instanceof Class_ && $node->isAnonymous() === true) {
-              return 'anonymous@' . spl_object_hash($node);
-          }
-  
-          return $node->namespacedName->toString();
-      }
-      
       public function cohesion($sk_id){
   
         //Get file name and its directory path
@@ -51,52 +43,13 @@ class CohesionController extends Controller
         
         //Read file content
         $content = file_get_contents($path. $filename);
-        $lastPos = 0;
-        $classnames = [];
-       
-        // while(($lastPos = strpos($content, "class ", $lastPos)) !== false){
-        //   $startsAt = strpos($content, "class ", $lastPos) + strlen("class ");
-        //   $endsAt = strpos($content, "{", $startsAt);
-        //   $res = trim(substr($content, $startsAt, $endsAt - $startsAt));
-        //   $classnames[] = explode(" ", $res)[0];
-        //   $lastPos = $endsAt + 1;  
-        // }   
-
-        while(($lastPos = strpos($content, "class ", $lastPos)) !== false){
-          if(@$content[$lastPos - 1] == '$') {
-            $lastPos++;
-            continue;
-          }
-          $startsAt = strpos($content, "class ", $lastPos) + strlen("class ");
-          $endsAt = strpos($content, "{", $startsAt);
-          $res = trim(substr($content, $startsAt, $endsAt - $startsAt));
-          $classnames[] = explode(" ", $res)[0];
-
-          $lastPos = $endsAt + 1;
-        }
-
         $this->setUp();
+
+        
         //Parse file content 
         $this->parser->parse($content);
         $lcom = $this->lcom->getLcom();
         return $lcom;
-        
-        $result = [];    
-        $final_sum = 0;
-        $sum = 0;
-        $count =0;
-        foreach ($classnames as $key=> $value){
-          $result[$value] = $lcom[$value];
-          //return $result;
-          $count ++;
-          $sum = array_sum ($result)/$count;
-          // $sum += $result;
-          // $final_sum = array_merge($result[$value],$result[$value]);
-        };
-        return $result;
-        return $sum;
-
-
       }
 
     
