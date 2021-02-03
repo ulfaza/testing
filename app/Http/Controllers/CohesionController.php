@@ -44,7 +44,6 @@ class CohesionController extends Controller
         //Read file content
         $content = file_get_contents($path. $filename);
         $this->setUp();
-
         
         //Parse file content 
         $this->parser->parse($content);
