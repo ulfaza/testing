@@ -16,7 +16,6 @@ use Pts\Lcom\Graph\GraphNode;
 class MethodController extends NodeVisitorAbstract
 {
     private $traverser;
-
     private $method;
     
      //try to find method
