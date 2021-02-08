@@ -63,7 +63,9 @@ class AutomaticController extends Controller
         // insert nilai karakteristik
         $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
         $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
-        $karakteristik->k_nilai = $total;
+        $temp_total = ($total/($karakteristik->k_bobot*100))*100;
+        $karakteristik->k_nilai = $temp_total;
+        $karakteristik->k_final_nilai = $temp_total;
         $karakteristik->save();
 
         //insert nilai aplikasi

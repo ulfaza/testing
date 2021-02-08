@@ -18,5 +18,12 @@ class AplikasiTableSeeder extends Seeder
             'a_file' => 'None',
             'a_nilai'  => 0
         ]);
+        \App\Aplikasi::create([
+            'id'  => 2,
+            'a_nama' => 'Integra',
+            'a_url' => 'my.its.ac.id',
+            'a_file' => 'None',
+            'a_nilai'  => 0
+        ]);
     }
 }

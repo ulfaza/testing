@@ -37,7 +37,9 @@ class KuisionerController extends Controller
             // insert nilai karakteristik
             $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
             $total = DB::table('subkarakteristik')->where('k_id','=',$karakteristik->k_id)->sum('nilai_absolut');
+            $temp_total = ($total/($karakteristik->k_bobot*100))*100;
             $karakteristik->k_nilai = $total;
+            $karakteristik->k_final_nilai = $temp_total; 
             $karakteristik->save();
 
             //insert nilai aplikasi
@@ -50,7 +52,7 @@ class KuisionerController extends Controller
             }
         }
         else{
-            return redirect()->route('kuisioner', $sk_id)->with('error', 'Skala likert harus mulai dari 0-4');
+            return redirect()->route('kuisioner', $sk_id)->with('error', 'Hasil dari "Nilai Total Hasil Kuesioner per Subkarakteristik" dibagi "Jumlah Responden" tidak boleh lebih dari 4');
         }
     }    
 }
