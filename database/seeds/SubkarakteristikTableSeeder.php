@@ -14,188 +14,372 @@ class SubkarakteristikTableSeeder extends Seeder
         \App\SubKarakteristik::create([
             'k_id'  => 1,
             'sk_nama' => 'Functional Completeness',
-            'sk_desc' => '',
             'bobot_relatif' => 0.16
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 1,
             'sk_nama' => 'Functional Correctness',
-            'sk_desc' => '',
             'bobot_relatif' => 0.51
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 1,
             'sk_nama' => 'Functional Appropriateness',
-            'sk_desc' => '',
             'bobot_relatif' => 0.33
         ]);
         
         \App\SubKarakteristik::create([
             'k_id'  => 2,
             'sk_nama' => 'Time Behaviour',
-            'sk_desc' => '',
             'bobot_relatif' => 0.49
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 2,
             'sk_nama' => 'Resource Utilization',
-            'sk_desc' => '',
             'bobot_relatif' => 0.31
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 2,
             'sk_nama' => 'Capacity',
-            'sk_desc' => '',
             'bobot_relatif' => 0.20
         ]);
 
         \App\SubKarakteristik::create([
             'k_id'  => 3,
             'sk_nama' => 'Co-Existence',
-            'sk_desc' => '',
             'bobot_relatif' => 0.75
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 3,
             'sk_nama' => 'Interoperability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.25
         ]);
 
         \App\SubKarakteristik::create([
             'k_id'  => 4,
             'sk_nama' => 'Appropriateness Recognizability',
-            'sk_desc' => 'Sejauh mana pengguna dapat mengenali apakah produk atau sistem dapat memenuhi kebutuhan',
             'bobot_relatif' => 0.17
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 4,
             'sk_nama' => 'Learnability',
-            'sk_desc' => 'Sejauh mana sebuah produk atau sistem dapat digunakan oleh pengguna untuk mencapai suatu tujuan dengan mempelajari produk tersebut dengan efektif dan efisien',
             'bobot_relatif' => 0.17
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 4,
             'sk_nama' => 'Operability',
-            'sk_desc' => 'Sejauh mana produk atau sistem memiliki atribut yang memudahkan penggunaan',
             'bobot_relatif' => 0.17
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 4,
             'sk_nama' => 'User Error Protection',
-            'sk_desc' => 'Sejauh mana sebuah sistem dapat melindungi pengguna dari error',
             'bobot_relatif' => 0.17
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 4,
             'sk_nama' => 'User Interface Aesthetics',
-            'sk_desc' => 'Sejauh mana User Interface dapat menyediakan interaksi yang memuaskan pengguna',
             'bobot_relatif' => 0.17
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 4,
             'sk_nama' => 'Accessibility',
-            'sk_desc' => 'Sejauh mana produk atau sistem dapat digunakan oleh berbagai macam karakteristik dan kapabilitas pengguna untuk memenuhi suatu kebutuhan',
             'bobot_relatif' => 0.17
         ]);
 
         \App\SubKarakteristik::create([
             'k_id'  => 5,
             'sk_nama' => 'Maturity',
-            'sk_desc' => '',
             'bobot_relatif' => 0.19
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 5,
             'sk_nama' => 'Availability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.33
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 5,
             'sk_nama' => 'Fault-Tolerance',
-            'sk_desc' => '',
             'bobot_relatif' => 0.24
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 5,
             'sk_nama' => 'Recoverability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.24
         ]);
 
         \App\SubKarakteristik::create([
             'k_id'  => 6,
             'sk_nama' => 'Confidentiality',
-            'sk_desc' => 'Sejauh mana suatu data pada sistem atau produk hanya dapat diakses oleh pengguna yang memiliki hak akses',
             'bobot_relatif' => 0.15
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 6,
             'sk_nama' => 'Integrity',
-            'sk_desc' => 'Sejauh mana sebuah sistem mencegah akses tak dikenal yang dapat memodifikasi sistem tersebut',
             'bobot_relatif' => 0.33
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 6,
             'sk_nama' => 'Non-repudiation',
-            'sk_desc' => 'Sejauh mana setiap aksi atau peristiwa yang terjadi pada sistem dapat dibuktikan ketika dibutuhkan',
             'bobot_relatif' => 0.11
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 6,
             'sk_nama' => 'Authenticity',
-            'sk_desc' => 'Sejauh mana aksi dari sebuah komponen dapat dilacak secara unik ke komponen tersebut',
             'bobot_relatif' => 0.19
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 6,
             'sk_nama' => 'Accountability',
-            'sk_desc' => 'Sejauh mana identitas suatu subjek atau sumber daya dapat dibuktikan oleh orang yang melakukan klaim terhadap identitas tersebut',
             'bobot_relatif' => 0.22
         ]);
 
         \App\SubKarakteristik::create([
             'k_id'  => 7,
             'sk_nama' => 'Modularity',
-            'sk_desc' => '',
             'bobot_relatif' => 0.20
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 7,
             'sk_nama' => 'Reusability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.20
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 7,
             'sk_nama' => 'Analysability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.20
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 7,
             'sk_nama' => 'Modifiability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.20
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 7,
             'sk_nama' => 'Testability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.20
         ]);
 
         \App\SubKarakteristik::create([
             'k_id'  => 8,
             'sk_nama' => 'Adaptability',
-            'sk_desc' => '',
             'bobot_relatif' => 0.25
         ]);
         \App\SubKarakteristik::create([
             'k_id'  => 8,
             'sk_nama' => 'Installability',
-            'sk_desc' => '',
+            'bobot_relatif' => 0.75
+        ]);
+
+        //seeder integra
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 9,
+            'sk_nama' => 'Functional Completeness',
+            'jml_res' => 119,
+            'total_per_sub' => 388,
+            'bobot_relatif' => 0.16
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 9,
+            'sk_nama' => 'Functional Correctness',
+            'jml_res' => 119,
+            'total_per_sub' => 381,
+            'bobot_relatif' => 0.51
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 9,
+            'sk_nama' => 'Functional Appropriateness',
+            'jml_res' => 119,
+            'total_per_sub' => 392,
+            'bobot_relatif' => 0.33
+        ]);
+        
+        \App\SubKarakteristik::create([
+            'k_id'  => 10,
+            'sk_nama' => 'Time Behaviour',
+            'bobot_relatif' => 0.49
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 10,
+            'sk_nama' => 'Resource Utilization',
+            'jml_res' => 16,
+            'total_per_sub' => 51,
+            'bobot_relatif' => 0.31
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 10,
+            'sk_nama' => 'Capacity',
+            'bobot_relatif' => 0.20
+        ]);
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 11,
+            'sk_nama' => 'Co-Existence',
+            'jml_res' => 119,
+            'total_per_sub' => 411,
+            'bobot_relatif' => 0.75
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 11,
+            'sk_nama' => 'Interoperability',
+            'jml_res' => 16,
+            'total_per_sub' => 42,
+            'bobot_relatif' => 0.25
+        ]);
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 12,
+            'sk_nama' => 'Appropriateness Recognizability',
+            'jml_res' => 119,
+            'total_per_sub' => 394,
+            'bobot_relatif' => 0.17
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 12,
+            'sk_nama' => 'Learnability',
+            'jml_res' => 119,
+            'total_per_sub' => 328,
+            'bobot_relatif' => 0.17
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 12,
+            'sk_nama' => 'Operability',
+            'jml_res' => 119,
+            'total_per_sub' => 397,
+            'bobot_relatif' => 0.17
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 12,
+            'sk_nama' => 'User Error Protection',
+            'jml_res' => 119,
+            'total_per_sub' => 360,
+            'bobot_relatif' => 0.17
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 12,
+            'sk_nama' => 'User Interface Aesthetics',
+            'jml_res' => 119,
+            'total_per_sub' => 333,
+            'bobot_relatif' => 0.17
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 12,
+            'sk_nama' => 'Accessibility',
+            'jml_res' => 119,
+            'total_per_sub' => 396,
+            'bobot_relatif' => 0.17
+        ]);
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 13,
+            'sk_nama' => 'Maturity',
+            'jml_res' => 16,
+            'total_per_sub' => 39,
+            'bobot_relatif' => 0.19
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 13,
+            'sk_nama' => 'Availability',
+            'jml_res' => 119,
+            'total_per_sub' => 383,           
+            'bobot_relatif' => 0.33
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 13,
+            'sk_nama' => 'Fault-Tolerance',
+            'jml_res' => 16,
+            'total_per_sub' => 41,           
+            'bobot_relatif' => 0.24
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 13,
+            'sk_nama' => 'Recoverability',
+            'jml_res' => 119,
+            'total_per_sub' => 369,
+            'bobot_relatif' => 0.24
+        ]);
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 14,
+            'sk_nama' => 'Confidentiality',
+            'jml_res' => 16,
+            'total_per_sub' => 57,
+            'bobot_relatif' => 0.15
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 14,
+            'sk_nama' => 'Integrity',
+            'jml_res' => 16,
+            'total_per_sub' => 62,
+            'bobot_relatif' => 0.33
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 14,
+            'sk_nama' => 'Non-repudiation',
+            'jml_res' => 16,
+            'total_per_sub' => 51,
+            'bobot_relatif' => 0.11
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 14,
+            'sk_nama' => 'Authenticity',
+            'jml_res' => 16,
+            'total_per_sub' => 52,
+            'bobot_relatif' => 0.19
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 14,
+            'sk_nama' => 'Accountability',
+            'jml_res' => 16,
+            'total_per_sub' => 29,
+            'bobot_relatif' => 0.22
+        ]);
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 15,
+            'sk_nama' => 'Modularity',
+            'bobot_relatif' => 0.20
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 15,
+            'sk_nama' => 'Reusability',
+            'jml_res' => 16,
+            'total_per_sub' => 46,
+            'bobot_relatif' => 0.20
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 15,
+            'sk_nama' => 'Analysability',
+            'jml_res' => 16,
+            'total_per_sub' => 50,
+            'bobot_relatif' => 0.20
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 15,
+            'sk_nama' => 'Modifiability',
+            'jml_res' => 16,
+            'total_per_sub' => 46,
+            'bobot_relatif' => 0.20
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 15,
+            'sk_nama' => 'Testability',
+            'jml_res' => 16,
+            'total_per_sub' => 49,
+            'bobot_relatif' => 0.20
+        ]);
+
+        \App\SubKarakteristik::create([
+            'k_id'  => 16,
+            'sk_nama' => 'Adaptability',
+            'jml_res' => 16,
+            'total_per_sub' => 39,
+            'bobot_relatif' => 0.25
+        ]);
+        \App\SubKarakteristik::create([
+            'k_id'  => 16,
+            'sk_nama' => 'Installability',
+            'jml_res' => 16,
+            'total_per_sub' => 45,
             'bobot_relatif' => 0.75
         ]);
     }

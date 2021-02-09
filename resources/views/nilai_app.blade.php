@@ -58,13 +58,13 @@
                     @if ($s->nilai_absolut == 0)
                       @if ($s->sk_nama == 'Modularity')
                         <td>
-                          <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-success btn-sm">
+                          <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-success btn-sm loading">
                             <span class="fa fa-plus"></span>
                           </a>
                         </td>
                       @elseif ($s->sk_nama == 'Time Behaviour')
                         <td>
-                          <a href="{{route('responsetime',$s->sk_id)}}" class="btn btn-success btn-sm">
+                          <a href="{{route('responsetime',$s->sk_id)}}" class="btn btn-success btn-sm loading">
                             <span class="fa fa-plus"></span>
                           </a>
                         </td>
@@ -85,13 +85,13 @@
 
                         @if ($s->sk_nama == 'Modularity')
                           <td>
-                            <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                            <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-warning btn-sm loading">
                               <span class="fa fa-pencil"></span>
                             </a>
                           </td>
                         @elseif ($s->sk_nama == 'Time Behaviour')
                           <td>
-                            <a href="{{route('responsetime',$s->sk_id)}}" class="btn btn-warning btn-sm">
+                            <a href="{{route('responsetime',$s->sk_id)}}" class="btn btn-warning btn-sm loading">
                               <span class="fa fa-pencil"></span>
                             </a>
                           </td>

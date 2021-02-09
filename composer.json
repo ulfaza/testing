@@ -62,5 +62,5 @@
 		"type": "vcs",
 		"url": "https://github.com/barryvdh/laravel-dompdf"
     }
-]
+	]
 }

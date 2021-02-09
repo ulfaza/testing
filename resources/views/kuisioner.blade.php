@@ -42,11 +42,11 @@
               <div class="form-group">
                 <div class="form-group col-md-12">
                     <label class="font-weight-bold">Jumlah Responden</label>
-                    <input type="text" class="form-control" name="jml_res" required>
+                    <input type="text" class="form-control" name="jml_res" value ="{{ $s->jml_res }}" required>
                 </div>
                 <div class="form-group col-md-12">
-                    <label class="font-weight-bold">Nilai Total Hasil Kuisioner Per Subkarkteristik</label>
-                    <input type="text" class="form-control" name="total_per_sub" required>
+                    <label class="font-weight-bold">Nilai Total Hasil Kuesioner per Subkarkteristik</label>
+                    <input type="text" class="form-control" name="total_per_sub" value ="{{ $s->total_per_sub }}" required>
                 </div>
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary ">Submit</button>
