@@ -64,7 +64,7 @@ class AutomaticController extends Controller
         $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
         $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
         $temp_total = ($total/($karakteristik->k_bobot*100))*100;
-        $karakteristik->k_nilai = $temp_total;
+        $karakteristik->k_nilai = $total;
         $karakteristik->k_final_nilai = $temp_total;
         $karakteristik->save();
 
