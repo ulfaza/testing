@@ -50,6 +50,8 @@ Route::group(['prefix' => 'admin',  'middleware' => 'is_admin'], function(){
 	Route::post('/karakteristik/edit_sub_admin/action', 'EditTableAdminController@action_sub_admin')->name('action.sub.admin');
 
 	// sub-Karakteristik
+	Route::get('/insert/subkarakteristik{id}', 'SubkarakteristikController@insert')->name('insert.subkarakteristik');
+	Route::get('/store/subkarakteristik{id}', 'SubkarakteristikController@store')->name('store.subkarakteristik');
 	Route::get('/edit_sub/subkarakteristik{id}', 'SubkarakteristikController@edit')->name('edit.sub');
 	Route::post('/update/subkarakteristik{id}','SubkarakteristikController@update')->name('update.sub');
 	Route::get('/delete/subkarakteristik{id}','SubkarakteristikController@delete')->name('delete.subkarakteristik');
