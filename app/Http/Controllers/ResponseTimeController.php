@@ -11,7 +11,7 @@ class ResponseTimeController extends Controller
 {
     public function responsetime(Request $request, $sk_id)
     {   
-        $seconds = 10;
+        $seconds = 5000;
         set_time_limit($seconds);
         $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
         $url = $subkarakteristik->karakteristik->aplikasi->a_url;
@@ -22,7 +22,7 @@ class ResponseTimeController extends Controller
         //create the array of cURL handles and add to a multi_curl
         $responsetime = curl_multi_init();
         // foreach ($urls as $req => $url) 
-        for ($req=0;$req<119;$req++){
+        for ($req=0;$req<7000;$req++){
             $arr[$req] = curl_init($url);
             curl_setopt($arr[$req], CURLOPT_RETURNTRANSFER, true);
             curl_setopt($arr[$req], CURLOPT_POST, true);
