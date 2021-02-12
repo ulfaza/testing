@@ -55,8 +55,9 @@ class ResponseTimeController extends Controller
         // close current handler
         curl_multi_close($responsetime);
 
-        $hasil = $response['total_time'] / 119;
+        $hasil = $response['total_time'] / 7000;
 
+            //$subkarakteristik->nilai_subfaktor = $hasil;
         if ($hasil <= 0.1) {
              $subkarakteristik->nilai_subfaktor = 100; 
         }
@@ -75,9 +76,21 @@ class ResponseTimeController extends Controller
         
         $subkarakteristik->bobot_absolut    = $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
         $subkarakteristik->nilai_absolut    = $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
+        $subkarakteristik->save();
         
+        //insert nilai karakteristik
         $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
-        $karakteristik->k_nilai     += $subkarakteristik->nilai_absolut;
+        $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
+        $temp_total = ($total/($karakteristik->k_bobot*100))*100;
+        $karakteristik->k_nilai = $total;
+        $karakteristik->k_final_nilai = $temp_total;
+        $karakteristik->save();
+
+        //insert nilai aplikasi
+        $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
+        $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
+        $aplikasi->a_nilai = $totalapp;
+
 
         if ($subkarakteristik->save() && $karakteristik->save()) {
             return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'Url berhasil direquest');
