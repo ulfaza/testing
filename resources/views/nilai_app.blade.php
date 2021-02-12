@@ -8,7 +8,6 @@
               <ol class="breadcrumb">
                 <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
                 <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
-                {{-- <li><a href="{{asset('/softwaretester/aplikasi/{id}')}}">Pengukuran Aplikasi</a></li> --}}
                 <li class="active">Pengukuran Aplikasi</li>
           </div>
       </div>
@@ -39,7 +38,8 @@
                   <th style="width: 10%">Bobot Absolut</th>
                   <th style="width: 10%">Nilai Subkarakteristik</th>
                   <th style="width: 10%">Nilai Absolut</th>
-                  <th style="width: 15%">Tambah Hasil Kuesioner</th>
+                  <th style="width: 10%">Nilai Karakteristik</th>
+                  {{-- <th style="width: 15%">Tambah Hasil Kuesioner</th> --}}
                 </thead>
                 <tbody>
                 @foreach($subkarakteristiks as $key => $s)
@@ -55,7 +55,11 @@
                     <td>{{ $s->bobot_absolut }}</td>
                     <td>{{ $s->nilai_subfaktor }}</td>
                     <td>{{ $s->nilai_absolut }}</td>
-                    @if ($s->nilai_absolut == 0)
+                    @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
+                    <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_final_nilai }}</td>
+                    @endif
+
+                    {{-- @if ($s->nilai_absolut == null)
                       @if ($s->sk_nama == 'Modularity')
                         <td>
                           <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-success btn-sm loading">
@@ -109,7 +113,7 @@
                           </td>
                         @endif
 
-                    @endif
+                    @endif --}}
                 </tr>
                 
                 @endforeach
