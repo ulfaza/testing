@@ -46,7 +46,8 @@
                 <tr>
                   <td style="text-align: center">Total : <span class="info-box-number">{{$total}}</span></td>
                 </tr>
-            </table>
+            </table> 
+            <a href="{{route('insert.subkarakteristik', $karakteristik->k_id)}}" class="btn btn-info btn-md">Tambah Sub Karakteristik</a>
           </div>
       </div>
     </div>
@@ -81,9 +82,9 @@ $(document).ready(function(){
     dataType:"json",
     columns:{
       identifier:[0, 'sk_id'],
-      editable:[[2, 'bobot_relatif']]
+      editable:[[1, 'sk_nama'], [2, 'bobot_relatif']]
     },
-    deleteButton:false,
+    deleteButton:true,
     restoreButton:false,
     onAlways:function(){
       var sum = 0;
