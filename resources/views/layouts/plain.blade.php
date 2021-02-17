@@ -51,6 +51,9 @@
                         <h4> 
                             URL : {{$aplikasi->a_url}} 
                         </h4>
+                        <h4>
+                            Nilai Aplikasi : {{$aplikasi->a_nilai}}
+                        </h4>
                   @endforeach
               </div>
           </div>

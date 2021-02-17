@@ -42,13 +42,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>URL :</label>
+                        <label>URL Aplikasi:</label>
                         <div>
                           <input type="text" class="form-control" name="a_url" value="{{ $aplikasi->a_url}}" required>
                         </div>
                     </div>
                     <div class="form-group">
-                      <label>File :</label>
+                      <label>File Sourcecode Aplikasi:</label>
                       <div>  
                         <input type="hidden" name="hidden_file" value="{{ $aplikasi->a_file }}" />
                         <input type="file"  name="a_file" value="{{ $aplikasi->a_file}}">
