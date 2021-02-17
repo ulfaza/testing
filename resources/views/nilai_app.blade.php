@@ -39,7 +39,7 @@
                   <th style="width: 10%">Nilai Subkarakteristik</th>
                   <th style="width: 10%">Nilai Absolut</th>
                   <th style="width: 10%">Nilai Karakteristik</th>
-                  {{-- <th style="width: 15%">Tambah Hasil Kuesioner</th> --}}
+                  <th style="width: 15%">Tambah Hasil Kuesioner</th>
                 </thead>
                 <tbody>
                 @foreach($subkarakteristiks as $key => $s)
@@ -59,7 +59,7 @@
                     <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_final_nilai }}</td>
                     @endif
 
-                    {{-- @if ($s->nilai_absolut == null)
+                    @if ($s->nilai_absolut == null)
                       @if ($s->sk_nama == 'Modularity')
                         <td>
                           <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-success btn-sm loading">
@@ -113,7 +113,7 @@
                           </td>
                         @endif
 
-                    @endif --}}
+                    @endif
                 </tr>
                 
                 @endforeach

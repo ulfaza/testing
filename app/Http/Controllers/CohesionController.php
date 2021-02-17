@@ -56,48 +56,48 @@ class CohesionController extends Controller
         $lcom = $this->lcom->getLcom();
         // dd ($lcom);
         
-        $sum = 0;
-        $hasil = [];
-        foreach ($lcom as $value) {
-          $sum++;
-          array_push($hasil, $value);
-        }
-        $result = [];
-        for($i=0;$i<$sum;$i++){
-          if($i%2 != 0){
-            $output = 1 - ($hasil[$i-1]/$hasil[$i]);
-            array_push($result, $output);
-          }
-        }
-        $total = array_sum($result);
-        $n = sizeof($result);
-        $final_result = ($total/$n)*100;
+        // $sum = 0;
+        // $hasil = [];
+        // foreach ($lcom as $value) {
+        //   $sum++;
+        //   array_push($hasil, $value);
+        // }
+        // $result = [];
+        // for($i=0;$i<$sum;$i++){
+        //   if($i%2 != 0){
+        //     $output = 1 - ($hasil[$i-1]/$hasil[$i]);
+        //     array_push($result, $output);
+        //   }
+        // }
+        // $total = array_sum($result);
+        // $n = sizeof($result);
+        // $final_result = ($total/$n)*100;
         
-        $subkarakteristik->nilai_subfaktor = $final_result;
-        $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
-        $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
-        $subkarakteristik->save();
+        // $subkarakteristik->nilai_subfaktor = $final_result;
+        // $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
+        // $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;
+        // $subkarakteristik->save();
 
-        // insert nilai karakteristik
-        $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
-        $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
-        $temp_total = ($total/($karakteristik->k_bobot*100))*100;
-        $karakteristik->k_nilai = $temp_total;
-        $karakteristik->k_final_nilai = $temp_total;
-        $karakteristik->save();
+        // // insert nilai karakteristik
+        // $karakteristik = Karakteristik::findOrFail($subkarakteristik->karakteristik->k_id);
+        // $total = DB::table('subkarakteristik')->where('k_id','=', $karakteristik->k_id)->sum('nilai_absolut');
+        // $temp_total = ($total/($karakteristik->k_bobot*100))*100;
+        // $karakteristik->k_nilai = $temp_total;
+        // $karakteristik->k_final_nilai = $temp_total;
+        // $karakteristik->save();
 
-        //insert nilai aplikasi
-        $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
-        $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
-        $aplikasi->a_nilai = $totalapp;
+        // //insert nilai aplikasi
+        // $aplikasi = Aplikasi::findOrFail($karakteristik->aplikasi->a_id);
+        // $totalapp = DB::table('karakteristik')->where('a_id', '=', $aplikasi->a_id)->sum('k_nilai');
+        // $aplikasi->a_nilai = $totalapp;
 
 
-        if ($aplikasi->save()) {
-        	return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'Modularity berhasil diukur');
-        }
-        else {
-            return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('error', 'Modularity gagal diukur');
-        }
+        // if ($aplikasi->save()) {
+        // 	return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('success', 'Modularity berhasil diukur');
+        // }
+        // else {
+        //     return redirect()->route('nilai', $subkarakteristik->karakteristik->aplikasi->a_id)->with('error', 'Modularity gagal diukur');
+        // }
 
   
       }
