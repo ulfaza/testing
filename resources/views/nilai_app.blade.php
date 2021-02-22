@@ -74,7 +74,7 @@
                         </td>
                       @elseif ($s->sk_nama == 'Capacity')
                         <td>
-                          <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm loading">
+                          <a href="{{route('addcapacity',$s->sk_id)}}" class="btn btn-success btn-sm">
                             <span class="fa fa-plus"></span>
                           </a>
                         </td>
@@ -101,7 +101,7 @@
                           </td>
                         @elseif ($s->sk_nama == 'Capacity')
                           <td>
-                            <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-warning btn-sm loading">
+                            <a href="{{route('addcapacity',$s->sk_id)}}" class="btn btn-warning btn-sm">
                               <span class="fa fa-pencil"></span>
                             </a>
                           </td>

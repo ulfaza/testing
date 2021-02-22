@@ -9,6 +9,12 @@ use App\Aplikasi;
 
 class AutomaticController extends Controller
 {
+    public function addcapacity($sk_id)
+    {
+        $subkarakteristik = SubKarakteristik::findOrFail($sk_id);
+        return view('/addcapacity')->with('subkarakteristik', $subkarakteristik);
+    }
+
     public function capacity(Request $request, $sk_id)
     {   
         $seconds = 5000;
@@ -19,10 +25,11 @@ class AutomaticController extends Controller
         //array of cURL handles
         $chs = array();
         $temp = 0;
+        $n = $request->jml_req;
 
       //create the array of cURL handles and add to a multi_curl
         $mh = curl_multi_init();
-        for ($key=0;$key<7000;$key++){
+        for ($key=0;$key<$n;$key++){
             $chs[$key] = curl_init($url);
             curl_setopt($chs[$key], CURLOPT_RETURNTRANSFER, true);
             curl_setopt($chs[$key], CURLOPT_POST, true);
@@ -54,7 +61,8 @@ class AutomaticController extends Controller
         
         // close current handler
         curl_multi_close($mh);
-        $hasil = $temp/70;
+        $x = $n/100;
+        $hasil = $temp/$x;
         $subkarakteristik->nilai_subfaktor = $hasil;
         $subkarakteristik->bobot_absolut 	= $subkarakteristik->karakteristik->k_bobot * $subkarakteristik->bobot_relatif;
         $subkarakteristik->nilai_absolut 	= $subkarakteristik->bobot_absolut * $subkarakteristik->nilai_subfaktor;

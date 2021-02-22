@@ -88,7 +88,8 @@ Route::group(['prefix' => 'softwaretester',  'middleware' => 'is_user'], functio
 	Route::post('/aplikasi/customsubkarakteristik/action', 'SubkarakteristikController@actionsub')->name('action.sub');
 
 	//automatic
-	Route::get('/capacity/{id}','AutomaticController@capacity')->name('capacity');
+	Route::get('/capacity/add/{id}','AutomaticController@addcapacity')->name('addcapacity');
+	Route::post('/capacity/{id}','AutomaticController@capacity')->name('capacity');
 	Route::get('/responsetime/{id}','ResponseTimeController@responsetime')->name('responsetime');
 	Route::get('/automatic/{id}', 'PSController@index')->name('automatic');
 	Route::get('/uploadFile', 'UploadController@upload')->name('upload');
