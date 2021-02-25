@@ -8,7 +8,6 @@
               <ol class="breadcrumb">
                 <li><a href="{{asset('/softwaretester/home')}}">Home</a></li>
                 <li><a href="{{asset('/softwaretester/aplikasi')}}">Aplikasi</a></li>
-                {{-- <li><a href="{{asset('/softwaretester/aplikasi/{id}')}}">Pengukuran Aplikasi</a></li> --}}
                 <li class="active">Pengukuran Aplikasi</li>
           </div>
       </div>
@@ -39,6 +38,7 @@
                   <th style="width: 10%">Bobot Absolut</th>
                   <th style="width: 10%">Nilai Subkarakteristik</th>
                   <th style="width: 10%">Nilai Absolut</th>
+                  <th style="width: 10%">Nilai Karakteristik</th>
                   <th style="width: 15%">Tambah Hasil Kuesioner</th>
                 </thead>
                 <tbody>
@@ -55,7 +55,11 @@
                     <td>{{ $s->bobot_absolut }}</td>
                     <td>{{ $s->nilai_subfaktor }}</td>
                     <td>{{ $s->nilai_absolut }}</td>
-                    @if ($s->nilai_absolut == 0)
+                    @if (@$subkarakteristiks[$key - 1]->k_nama != $s->k_nama)
+                    <td rowspan="{{ $rowspan[$s->k_nama] }}">{{ $s->k_final_nilai }}</td>
+                    @endif
+
+                    @if ($s->nilai_absolut == null)
                       @if ($s->sk_nama == 'Modularity')
                         <td>
                           <a href="{{route('cohesion',$s->sk_id)}}" class="btn btn-success btn-sm loading">
@@ -70,7 +74,7 @@
                         </td>
                       @elseif ($s->sk_nama == 'Capacity')
                         <td>
-                          <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-success btn-sm loading">
+                          <a href="{{route('addcapacity',$s->sk_id)}}" class="btn btn-success btn-sm">
                             <span class="fa fa-plus"></span>
                           </a>
                         </td>
@@ -97,7 +101,7 @@
                           </td>
                         @elseif ($s->sk_nama == 'Capacity')
                           <td>
-                            <a href="{{route('capacity',$s->sk_id)}}" class="btn btn-warning btn-sm loading">
+                            <a href="{{route('addcapacity',$s->sk_id)}}" class="btn btn-warning btn-sm">
                               <span class="fa fa-pencil"></span>
                             </a>
                           </td>

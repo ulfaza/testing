@@ -38,11 +38,11 @@
                   <div><input type="text" class="form-control"  name="a_nama" required></div>
                 </div>                
                 <div class="form-group">
-                  <label>Url :</label>
+                  <label>Url Aplikasi:</label>
                   <div><input type="text" class="form-control"  name="a_url" required></div>
                 </div> 
                 <div class="form-group">
-                  <label>File :</label>
+                  <label>File Sourcecode Aplikasi :</label>
                   <div><input type="file"  name="a_file" required></div>
                 </div> 
 

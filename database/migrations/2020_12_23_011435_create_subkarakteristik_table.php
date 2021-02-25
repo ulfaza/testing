@@ -19,10 +19,10 @@ class CreateSubkarakteristikTable extends Migration
             $table->string('sk_nama');
             $table->decimal('bobot_relatif',8,2);
             $table->decimal('bobot_absolut',8,2);
-            $table->decimal('nilai_subfaktor',8,2);
-            $table->decimal('nilai_absolut',8,2);
-            $table->integer('jml_res');
-            $table->integer('total_per_sub');
+            $table->decimal('nilai_subfaktor',8,2)->nullable();
+            $table->decimal('nilai_absolut',8,2)->nullable();
+            $table->integer('jml_res')->nullable();
+            $table->integer('total_per_sub')->nullable();
         });
         Schema::table('subkarakteristik', function($table){
             $table->foreign('k_id')
